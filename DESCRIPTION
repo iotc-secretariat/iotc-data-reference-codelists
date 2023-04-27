@@ -1,0 +1,15 @@
+Package: iotc.data.reference.codelists
+Type: Package
+Title: IOTC reference codelists
+Version: 1.0.0
+Author: Fabio Fiorellato
+Maintainer: Fabio Fiorellato <fabio.fiorellato@fao.org>
+Description: The IOTC base package containing all reference codelists
+License: Proprietary
+Encoding: UTF-8
+LazyData: true
+Depends:
+  data.table,
+  iotc.base.common.data,
+  R (>= 2.10)
+RoxygenNote: 7.1.1
