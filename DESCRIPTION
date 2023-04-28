@@ -10,6 +10,5 @@ Encoding: UTF-8
 LazyData: true
 Depends:
   data.table,
-  iotc.base.common.data,
   R (>= 2.10)
 RoxygenNote: 7.1.1
