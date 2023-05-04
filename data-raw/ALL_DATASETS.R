@@ -1,3 +1,5 @@
+library(iotc.base.common.data)
+
 ### COMMON REFERENCE DATA MANAGEMENT
 
 load_codelist = function(codelist_domain, codelist_name, columns = NULL, connection = DB_IOTC_MASTER()) {
@@ -149,3 +151,14 @@ usethis::use_data(CONDITIONS,           overwrite = TRUE)
 usethis::use_data(TYPES_OF_MEASUREMENT, overwrite = TRUE)
 usethis::use_data(MEASUREMENT_TYPES,    overwrite = TRUE)
 usethis::use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
+
+### LEGACY REFERENCES
+
+LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE", "NAME_EN", "NAME_FR", "IS_AGGREGATE"))
+LEGACY_FISHERIES[, IS_AGGREGATE := ifelse(IS_AGGREGATE == 1, TRUE, FALSE)]
+LEGACY_FLEETS    = legacy_domain("FLEETS")
+LEGACY_SPECIES   = legacy_domain("SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_IOTC", "IS_AGGREGATE"))
+
+usethis::use_data(LEGACY_FISHERIES, overwrite = TRUE)
+usethis::use_data(LEGACY_FLEETS,    overwrite = TRUE)
+usethis::use_data(LEGACY_SPECIES,   overwrite = TRUE)

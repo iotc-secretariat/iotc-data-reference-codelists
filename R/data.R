@@ -379,6 +379,9 @@
 #'   \item{CODE}{The code}
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
+#'   \item{NAME_SCIENTIFIC}{The scientific name}
+#'   \item{IS_IOTC}{If the species belongs to the 16 IOTC ones}
+#'   \item{IS_AGGREGATE}{If the species is an aggregate}
 #' }
 #' @source <https://data.iotc.org/reference/latest>
 "SPECIES"
@@ -404,3 +407,42 @@
 #' }
 #' @source <https://data.iotc.org/reference/latest>
 "TYPES_OF_MEASUREMENT"
+
+#' LEGACY_FLEETS
+#' 
+#' @format
+#' \describe{
+#'   \item{FLAG_CODE}{The flag country code}
+#'   \item{REPORTING_ENTITY_CODE}{The reporting entity code}
+#'   \item{FLEET_CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#' }
+#' @source <https://data.iotc.org/reference/latest>
+"LEGACY_FLEETS"
+
+#' LEGACY_FISHERIES
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{IS_AGGREGATE}{If the fishery is an aggregate}
+#' }
+#' @source <https://data.iotc.org/reference/latest>
+"LEGACY_FISHERIES"
+
+#' LEGACY_SPECIES
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{NAME_SCIENTIFIC}{The scientific name}
+#'   \item{IS_IOTC}{If the species belongs to the 16 IOTC ones}
+#'   \item{IS_AGGREGATE}{If the species is an aggregate}
+#' }
+#' @source <https://data.iotc.org/reference/latest>
+"LEGACY_SPECIES"
