@@ -154,7 +154,13 @@ usethis::use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
 
 ### LEGACY REFERENCES
 
-LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE", "NAME_EN", "NAME_FR", "IS_AGGREGATE"))
+LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE", "NAME_EN", "NAME_FR", "FISHERY_GROUP_CODE", "FISHERY_TYPE_CODE", "IS_AGGREGATE"))
+LEGACY_FISHERIES[, FISHERY_CATEGORY := ifelse(FISHERY_TYPE_CODE != "IN", 
+                                              "COASTAL", 
+                                              ifelse(FISHERY_GROUP_CODE == "LL", 
+                                                     "LONGLINE", 
+                                                     "SURFACE"))]
+
 LEGACY_FISHERIES[, IS_AGGREGATE := ifelse(IS_AGGREGATE == 1, TRUE, FALSE)]
 LEGACY_FLEETS    = legacy_domain("FLEETS")
 LEGACY_SPECIES   = legacy_domain("SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_IOTC", "IS_AGGREGATE"))

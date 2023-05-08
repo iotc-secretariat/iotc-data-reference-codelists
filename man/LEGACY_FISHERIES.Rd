@@ -9,7 +9,10 @@
   \item{CODE}{The code}
   \item{NAME_EN}{The English name}
   \item{NAME_FR}{The French name}
+  \item{FISHERY_GROUP_CODE}{The fishery group code}
+  \item{FISHERY_TYPE_CODE}{The fishery type code}
   \item{IS_AGGREGATE}{If the fishery is an aggregate}
+  \item{FISHERY_CATEGORY}{The fishery category}
 }
 }
 \source{
