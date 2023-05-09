@@ -449,3 +449,13 @@
 #' }
 #' @source <https://data.iotc.org/reference/latest>
 "LEGACY_SPECIES"
+
+#' EEZ_TO_IOTC_MAIN_AREAS
+#' 
+#' @format
+#' \describe{
+#'   \item{FLAG_CODE}{The flag code of a coastal state}
+#'   \item{MAIN_IOTC_AREA_CODE}{The main IOTC area code overlapping with the EEZ of the coastal state}
+#' }
+#' @source <https://data.iotc.org/reference/latest>
+"EEZ_TO_IOTC_MAIN_AREAS"
