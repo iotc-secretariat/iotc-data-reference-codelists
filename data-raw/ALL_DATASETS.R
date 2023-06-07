@@ -74,19 +74,27 @@ usethis::use_data(DATA_COVERAGE_TYPES, overwrite = TRUE)
 
 ### GIS REFERENCES
 
-IOTC_AREA            = gis_domain("V_IOTC_MAIN_AREAS",  columns = c("CODE", "NAME_EN", "NAME_FR"))
+IOTC_AREAS           = gis_domain("V_IOTC_AREAS",       columns = c("CODE", "NAME_EN", "NAME_FR"))
+IOTC_MAIN_AREAS      = gis_domain("V_IOTC_MAIN_AREAS",  columns = c("CODE", "NAME_EN", "NAME_FR"))
 IOTC_GRIDS_AR        = gis_domain("V_IOTC_GRIDS_AR",    columns = c("CODE", "NAME_EN", "NAME_FR"))
 IOTC_GRIDS_CE_SF     = gis_domain("V_IOTC_GRIDS_CE_SF", columns = c("CODE", "NAME_EN", "NAME_FR"))
 
 IOTC_GRIDS_01x01     = gis_domain("V_IOTC_GRIDS_01x01", columns = c("CODE", "NAME_EN", "NAME_FR"))
 IOTC_GRIDS_05x05     = gis_domain("V_IOTC_GRIDS_05x05", columns = c("CODE", "NAME_EN", "NAME_FR"))
 
-usethis::use_data(IOTC_AREA,        overwrite = TRUE)
+IO_GRIDS_01x01       = gis_domain("V_IO_GRIDS_01x01",   columns = c("CODE", "NAME_EN", "NAME_FR"))
+IO_GRIDS_05x05       = gis_domain("V_IO_GRIDS_05x05",   columns = c("CODE", "NAME_EN", "NAME_FR"))
+
+usethis::use_data(IOTC_AREAS,       overwrite = TRUE)
+usethis::use_data(IOTC_MAIN_AREAS,  overwrite = TRUE)
 usethis::use_data(IOTC_GRIDS_AR,    overwrite = TRUE)
 usethis::use_data(IOTC_GRIDS_CE_SF, overwrite = TRUE)
 
 usethis::use_data(IOTC_GRIDS_01x01, overwrite = TRUE)
 usethis::use_data(IOTC_GRIDS_05x05, overwrite = TRUE)
+
+usethis::use_data(IO_GRIDS_01x01,   overwrite = TRUE)
+usethis::use_data(IO_GRIDS_05x05,   overwrite = TRUE)
 
 ### FISHERY REFERENCES
 
@@ -130,8 +138,8 @@ SEX                  = biological_domain("SEX")
 TYPES_OF_FATE        = biological_domain("TYPES_OF_FATE")
 FATES                = biological_domain("FATES")
 
-DISCARD_REASONS      = biological_domain("V_DISCARD_REASONS")
-RETAIN_REASONS       = biological_domain("V_RETAIN_REASONS")
+DISCARD_REASONS      = biological_domain("V_DISCARD_REASONS", columns = c("CODE", "NAME_EN", "NAME_FR"))
+RETAIN_REASONS       = biological_domain("V_RETAIN_REASONS",  columns = c("CODE", "NAME_EN", "NAME_FR"))
 CONDITIONS           = biological_domain("INDIVIDUAL_CONDITIONS")
 
 TYPES_OF_MEASUREMENT = biological_domain("TYPES_OF_MEASUREMENT")

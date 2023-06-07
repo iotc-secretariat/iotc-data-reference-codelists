@@ -9,10 +9,11 @@
   \item{CODE}{The code}
   \item{NAME_EN}{The English name}
   \item{NAME_FR}{The French name}
+  \item{DEFAULT_UNIT}{The default unit for the given type of measurement}
 }
 }
 \source{
-<https://data.iotc.org/reference/latest>
+<https://data.iotc.org/reference/latest/domain/biological/#typesOfMeasurement>
 }
 \usage{
 TYPES_OF_MEASUREMENT

@@ -9,10 +9,11 @@
   \item{CODE}{The code}
   \item{NAME_EN}{The English name}
   \item{NAME_FR}{The French name}
+  \item{CPC_CODE}{The corresponding CPC code, if any, otherwise NA}
 }
 }
 \source{
-<https://data.iotc.org/reference/latest>
+<https://data.iotc.org/reference/latest/domain/admin/#fleets>
 }
 \usage{
 FLEETS

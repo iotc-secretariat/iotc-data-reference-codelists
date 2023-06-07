@@ -11,4 +11,4 @@ LazyData: true
 Depends:
   data.table,
   R (>= 2.10)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3

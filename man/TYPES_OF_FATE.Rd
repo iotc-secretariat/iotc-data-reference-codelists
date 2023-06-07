@@ -12,7 +12,7 @@
 }
 }
 \source{
-<https://data.iotc.org/reference/latest>
+<https://data.iotc.org/reference/latest/domain/biological/#typesOfFate>
 }
 \usage{
 TYPES_OF_FATE

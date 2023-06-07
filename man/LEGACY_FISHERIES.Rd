@@ -16,7 +16,7 @@
 }
 }
 \source{
-<https://data.iotc.org/reference/latest>
+<https://data.iotc.org/reference/latest/domain/legacy/#fisheries>
 }
 \usage{
 LEGACY_FISHERIES

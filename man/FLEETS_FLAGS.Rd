@@ -7,8 +7,21 @@
 \format{
 \describe{
   \item{CODE}{The code}
+  \item{FLEET_CODE}{The fleet code}
+  \item{REPORTING_ENTITY_CODE}{The reporting entity code}
+  \item{FLAG_CODE}{The flag code}
+  \item{IOTC_MAIN_AREA_CODE}{The main area of operation for the fleet}
+  \item{FISHERY_TYPE_CODE}{The type of fishery code, i.e., artisanal / industrial}
+  \item{GEAR_CATEGORY_CODE}{The code for the gear category used by the fleet}
+  \item{GEAR_CODE}{The code for the gear used by the fleet}
+  \item{GEAR_CONFIGURATION_CODE}{The code for the gear configuration used by the fleet}
+  \item{FISHING_MODE_CODE}{The code for the fishing mode used by the gear}
+  \item{TARGET_SPECIES_CODE}{The code for the target species used by the fleet}
+  \item{FROM_YEAR}{The starting year of operation in the Indian Ocean}
+  \item{TO_YEAR}{The ending year of operation in the Indian Ocean}
   \item{NAME_EN}{The English name}
   \item{NAME_FR}{The French name}
+  \item{CPC_CODE}{The corresponding CPC code, if any, otherwise NA}
 }
 }
 \source{

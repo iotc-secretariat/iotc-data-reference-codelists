@@ -9,10 +9,11 @@
   \item{CODE}{The code}
   \item{NAME_EN}{The English name}
   \item{NAME_FR}{The French name}
+  \item{IS_MECHANIZED}{Whether or not the mechanization type refers to mechanized boats}
 }
 }
 \source{
-<https://data.iotc.org/reference/latest>
+<https://data.iotc.org/reference/latest/domain/fisheries/#mechanizationTypes>
 }
 \usage{
 MECHANIZATION_TYPES

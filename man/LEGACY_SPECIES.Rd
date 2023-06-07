@@ -15,7 +15,7 @@
 }
 }
 \source{
-<https://data.iotc.org/reference/latest>
+<https://data.iotc.org/reference/latest/domain/legacy/#species>
 }
 \usage{
 LEGACY_SPECIES

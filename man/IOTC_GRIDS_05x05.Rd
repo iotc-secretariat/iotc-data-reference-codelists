@@ -12,7 +12,7 @@
 }
 }
 \source{
-<https://data.iotc.org/reference/latest>
+<https://data.iotc.org/reference/latest/domain/admin/#IOTCgrids5x5>
 }
 \usage{
 IOTC_GRIDS_05x05

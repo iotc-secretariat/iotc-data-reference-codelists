@@ -12,7 +12,7 @@
 }
 }
 \source{
-<https://data.iotc.org/reference/latest>
+<https://data.iotc.org/reference/latest/domain/admin/#IOTCgrids1x1>
 }
 \usage{
 IOTC_GRIDS_01x01

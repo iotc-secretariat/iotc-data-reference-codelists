@@ -6,13 +6,14 @@
 \title{MEASUREMENT_TOOLS}
 \format{
 \describe{
+  \item{TYPE_OF_MEASUREMENT_CODE}{The code for the type of measurement, i.e., LN = wength, WG = weight}
   \item{CODE}{The code}
   \item{NAME_EN}{The English name}
   \item{NAME_FR}{The French name}
 }
 }
 \source{
-<https://data.iotc.org/reference/latest>
+<https://data.iotc.org/reference/latest/domain/biological/#allMeasurementTools>
 }
 \usage{
 MEASUREMENT_TOOLS

@@ -6,13 +6,14 @@
 \title{DATA_SOURCES}
 \format{
 \describe{
+  \item{DATASET_CODE}{The dataset code}
   \item{CODE}{The code}
   \item{NAME_EN}{The English name}
   \item{NAME_FR}{The French name}
 }
 }
 \source{
-<https://data.iotc.org/reference/latest>
+<https://data.iotc.org/reference/latest/domain/data/#sources>
 }
 \usage{
 DATA_SOURCES

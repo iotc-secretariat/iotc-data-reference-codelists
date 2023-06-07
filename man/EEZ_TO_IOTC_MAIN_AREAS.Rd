@@ -10,9 +10,6 @@
   \item{MAIN_IOTC_AREA_CODE}{The main IOTC area code overlapping with the EEZ of the coastal state}
 }
 }
-\source{
-<https://data.iotc.org/reference/latest>
-}
 \usage{
 EEZ_TO_IOTC_MAIN_AREAS
 }

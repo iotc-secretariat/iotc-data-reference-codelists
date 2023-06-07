@@ -12,7 +12,7 @@
 }
 }
 \source{
-<https://data.iotc.org/reference/latest>
+<https://data.iotc.org/reference/latest/domain/fisheries/#catchUnits>
 }
 \usage{
 CATCH_UNITS

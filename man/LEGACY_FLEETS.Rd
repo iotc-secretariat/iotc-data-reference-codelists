@@ -14,7 +14,7 @@
 }
 }
 \source{
-<https://data.iotc.org/reference/latest>
+<https://data.iotc.org/reference/latest/domain/legacy/#fleets>
 }
 \usage{
 LEGACY_FLEETS
