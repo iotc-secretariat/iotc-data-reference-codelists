@@ -117,6 +117,7 @@ usethis::use_data(IO_GRIDS_30x30, overwrite = TRUE)
 ### FISHERY REFERENCES
 
 FISHERIES            = fishery_domain("FISHERIES")
+FISHERIES[, IS_AGGREGATE := str_detect(CODE, "\\+")]
 
 CATCH_UNITS          = fishery_domain("CATCH_UNITS")
 DISCARD_UNITS        = CATCH_UNITS

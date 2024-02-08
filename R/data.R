@@ -224,8 +224,14 @@
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
 #'   \item{FISHERY_CATEGORY_CODE}{The fishery category code (as per Res. 15/02)}
-#'   \item{FISHERY_CATEGORY_NAME_EN}{The fishery category English name (as per Res. 15/02)}
-#'   \item{FISHERY_CATEGORY_NAME)FR}{The fishery category French name (as per Res. 15/02)}
+#'   \item{FISHERY_TYPE_CODE}{The fishery type code}
+#'   \item{GEAR_CODE}{The fishery gear code}
+#'   \item{GEAR_CONFIGURATION_CODE}{The fishery gear configuration code}
+#'   \item{FISHING_MODE_CODE}{The fishery fishing mode code}
+#'   \item{TARGET_SPECIES_CODE}{The fishery target species code}
+#'   \item{IOTDB_GEAR_CODE}{The fishery IOTDB gear code}
+#'   \item{IOTC_FISHERY_CODE}{The fishery _old_ fishery code}
+#'   \item{IS_AGGREGATE}{If the fishery represent an aggregate of multiple fisheries or not}
 #' }
 #' @source <https://data.iotc.org/reference/latest/domain/fisheries/#fisheries>
 "FISHERIES"
