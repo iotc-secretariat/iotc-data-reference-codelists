@@ -47,8 +47,15 @@
 #' @format
 #' \describe{
 #'   \item{CODE}{The code}
-#'   \item{NAME_EN}{The English name}
-#'   \item{NAME_FR}{The French name}
+#'   \item{CODE_ISO2}{The ISO2 country code - when available}
+#'   \item{CODE_ISO3}{The ISO3 country code - when available}
+#'   \item{LIST_NAME_EN}{The English name (when appearing in a list)}
+#'   \item{LIST_NAME_FR}{The French name (when appearing in a list)}
+#'   \item{FULL_NAME_EN}{The full English name}
+#'   \item{FULL_NAME_FR}{The full French name}
+#'   \item{SHORT_NAME_EN}{The short English name}
+#'   \item{SHORT_NAME_FR}{The short French name}
+#'   \item{NOCS_CATEGORY}{The category within the FAO NOCS database}
 #' }
 #' @source <https://data.iotc.org/reference/latest/domain/admin/#countries>
 "COUNTRIES"
@@ -151,7 +158,7 @@
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
 #' }
-#' @source <https://data.iotc.org/reference/latest>
+#' @source <https://data.iotc.org/reference/latest/domain/fisheries/#effortUnits>
 "EFFORT_UNITS"
 
 #' ENTITIES
@@ -159,46 +166,43 @@
 #' @format
 #' \describe{
 #'   \item{CODE}{The code}
-#'   \item{NAME_EN}{The English name}
-#'   \item{NAME_FR}{The French name}
+#'   \item{CODE_ISO2}{The ISO2 country code - when available}
+#'   \item{CODE_ISO3}{The ISO3 country code - when available}
+#'   \item{LIST_NAME_EN}{The English name (when appearing in a list)}
+#'   \item{LIST_NAME_FR}{The French name (when appearing in a list)}
+#'   \item{FULL_NAME_EN}{The full English name}
+#'   \item{FULL_NAME_FR}{The full French name}
+#'   \item{SHORT_NAME_EN}{The short English name}
+#'   \item{SHORT_NAME_FR}{The short French name}\
+#'   \item{NOCS_CATEGORY}{The category within the FAO NOCS database}
 #' }
-#' @source <https://data.iotc.org/reference/latest/domain/fisheries/#effortUnits>
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#entities>
 "ENTITIES"
 
-#' FAD_ACTIVITY_TYPES
+#' FOB_ACTIVITY_TYPES
 #' 
 #' @format
 #' \describe{
 #'   \item{CODE}{The code}
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
-#'   \item{IS_ON_DFAD}{Whether or not the activity is on DFAD}
+#'   \item{DFOB}{Whether or not the activity is on drifting FOBs / FADs}
+#'   \item{AFOB}{Whether or not the activity is on anchored FOBs / FADs}
 #' }
-#' @source <https://data.iotc.org/reference/latest/domain/fisheries/#FADactivityTypes>
-"FAD_ACTIVITY_TYPES"
+#' @source <https://data.iotc.org/reference/latest/domain/fisheries/#FOBactivityTypes>
+"FOB_ACTIVITY_TYPES"
 
-#' FAD_OWNERSHIP_TYPES
+#' FOB_TYPES
 #' 
 #' @format
 #' \describe{
 #'   \item{CODE}{The code}
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
+#'   \item{DFOB}{Whether or not the FOB type identifies a drifting FOB / FAD}
 #' }
-#' @source <https://data.iotc.org/reference/latest/domain/fisheries/#FADownerships>
-"FAD_OWNERSHIP_TYPES"
-
-#' FAD_TYPES
-#' 
-#' @format
-#' \describe{
-#'   \item{CODE}{The code}
-#'   \item{NAME_EN}{The English name}
-#'   \item{NAME_FR}{The French name}
-#'   \item{IS_DFAD}{Whether or not the FAD type identifies a DFAD}
-#' }
-#' @source <https://data.iotc.org/reference/latest/domain/fisheries/#FADtypes>
-"FAD_TYPES"
+#' @source <https://data.iotc.org/reference/latest/domain/fisheries/#FOBtypes>
+"FOB_TYPES"
 
 #' FATES
 #' 
@@ -219,6 +223,9 @@
 #'   \item{CODE}{The code}
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
+#'   \item{FISHERY_CATEGORY_CODE}{The fishery category code (as per Res. 15/02)}
+#'   \item{FISHERY_CATEGORY_NAME_EN}{The fishery category English name (as per Res. 15/02)}
+#'   \item{FISHERY_CATEGORY_NAME)FR}{The fishery category French name (as per Res. 15/02)}
 #' }
 #' @source <https://data.iotc.org/reference/latest/domain/fisheries/#fisheries>
 "FISHERIES"
@@ -231,6 +238,7 @@
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
 #'   \item{CPC_CODE}{The corresponding CPC code, if any, otherwise NA}
+#'   \item{FLAG_CODE}{The flag code for the fleet / sub-fleet, if any, otherwise NA}
 #' }
 #' @source <https://data.iotc.org/reference/latest/domain/admin/#fleets>
 "FLEETS"
@@ -259,50 +267,6 @@
 #' @source <https://data.iotc.org/reference/latest>
 "FLEETS_FLAGS"
 
-#' IOTC_MAIN_AREAS
-#' 
-#' @format
-#' \describe{
-#'   \item{CODE}{The code}
-#'   \item{NAME_EN}{The English name}
-#'   \item{NAME_FR}{The French name}
-#' }
-#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCareasMain>
-"IOTC_MAIN_AREAS"
-
-#' IOTC_AREAS
-#' 
-#' @format
-#' \describe{
-#'   \item{CODE}{The code}
-#'   \item{NAME_EN}{The English name}
-#'   \item{NAME_FR}{The French name}
-#' }
-#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCareas>
-"IOTC_AREAS"
-
-#' IOTC_GRIDS_01x01
-#' 
-#' @format
-#' \describe{
-#'   \item{CODE}{The code}
-#'   \item{NAME_EN}{The English name}
-#'   \item{NAME_FR}{The French name}
-#' }
-#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCgrids1x1>
-"IOTC_GRIDS_01x01"
-
-#' IOTC_GRIDS_05x05
-#' 
-#' @format
-#' \describe{
-#'   \item{CODE}{The code}
-#'   \item{NAME_EN}{The English name}
-#'   \item{NAME_FR}{The French name}
-#' }
-#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCgrids5x5>
-"IOTC_GRIDS_05x05"
-
 #' IO_GRIDS_01x01
 #' 
 #' @format
@@ -310,6 +274,11 @@
 #'   \item{CODE}{The code}
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
 #' }
 #' @source <https://data.iotc.org/reference/latest/domain/admin/#IOgrids1x1>
 "IO_GRIDS_01x01"
@@ -321,20 +290,225 @@
 #'   \item{CODE}{The code}
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
 #' }
 #' @source <https://data.iotc.org/reference/latest/domain/admin/#IOgrids5x5>
 "IO_GRIDS_05x05"
 
-#' IOTC_GRIDS_AR
+#' IO_GRIDS_10x10
 #' 
 #' @format
 #' \describe{
 #'   \item{CODE}{The code}
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
 #' }
-#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCgridsAR>
-"IOTC_GRIDS_AR"
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOgrids10x10>
+"IO_GRIDS_10x10"
+
+#' IO_GRIDS_10x20
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOgrids10x20>
+"IO_GRIDS_10x20"
+
+#' IO_GRIDS_20x20
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOgrids20x20>
+"IO_GRIDS_20x20"
+
+#' IO_GRIDS_30x30
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOgrids30x30>
+"IO_GRIDS_30x30"
+
+#' IOTC_AREAS 
+#' Reference codes modeling all important areas in which the IOTC area of competence might be split (e.g., north-western, high-seas, NJA, etc.).
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCareas>
+"IOTC_AREAS"
+
+#' IOTC_MAIN_AREAS
+#' Reference codes modeling the two main areas in which the IOTC area of competence is split (western / eastern IOTC area, roughly coinciding with FAO areas F51 and F57). 
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCareasMain>
+"IOTC_MAIN_AREAS"
+
+#' IOTC_AREAS_AR
+#' Reference codes modeling irregular areas within the IOTC area of competence for which artisanal fisheries data can be recorded and reported.
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCareasAR>
+"IOTC_AREAS_AR"
+
+#' IOTC_GRIDS_01x01
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCgrids1x1>
+"IOTC_GRIDS_01x01"
+
+#' IOTC_GRIDS_05x05
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCgrids5x5>
+"IOTC_GRIDS_05x05"
+
+#' IOTC_GRIDS_10x10
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCgrids10x10>
+"IOTC_GRIDS_10x10"
+
+#' IOTC_GRIDS_10x20
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCgrids10x20>
+"IOTC_GRIDS_10x20"
+
+#' IOTC_GRIDS_20x20
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCgrids20x20>
+"IOTC_GRIDS_20x20"
+
+#' IOTC_GRIDS_30x30
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code}
+#'   \item{NAME_EN}{The English name}
+#'   \item{NAME_FR}{The French name}
+#'   \item{OCEAN_AREA_KM2}{The ocean area in km2}
+#'   \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+#'   \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+#'   \item{CENTER_LAT}{The latitude of the centroid}
+#'   \item{CENTER_LON}{The longitude of the centroid}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCgrids30x30>
+"IOTC_GRIDS_30x30"
 
 #' IOTC_GRIDS_CE_SF
 #' 
@@ -435,9 +609,18 @@
 #'   \item{CODE}{The code}
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
-#'   \item{NAME_SCIENTIFIC}{The scientific name}
-#'   \item{IS_IOTC}{If the species belongs to the 16 IOTC ones}
-#'   \item{IS_AGGREGATE}{If the species is an aggregate}
+#'   \item{NAME_SCIENTIFIC}{The scientific name}                   
+#'   \item{SPECIES_GROUP_CODE}{The species group code}                   - # To be removed
+#'   \item{SPECIES_CATEGORY_CODE}{The species category code}             - # To be removed
+#'   \item{FAMILY}{The species family (taken from the ASFIS list)}       - # To be removed
+#'   \item{ORDER}{The species order (taken from the ASFIS list)}         - # To be removed
+#'   \item{IUCN_STATUS_CODE}{The IUCN status code for the species}       - # To be removed
+#'   \item{IS_IOTC}{If the species belongs to the 16 IOTC ones}          
+#'   \item{IS_TARGET}{If the species is targetd by some IOTC fisheries}  - # To be removed
+#'   \item{IS_SSI}{If the species is of _special interest_ (SSI)}        - # To be removed
+#'   \item{IS_PREDATOR}{If the species is considered to be a _predator_} - # To be removed
+#'   \item{IS_AGGREGATE}{If the species is an aggregate}                 
+#'   \item{IS_ASFIS}{If the species is included in the ASFIS list}       - # To be removed
 #' }
 #' @source <https://data.iotc.org/reference/latest/domain/biological/#allSpecies>
 "SPECIES"
@@ -486,9 +669,16 @@
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
 #'   \item{FISHERY_GROUP_CODE}{The fishery group code}
-#'   \item{FISHERY_TYPE_CODE}{The fishery type code}
+#'   \item{FISHERY_GROUP_NAME_EN}{The fishery group English name}          - # To be removed
+#'   \item{FISHERY_GROUP_NAME_FR}{The fishery group French name}           - # To be removed
+#'   \item{FISHERY_TYPE_CODE}{The fishery type code} 
+#'   \item{FISHERY_TYPE_NAME_EN}{The fishery type English name}            - # To be removed
+#'   \item{FISHERY_TYPE_NAME_FR}{The fishery type French name}             - # To be removed
+#'   \item{FISHERY_CATEGORY}{The fishery category as per Res. 15/02}       - # Derived from other fishery attributes
+#'   \item{SELECTIVITY_GROUP_CODE}{The selectivity group code}             - # To be removed
+#'   \item{SELECTIVITY_GROUP_NAME_EN}{The selectivity group English name}} - # To be removed
+#'   \item{SELECTIVITY_GROUP_NAME_FR}{The selectivity group French name}}  - # To be removed
 #'   \item{IS_AGGREGATE}{If the fishery is an aggregate}
-#'   \item{FISHERY_CATEGORY}{The fishery category}
 #' }
 #' @source <https://data.iotc.org/reference/latest/domain/legacy/#fisheries>
 "LEGACY_FISHERIES"
@@ -501,8 +691,13 @@
 #'   \item{NAME_EN}{The English name}
 #'   \item{NAME_FR}{The French name}
 #'   \item{NAME_SCIENTIFIC}{The scientific name}
-#'   \item{IS_IOTC}{If the species belongs to the 16 IOTC ones}
 #'   \item{IS_AGGREGATE}{If the species is an aggregate}
+#'   \item{IS_IOTC}{If the species belongs to the 16 IOTC ones}
+#'   \item{SPECIES_GROUP_CODE}{The species group code}                          - # To be removed
+#'   \item{SPECIES_LARGE_GROUP_NAME_EN}{The species (large) group English name} - # To be removed
+#'   \item{SPECIES_LARGE_GROUP_NAME_FR}{The species (large) group French name}  - # To be removed
+#'   \item{SPECIES_CATALOG_GROUP_CODE}{The species catalog group code}          - # To be removed
+#'   \item{SPECIES_WORKING_PARTY_CODE}{The species woorking party code}         - # To be removed
 #' }
 #' @source <https://data.iotc.org/reference/latest/domain/legacy/#species>
 "LEGACY_SPECIES"
@@ -515,3 +710,5 @@
 #'   \item{MAIN_IOTC_AREA_CODE}{The main IOTC area code overlapping with the EEZ of the coastal state}
 #' }
 "EEZ_TO_IOTC_MAIN_AREAS"
+
+### WORK IN PROGRESS

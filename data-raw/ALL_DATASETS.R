@@ -110,9 +110,9 @@ MECHANIZATION_TYPES  = fishery_domain("MECHANIZATION_TYPES")
 PRESERVATION_METHODS = fishery_domain("FISH_PRESERVATION_METHODS")
 PROCESSING_TYPES     = fishery_domain("FISH_PROCESSING_TYPES")
 
-FAD_TYPES            = fishery_domain("FAD_TYPES")
-FAD_ACTIVITY_TYPES   = fishery_domain("FAD_ACTIVITY_TYPES")
-FAD_OWNERSHIP_TYPES  = fishery_domain("FAD_OWNERSHIPS")
+FOB_TYPES            = fishery_domain("FOB_TYPES")
+FOB_ACTIVITY_TYPES   = fishery_domain("FOB_ACTIVITY_TYPES")
+FOB_OWNERSHIP_TYPES  = fishery_domain("FOB_OWNERSHIPS")
 
 usethis::use_data(FISHERIES,            overwrite = TRUE)
 
@@ -126,13 +126,26 @@ usethis::use_data(MECHANIZATION_TYPES,  overwrite = TRUE)
 usethis::use_data(PRESERVATION_METHODS, overwrite = TRUE)
 usethis::use_data(PROCESSING_TYPES,     overwrite = TRUE)
 
-usethis::use_data(FAD_TYPES,            overwrite = TRUE)
-usethis::use_data(FAD_ACTIVITY_TYPES,   overwrite = TRUE)
-usethis::use_data(FAD_OWNERSHIP_TYPES,  overwrite = TRUE)
+usethis::use_data(FOB_TYPES,            overwrite = TRUE)
+usethis::use_data(FOB_ACTIVITY_TYPES,   overwrite = TRUE)
+usethis::use_data(FOB_OWNERSHIP_TYPES,  overwrite = TRUE)
 
 ### BIOLOGICAL REFERENCES
 
-SPECIES              = biological_domain("V_SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_IOTC", "IS_AGGREGATE"))
+SPECIES              = biological_domain("V_SPECIES", columns = c("CODE", 
+                                                                  "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", 
+                                                                 #"SPECIES_GROUP_CODE", "SPECIES_GROUP_NAME_EN", "SPECIES_GROUP_NAME_FR",
+                                                                 #"SPECIES_CATEGORY_CODE", "SPECIES_CATEGORY_NAME_EN", "SPECIES_CATEGORY_NAME_FR",                                                                 
+                                                                 #"FAMILY", "ORDER", 
+                                                                 #"IUCN_STATUS_CODE",
+                                                                  "IS_IOTC", 
+                                                                 #"IS_TARGET",
+                                                                 #"IS_SSI",
+                                                                 #"IS_PREDATOR",
+                                                                 #"IS_BAIT",
+                                                                  "IS_AGGREGATE"#,
+                                                                 #"IS_ASFIS"
+                                                                )) 
 SEX                  = biological_domain("SEX")
 
 TYPES_OF_FATE        = biological_domain("TYPES_OF_FATE")
@@ -162,7 +175,14 @@ usethis::use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
 
 ### LEGACY REFERENCES
 
-LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE", "NAME_EN", "NAME_FR", "FISHERY_GROUP_CODE", "FISHERY_TYPE_CODE", "IS_AGGREGATE"))
+LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE", 
+                                                          "NAME_EN", "NAME_FR", 
+                                                          "FISHERY_GROUP_CODE", #"FISHERY_GROUP_NAME_EN", "FISHERY_GROUP_NAME_FR"
+                                                          "FISHERY_TYPE_CODE", #"FISHERY_TYPE_NAME_EN", "FISHERY_TYPE_NAME_FR"
+                                                          "FISHERY_CATEGORY", 
+                                                         #"SELECTIVITY_GROUP_CODE", "SELECTIVITY_GROUP_NAME_EN", "SELECTIVITY_GROUP_NAME_FR",
+                                                          "IS_AGGREGATE"))
+
 LEGACY_FISHERIES[, FISHERY_CATEGORY := ifelse(FISHERY_TYPE_CODE != "IN", 
                                               "COASTAL", 
                                               ifelse(FISHERY_GROUP_CODE == "LL", 
@@ -171,7 +191,12 @@ LEGACY_FISHERIES[, FISHERY_CATEGORY := ifelse(FISHERY_TYPE_CODE != "IN",
 
 LEGACY_FISHERIES[, IS_AGGREGATE := ifelse(IS_AGGREGATE == 1, TRUE, FALSE)]
 LEGACY_FLEETS    = legacy_domain("FLEETS")
-LEGACY_SPECIES   = legacy_domain("SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_IOTC", "IS_AGGREGATE"))
+LEGACY_SPECIES   = legacy_domain("SPECIES", columns = c("CODE", 
+                                                        "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", 
+                                                        "IS_AGGREGATE", "IS_IOTC"#, 
+                                                       #"SPECIES_GROUP_CODE", "SPECIES_LARGE_GROUP_NAME_EN", "SPECIES_LARGE_GROUP_NAME_FR", 
+                                                       #"SPECIES_CATALOG_GROUP_CODE", "SPECIES_WORKING_PARTY_CODE"
+                                                       ))
 
 usethis::use_data(LEGACY_FISHERIES, overwrite = TRUE)
 usethis::use_data(LEGACY_FLEETS,    overwrite = TRUE)
