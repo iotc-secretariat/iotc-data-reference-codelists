@@ -397,8 +397,8 @@
 #' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCareasMain>
 "IOTC_MAIN_AREAS"
 
-#' IOTC_AREAS_AR
-#' Reference codes modeling irregular areas within the IOTC area of competence for which artisanal fisheries data can be recorded and reported.
+#' IOTC_GRIDS_CE_SF_AR
+#' Reference codes modeling regular and irregular areas within the IOTC area of competence for which artisanal fisheries data can be recorded and reported.
 #' 
 #' @format
 #' \describe{
@@ -412,7 +412,7 @@
 #'   \item{CENTER_LON}{The longitude of the centroid}
 #' }
 #' @source <https://data.iotc.org/reference/latest/domain/admin/#IOTCareasAR>
-"IOTC_AREAS_AR"
+"IOTC_GRIDS_CE_SF_AR"
 
 #' IOTC_GRIDS_01x01
 #' 
@@ -676,8 +676,8 @@
 #'   \item{FISHERY_TYPE_NAME_FR}{The fishery type French name}             - # To be removed
 #'   \item{FISHERY_CATEGORY}{The fishery category as per Res. 15/02}       - # Derived from other fishery attributes
 #'   \item{SELECTIVITY_GROUP_CODE}{The selectivity group code}             - # To be removed
-#'   \item{SELECTIVITY_GROUP_NAME_EN}{The selectivity group English name}} - # To be removed
-#'   \item{SELECTIVITY_GROUP_NAME_FR}{The selectivity group French name}}  - # To be removed
+#'   \item{SELECTIVITY_GROUP_NAME_EN}{The selectivity group English name}  - # To be removed
+#'   \item{SELECTIVITY_GROUP_NAME_FR}{The selectivity group French name}   - # To be removed
 #'   \item{IS_AGGREGATE}{If the fishery is an aggregate}
 #' }
 #' @source <https://data.iotc.org/reference/latest/domain/legacy/#fisheries>

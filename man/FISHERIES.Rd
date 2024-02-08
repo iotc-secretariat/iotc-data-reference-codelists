@@ -9,6 +9,9 @@
   \item{CODE}{The code}
   \item{NAME_EN}{The English name}
   \item{NAME_FR}{The French name}
+  \item{FISHERY_CATEGORY_CODE}{The fishery category code (as per Res. 15/02)}
+  \item{FISHERY_CATEGORY_NAME_EN}{The fishery category English name (as per Res. 15/02)}
+  \item{FISHERY_CATEGORY_NAME)FR}{The fishery category French name (as per Res. 15/02)}
 }
 }
 \source{

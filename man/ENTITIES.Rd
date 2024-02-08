@@ -7,12 +7,19 @@
 \format{
 \describe{
   \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
+  \item{CODE_ISO2}{The ISO2 country code - when available}
+  \item{CODE_ISO3}{The ISO3 country code - when available}
+  \item{LIST_NAME_EN}{The English name (when appearing in a list)}
+  \item{LIST_NAME_FR}{The French name (when appearing in a list)}
+  \item{FULL_NAME_EN}{The full English name}
+  \item{FULL_NAME_FR}{The full French name}
+  \item{SHORT_NAME_EN}{The short English name}
+  \item{SHORT_NAME_FR}{The short French name}\
+  \item{NOCS_CATEGORY}{The category within the FAO NOCS database}
 }
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/fisheries/#effortUnits>
+<https://data.iotc.org/reference/latest/domain/admin/#entities>
 }
 \usage{
 ENTITIES

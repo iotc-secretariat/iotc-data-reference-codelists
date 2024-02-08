@@ -9,6 +9,11 @@
   \item{CODE}{The code}
   \item{NAME_EN}{The English name}
   \item{NAME_FR}{The French name}
+  \item{OCEAN_AREA_KM2}{The ocean area in km2}
+  \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
+  \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
+  \item{CENTER_LAT}{The latitude of the centroid}
+  \item{CENTER_LON}{The longitude of the centroid}
 }
 }
 \source{

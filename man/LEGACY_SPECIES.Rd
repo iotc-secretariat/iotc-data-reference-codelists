@@ -10,8 +10,13 @@
   \item{NAME_EN}{The English name}
   \item{NAME_FR}{The French name}
   \item{NAME_SCIENTIFIC}{The scientific name}
-  \item{IS_IOTC}{If the species belongs to the 16 IOTC ones}
   \item{IS_AGGREGATE}{If the species is an aggregate}
+  \item{IS_IOTC}{If the species belongs to the 16 IOTC ones}
+  \item{SPECIES_GROUP_CODE}{The species group code}                          - # To be removed
+  \item{SPECIES_LARGE_GROUP_NAME_EN}{The species (large) group English name} - # To be removed
+  \item{SPECIES_LARGE_GROUP_NAME_FR}{The species (large) group French name}  - # To be removed
+  \item{SPECIES_CATALOG_GROUP_CODE}{The species catalog group code}          - # To be removed
+  \item{SPECIES_WORKING_PARTY_CODE}{The species woorking party code}         - # To be removed
 }
 }
 \source{

@@ -74,27 +74,45 @@ usethis::use_data(DATA_COVERAGE_TYPES, overwrite = TRUE)
 
 ### GIS REFERENCES
 
-IOTC_AREAS           = gis_domain("V_IOTC_AREAS",       columns = c("CODE", "NAME_EN", "NAME_FR"))
-IOTC_MAIN_AREAS      = gis_domain("V_IOTC_MAIN_AREAS",  columns = c("CODE", "NAME_EN", "NAME_FR"))
-IOTC_GRIDS_AR        = gis_domain("V_IOTC_GRIDS_AR",    columns = c("CODE", "NAME_EN", "NAME_FR"))
-IOTC_GRIDS_CE_SF     = gis_domain("V_IOTC_GRIDS_CE_SF", columns = c("CODE", "NAME_EN", "NAME_FR"))
+AREAS_COLUMNS = c("CODE", "NAME_EN", "NAME_FR", "OCEAN_AREA_KM2", "OCEAN_AREA_IO_KM2", "OCEAN_AREA_IOTC_KM2", "CENTER_LAT", "CENTER_LON")
 
-IOTC_GRIDS_01x01     = gis_domain("V_IOTC_GRIDS_01x01", columns = c("CODE", "NAME_EN", "NAME_FR"))
-IOTC_GRIDS_05x05     = gis_domain("V_IOTC_GRIDS_05x05", columns = c("CODE", "NAME_EN", "NAME_FR"))
+IOTC_AREAS           = gis_domain("V_IOTC_AREAS",          columns = AREAS_COLUMNS)
+IOTC_MAIN_AREAS      = gis_domain("V_IOTC_MAIN_AREAS",     columns = AREAS_COLUMNS)
+IOTC_GRIDS_CE_SF     = gis_domain("V_IOTC_GRIDS_CE_SF",    columns = AREAS_COLUMNS)
+IOTC_GRIDS_CE_SF_AR  = gis_domain("V_IOTC_GRIDS_CE_SF_AR", columns = AREAS_COLUMNS)
 
-IO_GRIDS_01x01       = gis_domain("V_IO_GRIDS_01x01",   columns = c("CODE", "NAME_EN", "NAME_FR"))
-IO_GRIDS_05x05       = gis_domain("V_IO_GRIDS_05x05",   columns = c("CODE", "NAME_EN", "NAME_FR"))
+IOTC_GRIDS_01x01     = gis_domain("V_IOTC_GRIDS_01x01", columns = AREAS_COLUMNS)
+IOTC_GRIDS_05x05     = gis_domain("V_IOTC_GRIDS_05x05", columns = AREAS_COLUMNS)
+IOTC_GRIDS_10x10     = gis_domain("V_IOTC_GRIDS_10x10", columns = AREAS_COLUMNS)
+IOTC_GRIDS_10x20     = gis_domain("V_IOTC_GRIDS_10x20", columns = AREAS_COLUMNS)
+IOTC_GRIDS_20x20     = gis_domain("V_IOTC_GRIDS_20x20", columns = AREAS_COLUMNS)
+IOTC_GRIDS_30x30     = gis_domain("V_IOTC_GRIDS_30x30", columns = AREAS_COLUMNS)
 
-usethis::use_data(IOTC_AREAS,       overwrite = TRUE)
-usethis::use_data(IOTC_MAIN_AREAS,  overwrite = TRUE)
-usethis::use_data(IOTC_GRIDS_AR,    overwrite = TRUE)
-usethis::use_data(IOTC_GRIDS_CE_SF, overwrite = TRUE)
+IO_GRIDS_01x01       = gis_domain("V_IO_GRIDS_01x01",   columns = AREAS_COLUMNS)
+IO_GRIDS_05x05       = gis_domain("V_IO_GRIDS_05x05",   columns = AREAS_COLUMNS)
+IO_GRIDS_10x10       = gis_domain("V_IO_GRIDS_10x10",   columns = AREAS_COLUMNS)
+IO_GRIDS_10x20       = gis_domain("V_IO_GRIDS_10x20",   columns = AREAS_COLUMNS)
+IO_GRIDS_20x20       = gis_domain("V_IO_GRIDS_20x20",   columns = AREAS_COLUMNS)
+IO_GRIDS_30x30       = gis_domain("V_IO_GRIDS_30x30",   columns = AREAS_COLUMNS)
+
+usethis::use_data(IOTC_AREAS,          overwrite = TRUE)
+usethis::use_data(IOTC_MAIN_AREAS,     overwrite = TRUE)
+usethis::use_data(IOTC_GRIDS_CE_SF,    overwrite = TRUE)
+usethis::use_data(IOTC_GRIDS_CE_SF_AR, overwrite = TRUE)
 
 usethis::use_data(IOTC_GRIDS_01x01, overwrite = TRUE)
 usethis::use_data(IOTC_GRIDS_05x05, overwrite = TRUE)
+usethis::use_data(IOTC_GRIDS_10x10, overwrite = TRUE)
+usethis::use_data(IOTC_GRIDS_10x20, overwrite = TRUE)
+usethis::use_data(IOTC_GRIDS_20x20, overwrite = TRUE)
+usethis::use_data(IOTC_GRIDS_30x30, overwrite = TRUE)
 
-usethis::use_data(IO_GRIDS_01x01,   overwrite = TRUE)
-usethis::use_data(IO_GRIDS_05x05,   overwrite = TRUE)
+usethis::use_data(IO_GRIDS_01x01, overwrite = TRUE)
+usethis::use_data(IO_GRIDS_05x05, overwrite = TRUE)
+usethis::use_data(IO_GRIDS_10x10, overwrite = TRUE)
+usethis::use_data(IO_GRIDS_10x20, overwrite = TRUE)
+usethis::use_data(IO_GRIDS_20x20, overwrite = TRUE)
+usethis::use_data(IO_GRIDS_30x30, overwrite = TRUE)
 
 ### FISHERY REFERENCES
 
@@ -112,7 +130,6 @@ PROCESSING_TYPES     = fishery_domain("FISH_PROCESSING_TYPES")
 
 FOB_TYPES            = fishery_domain("FOB_TYPES")
 FOB_ACTIVITY_TYPES   = fishery_domain("FOB_ACTIVITY_TYPES")
-FOB_OWNERSHIP_TYPES  = fishery_domain("FOB_OWNERSHIPS")
 
 usethis::use_data(FISHERIES,            overwrite = TRUE)
 
@@ -128,7 +145,6 @@ usethis::use_data(PROCESSING_TYPES,     overwrite = TRUE)
 
 usethis::use_data(FOB_TYPES,            overwrite = TRUE)
 usethis::use_data(FOB_ACTIVITY_TYPES,   overwrite = TRUE)
-usethis::use_data(FOB_OWNERSHIP_TYPES,  overwrite = TRUE)
 
 ### BIOLOGICAL REFERENCES
 
@@ -179,7 +195,6 @@ LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE",
                                                           "NAME_EN", "NAME_FR", 
                                                           "FISHERY_GROUP_CODE", #"FISHERY_GROUP_NAME_EN", "FISHERY_GROUP_NAME_FR"
                                                           "FISHERY_TYPE_CODE", #"FISHERY_TYPE_NAME_EN", "FISHERY_TYPE_NAME_FR"
-                                                          "FISHERY_CATEGORY", 
                                                          #"SELECTIVITY_GROUP_CODE", "SELECTIVITY_GROUP_NAME_EN", "SELECTIVITY_GROUP_NAME_FR",
                                                           "IS_AGGREGATE"))
 
@@ -209,10 +224,10 @@ EEZ_TO_IOTC_MAIN_AREAS = query(DB_IOTC_MASTER(), "
   	RIGHT(TARGET_CODE, 3) AS FLAG_CODE,
   	SOURCE_CODE AS MAIN_IOTC_AREA_CODE
   FROM 
-  	[refs_gis].FISHING_GROUND_INTERSECTIONS FGI
+  	[refs_gis].AREA_INTERSECTIONS AI
   WHERE 
-  	FGI.SOURCE_CODE IN ('IOTC_EAST', 'IOTC_WEST') AND 
-  	TARGET_CODE LIKE 'AUNJ_%' AND
+  	AI.SOURCE_CODE IN ('IOTC_EAST', 'IOTC_WEST') AND 
+  	TARGET_CODE LIKE 'NJA_%' AND
   	LEN(TARGET_CODE) = 8
 ")
 

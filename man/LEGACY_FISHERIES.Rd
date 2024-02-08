@@ -10,9 +10,16 @@
   \item{NAME_EN}{The English name}
   \item{NAME_FR}{The French name}
   \item{FISHERY_GROUP_CODE}{The fishery group code}
-  \item{FISHERY_TYPE_CODE}{The fishery type code}
+  \item{FISHERY_GROUP_NAME_EN}{The fishery group English name}          - # To be removed
+  \item{FISHERY_GROUP_NAME_FR}{The fishery group French name}           - # To be removed
+  \item{FISHERY_TYPE_CODE}{The fishery type code} 
+  \item{FISHERY_TYPE_NAME_EN}{The fishery type English name}            - # To be removed
+  \item{FISHERY_TYPE_NAME_FR}{The fishery type French name}             - # To be removed
+  \item{FISHERY_CATEGORY}{The fishery category as per Res. 15/02}       - # Derived from other fishery attributes
+  \item{SELECTIVITY_GROUP_CODE}{The selectivity group code}             - # To be removed
+  \item{SELECTIVITY_GROUP_NAME_EN}{The selectivity group English name}  - # To be removed
+  \item{SELECTIVITY_GROUP_NAME_FR}{The selectivity group French name}   - # To be removed
   \item{IS_AGGREGATE}{If the fishery is an aggregate}
-  \item{FISHERY_CATEGORY}{The fishery category}
 }
 }
 \source{

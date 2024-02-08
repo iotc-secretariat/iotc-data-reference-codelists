@@ -10,6 +10,7 @@
   \item{NAME_EN}{The English name}
   \item{NAME_FR}{The French name}
   \item{CPC_CODE}{The corresponding CPC code, if any, otherwise NA}
+  \item{FLAG_CODE}{The flag code for the fleet / sub-fleet, if any, otherwise NA}
 }
 }
 \source{
