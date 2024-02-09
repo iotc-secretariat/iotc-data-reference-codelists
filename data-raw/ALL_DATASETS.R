@@ -199,11 +199,11 @@ LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE",
                                                          #"SELECTIVITY_GROUP_CODE", "SELECTIVITY_GROUP_NAME_EN", "SELECTIVITY_GROUP_NAME_FR",
                                                           "IS_AGGREGATE"))
 
-LEGACY_FISHERIES[, FISHERY_CATEGORY := ifelse(FISHERY_TYPE_CODE != "IN", 
-                                              "COASTAL", 
-                                              ifelse(FISHERY_GROUP_CODE == "LL", 
-                                                     "LONGLINE", 
-                                                     "SURFACE"))]
+LEGACY_FISHERIES[, FISHERY_CATEGORY_CODE := ifelse(FISHERY_TYPE_CODE != "IN", 
+                                                   "COASTAL", 
+                                                    ifelse(FISHERY_GROUP_CODE == "LL", 
+                                                      "LONGLINE", 
+                                                      "SURFACE"))]
 
 LEGACY_FISHERIES[, IS_AGGREGATE := ifelse(IS_AGGREGATE == 1, TRUE, FALSE)]
 LEGACY_FLEETS    = legacy_domain("FLEETS")
