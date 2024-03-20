@@ -37,6 +37,10 @@ legacy_domain = function(codelist_name, columns = NULL, connection = DB_IOTC_MAS
   return(load_codelist("refs_legacy", codelist_name, columns, connection))
 }
 
+socio_economics_domain = function(codelist_name, columns = NULL, connection = DB_IOTC_MASTER()) {
+  return(load_codelist("refs_socio_economics", codelist_name, columns, connection))
+}
+
 ### ADMIN REFERENCES
 
 ENTITIES  = admin_domain("ENTITIES")
@@ -128,8 +132,12 @@ BOAT_CLASS_TYPES     = fishery_domain("BOAT_CLASS_TYPES")
 MECHANIZATION_TYPES  = fishery_domain("MECHANIZATION_TYPES")
 PRESERVATION_METHODS = fishery_domain("FISH_PRESERVATION_METHODS")
 PROCESSING_TYPES     = fishery_domain("FISH_PROCESSING_TYPES")
-PRICING_LOCATIONS     = fishery_domain("PRICING_LOCATIONS")
-PRODUCT_TYPES    = fishery_domain("PRODUCT_TYPES")
+
+### SOCIO-ECONOMIC REFERENCES
+CURRENCIES = socio_economics_domain("CURRENCIES")
+PRICING_LOCATIONS     = socio_economics_domain("PRICING_LOCATIONS")
+PRODUCT_TYPES    = socio_economics_domain("PRODUCT_TYPES")
+DESTINATION_MARKETS = socio_economics_domain("DESTINATION_MARKETS")
 
 FOB_TYPES            = fishery_domain("FOB_TYPES")
 FOB_ACTIVITY_TYPES   = fishery_domain("FOB_ACTIVITY_TYPES")
@@ -147,6 +155,8 @@ usethis::use_data(PRESERVATION_METHODS, overwrite = TRUE)
 usethis::use_data(PROCESSING_TYPES,     overwrite = TRUE)
 usethis::use_data(PRICING_LOCATIONS,     overwrite = TRUE)
 usethis::use_data(PRODUCT_TYPES,     overwrite = TRUE)
+usethis::use_data(CURRENCIES,     overwrite = TRUE)
+usethis::use_data(DESTINATION_MARKETS,     overwrite = TRUE)
 
 usethis::use_data(FOB_TYPES,            overwrite = TRUE)
 usethis::use_data(FOB_ACTIVITY_TYPES,   overwrite = TRUE)
@@ -177,7 +187,7 @@ RETAIN_REASONS       = biological_domain("V_RETAIN_REASONS",  columns = c("CODE"
 CONDITIONS           = biological_domain("INDIVIDUAL_CONDITIONS")
 
 TYPES_OF_MEASUREMENT = biological_domain("TYPES_OF_MEASUREMENT")
-MEASUREMENT_TYPES    = biological_domain("MEASUREMENT_TYPES")
+MEASUREMENTS    = biological_domain("MEASUREMENTS")
 MEASUREMENT_TOOLS    = biological_domain("MEASUREMENT_TOOLS")
 
 usethis::use_data(SPECIES,              overwrite = TRUE)
@@ -191,7 +201,7 @@ usethis::use_data(RETAIN_REASONS,       overwrite = TRUE)
 usethis::use_data(CONDITIONS,           overwrite = TRUE)
 
 usethis::use_data(TYPES_OF_MEASUREMENT, overwrite = TRUE)
-usethis::use_data(MEASUREMENT_TYPES,    overwrite = TRUE)
+usethis::use_data(MEASUREMENTS,    overwrite = TRUE)
 usethis::use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
 
 ### LEGACY REFERENCES
