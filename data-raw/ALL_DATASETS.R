@@ -247,3 +247,4 @@ EEZ_TO_IOTC_MAIN_AREAS = query(DB_IOTC_MASTER(), "
 ")
 
 usethis::use_data(EEZ_TO_IOTC_MAIN_AREAS, overwrite = TRUE)
+
