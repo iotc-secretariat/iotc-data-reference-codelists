@@ -1,6 +1,8 @@
+# LIBRARIES ####
 library(iotc.base.common.data)
+library(usethis)
 
-### COMMON REFERENCE DATA MANAGEMENT
+# COMMON REFERENCE DATA MANAGEMENT FUNCTIONS ####
 
 load_codelist = function(codelist_domain, codelist_name, columns = NULL, connection = DB_IOTC_MASTER()) {
   if(is.null(columns)) columns = "*"
@@ -41,43 +43,45 @@ socio_economics_domain = function(codelist_name, columns = NULL, connection = DB
   return(load_codelist("refs_socio_economics", codelist_name, columns, connection))
 }
 
-### ADMIN REFERENCES
+# ADMIN REFERENCES ####
 
-ENTITIES  = admin_domain("ENTITIES")
-COUNTRIES = admin_domain("COUNTRIES")
-
+## Extract the data from IOTC database ####
+ENTITIES     = admin_domain("ENTITIES")
+COUNTRIES    = admin_domain("COUNTRIES")
 FLEETS       = admin_domain("FLEETS")
 FLEETS_FLAGS = admin_domain("FLEET_TO_FLAGS_AND_FISHERIES")
+
 FLEETS_FLAGS = merge(FLEETS_FLAGS, FLEETS, by.x = "FLEET_CODE", by.y = "CODE")
 
-usethis::use_data(FLEETS,       overwrite = TRUE)
-usethis::use_data(COUNTRIES,    overwrite = TRUE)
-usethis::use_data(ENTITIES,     overwrite = TRUE)
-usethis::use_data(FLEETS_FLAGS, overwrite = TRUE)
+## Save package data as rda in data folder ####
+use_data(FLEETS,       overwrite = TRUE)
+use_data(COUNTRIES,    overwrite = TRUE)
+use_data(ENTITIES,     overwrite = TRUE)
+use_data(FLEETS_FLAGS, overwrite = TRUE)
 
-### DATA REFERENCES
+# DATA REFERENCES ####
 
+## Extract the data from IOTC database ####
 DATA_TYPES       = data_domain("TYPES")
 DATA_RAISINGS    = data_domain("RAISINGS")
 
-usethis::use_data(DATA_TYPES,    overwrite = TRUE)
-usethis::use_data(DATA_RAISINGS, overwrite = TRUE)
-
 # These shall be further specialized by type of dataset...
-DATA_SOURCES     = data_domain("SOURCES")
-DATA_PROCESSINGS = data_domain("PROCESSINGS")
-DATA_ESTIMATIONS = data_domain("ESTIMATIONS")
-
+DATA_SOURCES        = data_domain("SOURCES")
+DATA_PROCESSINGS    = data_domain("PROCESSINGS")
+DATA_ESTIMATIONS    = data_domain("ESTIMATIONS")
 DATA_COVERAGE_TYPES = data_domain("COVERAGE_TYPES")
 
-usethis::use_data(DATA_SOURCES,        overwrite = TRUE)
-usethis::use_data(DATA_PROCESSINGS,    overwrite = TRUE)
-usethis::use_data(DATA_ESTIMATIONS,    overwrite = TRUE)
+## Save package data as rda in data folder ####
+use_data(DATA_TYPES,    overwrite = TRUE)
+use_data(DATA_RAISINGS, overwrite = TRUE)
+use_data(DATA_SOURCES,        overwrite = TRUE)
+use_data(DATA_PROCESSINGS,    overwrite = TRUE)
+use_data(DATA_ESTIMATIONS,    overwrite = TRUE)
+use_data(DATA_COVERAGE_TYPES, overwrite = TRUE)
 
-usethis::use_data(DATA_COVERAGE_TYPES, overwrite = TRUE)
+# GIS REFERENCES ####
 
-### GIS REFERENCES
-
+## Extract the data from IOTC database ####
 AREAS_COLUMNS = c("CODE", "NAME_EN", "NAME_FR", "OCEAN_AREA_KM2", "OCEAN_AREA_IO_KM2", "OCEAN_AREA_IOTC_KM2", "CENTER_LAT", "CENTER_LON")
 
 IOTC_AREAS           = gis_domain("V_IOTC_AREAS",          columns = AREAS_COLUMNS)
@@ -99,112 +103,87 @@ IO_GRIDS_10x20       = gis_domain("V_IO_GRIDS_10x20",   columns = AREAS_COLUMNS)
 IO_GRIDS_20x20       = gis_domain("V_IO_GRIDS_20x20",   columns = AREAS_COLUMNS)
 IO_GRIDS_30x30       = gis_domain("V_IO_GRIDS_30x30",   columns = AREAS_COLUMNS)
 
-usethis::use_data(IOTC_AREAS,          overwrite = TRUE)
-usethis::use_data(IOTC_MAIN_AREAS,     overwrite = TRUE)
-usethis::use_data(IOTC_GRIDS_CE_SF,    overwrite = TRUE)
-usethis::use_data(IOTC_GRIDS_CE_SF_AR, overwrite = TRUE)
+## Save package data as rda in data folder ####
+use_data(IOTC_AREAS,          overwrite = TRUE)
+use_data(IOTC_MAIN_AREAS,     overwrite = TRUE)
+use_data(IOTC_GRIDS_CE_SF,    overwrite = TRUE)
+use_data(IOTC_GRIDS_CE_SF_AR, overwrite = TRUE)
 
-usethis::use_data(IOTC_GRIDS_01x01, overwrite = TRUE)
-usethis::use_data(IOTC_GRIDS_05x05, overwrite = TRUE)
-usethis::use_data(IOTC_GRIDS_10x10, overwrite = TRUE)
-usethis::use_data(IOTC_GRIDS_10x20, overwrite = TRUE)
-usethis::use_data(IOTC_GRIDS_20x20, overwrite = TRUE)
-usethis::use_data(IOTC_GRIDS_30x30, overwrite = TRUE)
+use_data(IOTC_GRIDS_01x01, overwrite = TRUE)
+use_data(IOTC_GRIDS_05x05, overwrite = TRUE)
+use_data(IOTC_GRIDS_10x10, overwrite = TRUE)
+use_data(IOTC_GRIDS_10x20, overwrite = TRUE)
+use_data(IOTC_GRIDS_20x20, overwrite = TRUE)
+use_data(IOTC_GRIDS_30x30, overwrite = TRUE)
 
-usethis::use_data(IO_GRIDS_01x01, overwrite = TRUE)
-usethis::use_data(IO_GRIDS_05x05, overwrite = TRUE)
-usethis::use_data(IO_GRIDS_10x10, overwrite = TRUE)
-usethis::use_data(IO_GRIDS_10x20, overwrite = TRUE)
-usethis::use_data(IO_GRIDS_20x20, overwrite = TRUE)
-usethis::use_data(IO_GRIDS_30x30, overwrite = TRUE)
+use_data(IO_GRIDS_01x01, overwrite = TRUE)
+use_data(IO_GRIDS_05x05, overwrite = TRUE)
+use_data(IO_GRIDS_10x10, overwrite = TRUE)
+use_data(IO_GRIDS_10x20, overwrite = TRUE)
+use_data(IO_GRIDS_20x20, overwrite = TRUE)
+use_data(IO_GRIDS_30x30, overwrite = TRUE)
 
-### FISHERY REFERENCES
+# FISHERY REFERENCES ####
 
+## Extract the data from IOTC database ####
 FISHERIES            = fishery_domain("FISHERIES")
 FISHERIES[, IS_AGGREGATE := str_detect(CODE, "\\+")]
 
 CATCH_UNITS          = fishery_domain("CATCH_UNITS")
 DISCARD_UNITS        = CATCH_UNITS
 EFFORT_UNITS         = fishery_domain("EFFORT_UNITS")
-
 BOAT_TYPES           = fishery_domain("BOAT_TYPES")
 BOAT_CLASS_TYPES     = fishery_domain("BOAT_CLASS_TYPES")
 MECHANIZATION_TYPES  = fishery_domain("MECHANIZATION_TYPES")
 PRESERVATION_METHODS = fishery_domain("FISH_PRESERVATION_METHODS")
 PROCESSING_TYPES     = fishery_domain("FISH_PROCESSING_TYPES")
-
-### SOCIO-ECONOMIC REFERENCES
-CURRENCIES = socio_economics_domain("CURRENCIES")
-PRICING_LOCATIONS     = socio_economics_domain("PRICING_LOCATIONS")
-PRODUCT_TYPES    = socio_economics_domain("PRODUCT_TYPES")
-DESTINATION_MARKETS = socio_economics_domain("DESTINATION_MARKETS")
-
 FOB_TYPES            = fishery_domain("FOB_TYPES")
 FOB_ACTIVITY_TYPES   = fishery_domain("FOB_ACTIVITY_TYPES")
 
-usethis::use_data(FISHERIES,            overwrite = TRUE)
+## Save package data as rda in data folder ####
+use_data(FISHERIES,            overwrite = TRUE)
+use_data(CATCH_UNITS,          overwrite = TRUE)
+use_data(DISCARD_UNITS,        overwrite = TRUE)
+use_data(EFFORT_UNITS,         overwrite = TRUE)
+use_data(BOAT_TYPES,           overwrite = TRUE)
+use_data(BOAT_CLASS_TYPES,     overwrite = TRUE)
+use_data(MECHANIZATION_TYPES,  overwrite = TRUE)
+use_data(PRESERVATION_METHODS, overwrite = TRUE)
+use_data(PROCESSING_TYPES,     overwrite = TRUE)
+use_data(PRICING_LOCATIONS,    overwrite = TRUE)
+use_data(PRODUCT_TYPES,        overwrite = TRUE)
+use_data(CURRENCIES,           overwrite = TRUE)
+use_data(DESTINATION_MARKETS,  overwrite = TRUE)
+use_data(FOB_TYPES,            overwrite = TRUE)
+use_data(FOB_ACTIVITY_TYPES,   overwrite = TRUE)
 
-usethis::use_data(CATCH_UNITS,          overwrite = TRUE)
-usethis::use_data(DISCARD_UNITS,        overwrite = TRUE)
-usethis::use_data(EFFORT_UNITS,         overwrite = TRUE)
+# BIOLOGICAL REFERENCES ####
 
-usethis::use_data(BOAT_TYPES,           overwrite = TRUE)
-usethis::use_data(BOAT_CLASS_TYPES,     overwrite = TRUE)
-usethis::use_data(MECHANIZATION_TYPES,  overwrite = TRUE)
-usethis::use_data(PRESERVATION_METHODS, overwrite = TRUE)
-usethis::use_data(PROCESSING_TYPES,     overwrite = TRUE)
-usethis::use_data(PRICING_LOCATIONS,     overwrite = TRUE)
-usethis::use_data(PRODUCT_TYPES,     overwrite = TRUE)
-usethis::use_data(CURRENCIES,     overwrite = TRUE)
-usethis::use_data(DESTINATION_MARKETS,     overwrite = TRUE)
-
-usethis::use_data(FOB_TYPES,            overwrite = TRUE)
-usethis::use_data(FOB_ACTIVITY_TYPES,   overwrite = TRUE)
-
-### BIOLOGICAL REFERENCES
-
-SPECIES              = biological_domain("V_SPECIES", columns = c("CODE", 
-                                                                  "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", 
-                                                                 #"SPECIES_GROUP_CODE", "SPECIES_GROUP_NAME_EN", "SPECIES_GROUP_NAME_FR",
-                                                                 #"SPECIES_CATEGORY_CODE", "SPECIES_CATEGORY_NAME_EN", "SPECIES_CATEGORY_NAME_FR",                                                                 
-                                                                 #"FAMILY", "ORDER", 
-                                                                 #"IUCN_STATUS_CODE",
-                                                                  "IS_IOTC", 
-                                                                 #"IS_TARGET",
-                                                                 #"IS_SSI",
-                                                                 #"IS_PREDATOR",
-                                                                 #"IS_BAIT",
-                                                                  "IS_AGGREGATE"#,
-                                                                 #"IS_ASFIS"
-                                                                )) 
+## Extract the data from IOTC database ####
+SPECIES = biological_domain("V_SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_IOTC", "IS_AGGREGATE"))
 SEX                  = biological_domain("SEX")
-
 TYPES_OF_FATE        = biological_domain("TYPES_OF_FATE")
 FATES                = biological_domain("FATES")
-
 DISCARD_REASONS      = biological_domain("V_DISCARD_REASONS", columns = c("CODE", "NAME_EN", "NAME_FR"))
 RETAIN_REASONS       = biological_domain("V_RETAIN_REASONS",  columns = c("CODE", "NAME_EN", "NAME_FR"))
 CONDITIONS           = biological_domain("INDIVIDUAL_CONDITIONS")
-
 TYPES_OF_MEASUREMENT = biological_domain("TYPES_OF_MEASUREMENT")
-MEASUREMENTS    = biological_domain("MEASUREMENTS")
+MEASUREMENTS         = biological_domain("MEASUREMENTS")
 MEASUREMENT_TOOLS    = biological_domain("MEASUREMENT_TOOLS")
 
-usethis::use_data(SPECIES,              overwrite = TRUE)
-usethis::use_data(SEX,                  overwrite = TRUE)
+## Save package data as rda in data folder ####
+use_data(SPECIES,              overwrite = TRUE)
+use_data(SEX,                  overwrite = TRUE)
+use_data(TYPES_OF_FATE,        overwrite = TRUE)
+use_data(FATES,                overwrite = TRUE)
+use_data(DISCARD_REASONS,      overwrite = TRUE)
+use_data(RETAIN_REASONS,       overwrite = TRUE)
+use_data(CONDITIONS,           overwrite = TRUE)
+use_data(TYPES_OF_MEASUREMENT, overwrite = TRUE)
+use_data(MEASUREMENTS,         overwrite = TRUE)
+use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
 
-usethis::use_data(TYPES_OF_FATE,        overwrite = TRUE)
-usethis::use_data(FATES,                overwrite = TRUE)
-
-usethis::use_data(DISCARD_REASONS,      overwrite = TRUE)
-usethis::use_data(RETAIN_REASONS,       overwrite = TRUE)
-usethis::use_data(CONDITIONS,           overwrite = TRUE)
-
-usethis::use_data(TYPES_OF_MEASUREMENT, overwrite = TRUE)
-usethis::use_data(MEASUREMENTS,    overwrite = TRUE)
-usethis::use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
-
-### LEGACY REFERENCES
+# LEGACY REFERENCES ####
 
 LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE", 
                                                           "NAME_EN", "NAME_FR", 
@@ -228,12 +207,28 @@ LEGACY_SPECIES   = legacy_domain("SPECIES", columns = c("CODE",
                                                        #"SPECIES_CATALOG_GROUP_CODE", "SPECIES_WORKING_PARTY_CODE"
                                                        ))
 
-usethis::use_data(LEGACY_FISHERIES, overwrite = TRUE)
-usethis::use_data(LEGACY_FLEETS,    overwrite = TRUE)
-usethis::use_data(LEGACY_SPECIES,   overwrite = TRUE)
+## Save package data as rda in data folder ####
+use_data(LEGACY_FISHERIES, overwrite = TRUE)
+use_data(LEGACY_FLEETS,    overwrite = TRUE)
+use_data(LEGACY_SPECIES,   overwrite = TRUE)
 
-### OTHER TYPES OF DATA
+# SOCIO-ECONOMIC REFERENCES ####
 
+## Extract the data from IOTC database ####
+CURRENCIES          = socio_economics_domain("CURRENCIES")
+PRICING_LOCATIONS   = socio_economics_domain("PRICING_LOCATIONS")
+PRODUCT_TYPES       = socio_economics_domain("PRODUCT_TYPES")
+DESTINATION_MARKETS = socio_economics_domain("DESTINATION_MARKETS")
+
+## Save package data as rda in data folder ####
+use_data(CURRENCIES,          overwrite = TRUE)
+use_data(PRICING_LOCATIONS,   overwrite = TRUE)
+use_data(PRODUCT_TYPES,       overwrite = TRUE)
+use_data(DESTINATION_MARKETS, overwrite = TRUE)
+
+# OTHER TYPES OF DATA ####
+
+## Extract the data from IOTC database ####
 EEZ_TO_IOTC_MAIN_AREAS = query(DB_IOTC_MASTER(), "
   SELECT DISTINCT
   	RIGHT(TARGET_CODE, 3) AS FLAG_CODE,
@@ -246,5 +241,5 @@ EEZ_TO_IOTC_MAIN_AREAS = query(DB_IOTC_MASTER(), "
   	LEN(TARGET_CODE) = 8
 ")
 
-usethis::use_data(EEZ_TO_IOTC_MAIN_AREAS, overwrite = TRUE)
-
+## Save package data as rda in data folder ####
+use_data(EEZ_TO_IOTC_MAIN_AREAS, overwrite = TRUE)
