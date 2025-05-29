@@ -717,4 +717,48 @@
 #' }
 "EEZ_TO_IOTC_MAIN_AREAS"
 
+#' CURRENCIES
+#' 
+#' @format
+#' \describe{
+#'   \item{COUNTRY_CODE}{The code of the country}
+#'   \item{CURRENCY_CODE}{The code of the currency}
+#'   \item{CURRENCY_NAME}{The name of the currency}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/economics/#Country_Currencies>
+"CURRENCIES"
+
+#' PRICING_LOCATIONS
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code of the location of pricing}
+#'   \item{NAME_EN}{The English name of the pricing location}
+#'   \item{NAME_FR}{The French name of the pricing location}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/economics/#Pricing_Locations>
+"PRICING_LOCATIONS"
+
+#' PRODUCT_TYPES
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code of the type of product}
+#'   \item{NAME_EN}{The English name of the type of product}
+#'   \item{NAME_FR}{The French name of the type of product}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/economics/#Types_of_products>
+"PRODUCT_TYPES"
+
+#' DESTINATION_MARKETS
+#' 
+#' @format
+#' \describe{
+#'   \item{CODE}{The code of the market of destination}
+#'   \item{NAME_EN}{The English name of the market of destination}
+#'   \item{NAME_FR}{The French name of the market of destination}
+#' }
+#' @source <https://data.iotc.org/reference/latest/domain/economics/#Destination_Markets>
+"DESTINATION_MARKETS"
+
 ### WORK IN PROGRESS
