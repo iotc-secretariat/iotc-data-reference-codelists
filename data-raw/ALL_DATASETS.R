@@ -225,16 +225,15 @@ use_data(DESTINATION_MARKETS, overwrite = TRUE)
 # OTHER TYPES OF DATA ####
 
 ## Extract the data from IOTC database ####
+### ISSUE: IOTC_EAST missing from AREA_INTERSECTIONS and AREA_INTERSECTIONS_IOTC
 EEZ_TO_IOTC_MAIN_AREAS = query(DB_IOTC_MASTER(), "
   SELECT DISTINCT
   	RIGHT(TARGET_CODE, 3) AS FLAG_CODE,
   	SOURCE_CODE AS MAIN_IOTC_AREA_CODE
-  FROM 
-  	[refs_gis].AREA_INTERSECTIONS AI
-  WHERE 
-  	AI.SOURCE_CODE IN ('IOTC_EAST', 'IOTC_WEST') AND 
-  	TARGET_CODE LIKE 'NJA_%' AND
-  	LEN(TARGET_CODE) = 8
+  FROM [IOTC_master].[refs_gis].[AREA_INTERSECTIONS_IOTC]
+  WHERE SOURCE_CODE IN ('IOTC_EAST', 'IOTC_WEST')
+  AND TARGET_CODE LIKE 'NJA_%'
+  AND LEN(TARGET_CODE) = 7    -- to remove disputed NJAs
 ")
 
 ## Save package data as rda in data folder ####
