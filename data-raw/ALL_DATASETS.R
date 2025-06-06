@@ -84,6 +84,7 @@ use_data(DATA_COVERAGE_TYPES, overwrite = TRUE)
 ## Extract the data from IOTC database ####
 AREAS_COLUMNS = c("CODE", "NAME_EN", "NAME_FR", "OCEAN_AREA_KM2", "OCEAN_AREA_IO_KM2", "OCEAN_AREA_IOTC_KM2", "CENTER_LAT", "CENTER_LON")
 
+IOTC_AREA            = gis_domain("V_IOTC_AREA_OF_COMPETENCE",           columns = AREAS_COLUMNS)
 IOTC_AREAS           = gis_domain("V_IOTC_AREAS",          columns = AREAS_COLUMNS)
 IOTC_MAIN_AREAS      = gis_domain("V_IOTC_MAIN_AREAS",     columns = AREAS_COLUMNS)
 IOTC_GRIDS_CE_SF     = gis_domain("V_IOTC_GRIDS_CE_SF",    columns = AREAS_COLUMNS)
@@ -104,6 +105,7 @@ IO_GRIDS_20x20       = gis_domain("V_IO_GRIDS_20x20",   columns = AREAS_COLUMNS)
 IO_GRIDS_30x30       = gis_domain("V_IO_GRIDS_30x30",   columns = AREAS_COLUMNS)
 
 ## Save package data as rda in data folder ####
+use_data(IOTC_AREA,           overwrite = TRUE)
 use_data(IOTC_AREAS,          overwrite = TRUE)
 use_data(IOTC_MAIN_AREAS,     overwrite = TRUE)
 use_data(IOTC_GRIDS_CE_SF,    overwrite = TRUE)
@@ -140,6 +142,7 @@ PROCESSING_TYPES     = fishery_domain("FISH_PROCESSING_TYPES")
 FOB_TYPES            = fishery_domain("FOB_TYPES")
 FOB_ACTIVITY_TYPES   = fishery_domain("FOB_ACTIVITY_TYPES")
 
+
 ## Save package data as rda in data folder ####
 use_data(FISHERIES,            overwrite = TRUE)
 use_data(CATCH_UNITS,          overwrite = TRUE)
@@ -163,7 +166,7 @@ FATES                = biological_domain("FATES")
 DISCARD_REASONS      = biological_domain("V_DISCARD_REASONS", columns = c("CODE", "NAME_EN", "NAME_FR"))
 RETAIN_REASONS       = biological_domain("V_RETAIN_REASONS",  columns = c("CODE", "NAME_EN", "NAME_FR"))
 CONDITIONS           = biological_domain("INDIVIDUAL_CONDITIONS")
-TYPES_OF_MEASUREMENT = biological_domain("TYPES_OF_MEASUREMENT")
+MEASUREMENT_TYPES    = biological_domain("TYPES_OF_MEASUREMENT")
 MEASUREMENTS         = biological_domain("MEASUREMENTS")
 MEASUREMENT_TOOLS    = biological_domain("MEASUREMENT_TOOLS")
 
@@ -175,7 +178,7 @@ use_data(FATES,                overwrite = TRUE)
 use_data(DISCARD_REASONS,      overwrite = TRUE)
 use_data(RETAIN_REASONS,       overwrite = TRUE)
 use_data(CONDITIONS,           overwrite = TRUE)
-use_data(TYPES_OF_MEASUREMENT, overwrite = TRUE)
+use_data(MEASUREMENT_TYPES,    overwrite = TRUE)
 use_data(MEASUREMENTS,         overwrite = TRUE)
 use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
 
