@@ -54,9 +54,9 @@ FLEETS_FLAGS = admin_domain("FLEET_TO_FLAGS_AND_FISHERIES")
 FLEETS_FLAGS = merge(FLEETS_FLAGS, FLEETS, by.x = "FLEET_CODE", by.y = "CODE")
 
 ## Save package data as rda in data folder ####
-use_data(FLEETS,       overwrite = TRUE)
-use_data(COUNTRIES,    overwrite = TRUE)
 use_data(ENTITIES,     overwrite = TRUE)
+use_data(COUNTRIES,    overwrite = TRUE)
+use_data(FLEETS,       overwrite = TRUE)
 use_data(FLEETS_FLAGS, overwrite = TRUE)
 
 # DATA REFERENCES ####
