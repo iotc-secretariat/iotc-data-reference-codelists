@@ -183,6 +183,9 @@ use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
 
 # LEGACY REFERENCES ####
 
+## Addition of LEGACY GEARS, including SORT and USED
+LEGACY_GEARS = query(DB_IOTDB(), "SELECT * FROM meta.gears")
+
 LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE", 
                                                           "NAME_EN", "NAME_FR", 
                                                           "FISHERY_GROUP_CODE", #"FISHERY_GROUP_NAME_EN", "FISHERY_GROUP_NAME_FR"
@@ -199,7 +202,7 @@ LEGACY_FISHERIES[, FISHERY_CATEGORY_CODE := ifelse(FISHERY_TYPE_CODE != "IN",
 LEGACY_FISHERIES[, IS_AGGREGATE := ifelse(IS_AGGREGATE == 1, TRUE, FALSE)]
 LEGACY_FLEETS    = legacy_domain("FLEETS")
 
-LEGACY_SPECIES_IOTC_MASTER   = legacy_domain("SPECIES", columns = c("CODE", 
+LEGACY_SPECIES_IOTC_MASTER = legacy_domain("SPECIES", columns = c("CODE", 
                                                        "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", 
                                                         "IS_AGGREGATE", "IS_IOTC"))                                
 # Temp extraction from IOTDB() to include SORT and SPECIES_CATEGORY_CODE
@@ -209,6 +212,7 @@ LEGACY_SPECIES = query(DB_IOTDB(), "SELECT CODE, SORT, NAME_EN, NAME_LT AS NAME_
 LEGACY_SPECIES = LEGACY_SPECIES[CODE %in% LEGACY_SPECIES_IOTC_MASTER$CODE]
 
 ## Save package data as rda in data folder ####
+use_data(LEGACY_GEARS, overwrite = TRUE)
 use_data(LEGACY_FISHERIES, overwrite = TRUE)
 use_data(LEGACY_FLEETS,    overwrite = TRUE)
 use_data(LEGACY_SPECIES,   overwrite = TRUE)
