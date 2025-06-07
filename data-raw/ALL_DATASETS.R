@@ -181,10 +181,33 @@ use_data(MEASUREMENT_TYPES,    overwrite = TRUE)
 use_data(MEASUREMENTS,         overwrite = TRUE)
 use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
 
+# Other codelists
+# Currently downloaded in the R library: iotc-lib-base-common-data/R/iotc_base_common_data_factors.R
+WORKING_PARTIES    = query(DB_IOTDB(), "SELECT * FROM meta.WORKING_PARTIES")
+SPECIES_GROUPS     = query(DB_IOTDB(), "SELECT * FROM meta.SPECIES_GROUPS")
+SPECIES_CATEGORIES = query(DB_IOTDB(), "SELECT * FROM meta.SPECIES_CATEGORIES")
+IUCN_STATUS        = query(DB_IOTDB(), "SELECT * FROM meta.IUCN_STATUS")
+RAISINGS           = query(DB_IOTDB(), "SELECT * FROM meta.RAISINGS")
+FISHERY_TYPES      = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_TYPES")
+CONDITION_TYPES    = query(DB_IOTDB(), "SELECT * FROM meta.CONDITION_TYPES")
+FISHING_GROUNDS    = query(DB_IOTDB(), "SELECT * FROM meta.FISHING_GROUNDS")
+FATE_TYPES         = query(DB_IOTDB(), "SELECT * FROM meta.FATE_TYPES")
+
+## Save package data as rda in data folder ####
+use_data(WORKING_PARTIES, overwrite = TRUE)
+use_data(SPECIES_GROUPS, overwrite = TRUE)
+use_data(SPECIES_CATEGORIES, overwrite = TRUE)
+use_data(IUCN_STATUS, overwrite = TRUE)
+use_data(RAISINGS, overwrite = TRUE)
+use_data(FISHERY_TYPES, overwrite = TRUE)
+use_data(CONDITION_TYPES, overwrite = TRUE)
+use_data(FISHING_GROUNDS, overwrite = TRUE)
+use_data(FATE_TYPES, overwrite = TRUE)
+
 # LEGACY REFERENCES ####
 
 ## Addition of LEGACY GEARS, including SORT and USED
-LEGACY_GEARS = query(DB_IOTDB(), "SELECT * FROM meta.gears")
+GEARS = query(DB_IOTDB(), "SELECT * FROM meta.gears")
 
 LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE", 
                                                           "NAME_EN", "NAME_FR", 
@@ -219,7 +242,7 @@ LEGACY_SPECIES = query(DB_IOTDB(), "SELECT CODE, SORT, NAME_EN, NAME_LT AS NAME_
 LEGACY_SPECIES = LEGACY_SPECIES[CODE %in% LEGACY_SPECIES_IOTC_MASTER$CODE]
 
 ## Save package data as rda in data folder ####
-use_data(LEGACY_GEARS, overwrite = TRUE)
+use_data(GEARS, overwrite = TRUE)
 use_data(LEGACY_FISHERIES, overwrite = TRUE)
 use_data(LEGACY_FLEETS,    overwrite = TRUE)
 use_data(LEGACY_SPECIES,   overwrite = TRUE)
