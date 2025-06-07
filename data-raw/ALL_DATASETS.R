@@ -142,7 +142,6 @@ PROCESSING_TYPES     = fishery_domain("FISH_PROCESSING_TYPES")
 FOB_TYPES            = fishery_domain("FOB_TYPES")
 FOB_ACTIVITY_TYPES   = fishery_domain("FOB_ACTIVITY_TYPES")
 
-
 ## Save package data as rda in data folder ####
 use_data(FISHERIES,            overwrite = TRUE)
 use_data(CATCH_UNITS,          overwrite = TRUE)
@@ -199,12 +198,15 @@ LEGACY_FISHERIES[, FISHERY_CATEGORY_CODE := ifelse(FISHERY_TYPE_CODE != "IN",
 
 LEGACY_FISHERIES[, IS_AGGREGATE := ifelse(IS_AGGREGATE == 1, TRUE, FALSE)]
 LEGACY_FLEETS    = legacy_domain("FLEETS")
-LEGACY_SPECIES   = legacy_domain("SPECIES", columns = c("CODE", 
-                                                        "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", 
-                                                        "IS_AGGREGATE", "IS_IOTC"#, 
-                                                       #"SPECIES_GROUP_CODE", "SPECIES_LARGE_GROUP_NAME_EN", "SPECIES_LARGE_GROUP_NAME_FR", 
-                                                       #"SPECIES_CATALOG_GROUP_CODE", "SPECIES_WORKING_PARTY_CODE"
-                                                       ))
+
+LEGACY_SPECIES_IOTC_MASTER   = legacy_domain("SPECIES", columns = c("CODE", 
+                                                       "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", 
+                                                        "IS_AGGREGATE", "IS_IOTC"))                                
+# Temp extraction from IOTDB() to include SORT and SPECIES_CATEGORY_CODE
+# Which are used in some R functions
+LEGACY_SPECIES = query(DB_IOTDB(), "SELECT CODE, SORT, NAME_EN, NAME_LT AS NAME_SCIENTIFIC, IS_AGGREGATE, IS_IOTC, SPECIES_CATEGORY_CODE FROM meta.species")
+
+LEGACY_SPECIES = LEGACY_SPECIES[CODE %in% LEGACY_SPECIES_IOTC_MASTER$CODE]
 
 ## Save package data as rda in data folder ####
 use_data(LEGACY_FISHERIES, overwrite = TRUE)
