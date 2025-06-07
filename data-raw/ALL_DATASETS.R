@@ -200,7 +200,14 @@ LEGACY_FISHERIES[, FISHERY_CATEGORY_CODE := ifelse(FISHERY_TYPE_CODE != "IN",
                                                       "SURFACE"))]
 
 LEGACY_FISHERIES[, IS_AGGREGATE := ifelse(IS_AGGREGATE == 1, TRUE, FALSE)]
-LEGACY_FLEETS    = legacy_domain("FLEETS")
+
+# Addition of FISHERY_GROUPS
+FISHERY_GROUPS = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_GROUPS")
+
+# Temp fix to include the SORT column
+LEGACY_FLEETS = legacy_domain("FLEETS")
+LEGACY_FLEETS = query(DB_IOTDB(), "SELECT * FROM meta.FLEETS")
+
 
 LEGACY_SPECIES_IOTC_MASTER = legacy_domain("SPECIES", columns = c("CODE", 
                                                        "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", 
@@ -216,6 +223,7 @@ use_data(LEGACY_GEARS, overwrite = TRUE)
 use_data(LEGACY_FISHERIES, overwrite = TRUE)
 use_data(LEGACY_FLEETS,    overwrite = TRUE)
 use_data(LEGACY_SPECIES,   overwrite = TRUE)
+use_data(FISHERY_GROUPS,   overwrite = TRUE)
 
 # SOCIO-ECONOMIC REFERENCES ####
 
