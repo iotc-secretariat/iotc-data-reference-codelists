@@ -142,6 +142,9 @@ PROCESSING_TYPES     = fishery_domain("FISH_PROCESSING_TYPES")
 FOB_TYPES            = fishery_domain("FOB_TYPES")
 FOB_ACTIVITY_TYPES   = fishery_domain("FOB_ACTIVITY_TYPES")
 
+# Temp fix pour EFFORT_UNITS to feed the Data Browser
+EFFORT_UNITS = query(DB_IOTDB(), "SELECT * FROM meta.EFFORT_UNITS")
+
 ## Save package data as rda in data folder ####
 use_data(FISHERIES,            overwrite = TRUE)
 use_data(CATCH_UNITS,          overwrite = TRUE)
