@@ -131,6 +131,9 @@ use_data(IO_GRIDS_30x30, overwrite = TRUE)
 FISHERIES            = fishery_domain("FISHERIES")
 FISHERIES[, IS_AGGREGATE := str_detect(CODE, "\\+")]
 
+# Temp fix to use LEGACY FISHERIES instead of FISHERIES for the Data Browser
+FISHERIES = query(DB_IOTDB(), "SELECT * FROM meta.FISHERIES;")
+
 CATCH_UNITS          = fishery_domain("CATCH_UNITS")
 DISCARD_UNITS        = CATCH_UNITS
 EFFORT_UNITS         = fishery_domain("EFFORT_UNITS")
