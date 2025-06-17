@@ -235,7 +235,7 @@ FISHERY_GROUPS = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_GROUPS")
 
 # Temp fix to include the SORT column
 LEGACY_FLEETS = legacy_domain("FLEETS")
-LEGACY_FLEETS = query(DB_IOTDB(), "SELECT * FROM meta.FLEETS")
+#LEGACY_FLEETS = query(DB_IOTDB(), "SELECT * FROM meta.FLEETS")
 
 
 LEGACY_SPECIES_IOTC_MASTER = legacy_domain("SPECIES", columns = c("CODE", 
