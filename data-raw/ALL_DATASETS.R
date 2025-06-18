@@ -50,7 +50,6 @@ ENTITIES     = admin_domain("ENTITIES")
 COUNTRIES    = admin_domain("COUNTRIES")
 FLEETS       = admin_domain("FLEETS")
 FLEETS_FLAGS = admin_domain("FLEET_TO_FLAGS_AND_FISHERIES")
-
 FLEETS_FLAGS = merge(FLEETS_FLAGS, FLEETS, by.x = "FLEET_CODE", by.y = "CODE")
 
 ## Save package data as rda in data folder ####
@@ -128,11 +127,8 @@ use_data(IO_GRIDS_30x30, overwrite = TRUE)
 # FISHERY REFERENCES ####
 
 ## Extract the data from IOTC database ####
-FISHERIES            = fishery_domain("FISHERIES")
+FISHERIES = fishery_domain("FISHERIES")
 FISHERIES[, IS_AGGREGATE := str_detect(CODE, "\\+")]
-
-# Temp fix to use LEGACY FISHERIES instead of FISHERIES for the Data Browser
-#FISHERIES = query(DB_IOTDB(), "SELECT * FROM meta.FISHERIES;")
 
 CATCH_UNITS          = fishery_domain("CATCH_UNITS")
 DISCARD_UNITS        = CATCH_UNITS
@@ -146,7 +142,7 @@ FOB_TYPES            = fishery_domain("FOB_TYPES")
 FOB_ACTIVITY_TYPES   = fishery_domain("FOB_ACTIVITY_TYPES")
 
 # Temp fix pour EFFORT_UNITS to feed the Data Browser
-EFFORT_UNITS = query(DB_IOTDB(), "SELECT * FROM meta.EFFORT_UNITS")
+LEGACY_EFFORT_UNITS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.EFFORT_UNITS")
 
 ## Save package data as rda in data folder ####
 use_data(FISHERIES,            overwrite = TRUE)
@@ -183,44 +179,42 @@ use_data(FATES,                overwrite = TRUE)
 use_data(DISCARD_REASONS,      overwrite = TRUE)
 use_data(RETAIN_REASONS,       overwrite = TRUE)
 use_data(CONDITIONS,           overwrite = TRUE)
-use_data(TYPES_OF_MEASUREMENT,    overwrite = TRUE)
+use_data(TYPES_OF_MEASUREMENT, overwrite = TRUE)
 use_data(MEASUREMENTS,         overwrite = TRUE)
 use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
 
-# Other codelists
-# Currently downloaded in the R library: iotc-lib-base-common-data/R/iotc_base_common_data_factors.R
-WORKING_PARTIES    = query(DB_IOTDB(), "SELECT * FROM meta.WORKING_PARTIES")
-SPECIES_GROUPS     = query(DB_IOTDB(), "SELECT * FROM meta.SPECIES_GROUPS")
-SPECIES_CATEGORIES = query(DB_IOTDB(), "SELECT * FROM meta.SPECIES_CATEGORIES")
-IUCN_STATUS        = query(DB_IOTDB(), "SELECT * FROM meta.IUCN_STATUS")
-RAISINGS           = query(DB_IOTDB(), "SELECT * FROM meta.RAISINGS")
-FISHERY_TYPES      = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_TYPES")
-CONDITION_TYPES    = query(DB_IOTDB(), "SELECT * FROM meta.CONDITION_TYPES")
-FISHING_GROUNDS    = query(DB_IOTDB(), "SELECT * FROM meta.FISHING_GROUNDS")
-FATE_TYPES         = query(DB_IOTDB(), "SELECT * FROM meta.FATE_TYPES")
-
-## Save package data as rda in data folder ####
-use_data(WORKING_PARTIES, overwrite = TRUE)
-use_data(SPECIES_GROUPS, overwrite = TRUE)
-use_data(SPECIES_CATEGORIES, overwrite = TRUE)
-use_data(IUCN_STATUS, overwrite = TRUE)
-use_data(RAISINGS, overwrite = TRUE)
-use_data(FISHERY_TYPES, overwrite = TRUE)
-use_data(CONDITION_TYPES, overwrite = TRUE)
-use_data(FISHING_GROUNDS, overwrite = TRUE)
-use_data(FATE_TYPES, overwrite = TRUE)
-
 # LEGACY REFERENCES ####
 
-## Addition of LEGACY GEARS, including SORT and USED
-GEARS = query(DB_IOTDB(), "SELECT * FROM meta.gears")
+# There are currently two possible versions of the LEGACY CODE LISTS, depending on whether they come from the IOTDB database or from IOTC_master. The tables from IOTDB do include a SORT column which is required in the library 'iotc.base.common.data' for the factorisation process of the main variables (e.g., species) 
 
-LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE", 
-                                                          "NAME_EN", "NAME_FR", 
-                                                          "FISHERY_GROUP_CODE", #"FISHERY_GROUP_NAME_EN", "FISHERY_GROUP_NAME_FR"
-                                                          "FISHERY_TYPE_CODE", #"FISHERY_TYPE_NAME_EN", "FISHERY_TYPE_NAME_FR"
-                                                         #"SELECTIVITY_GROUP_CODE", "SELECTIVITY_GROUP_NAME_EN", "SELECTIVITY_GROUP_NAME_FR",
-                                                          "IS_AGGREGATE"))
+LEGACY_FLEETS       = legacy_domain("FLEETS")
+LEGACY_FLEETS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FLEETS")
+
+LEGACY_MAIN_AREAS = legacy_domain("MAIN_AREAS") 
+
+LEGACY_DATA_TYPES = legacy_domain("DATA_TYPES")
+
+LEGACY_DATA_COVERAGE_TYPES = legacy_domain("COVERAGE_TYPES")
+
+LEGACY_DATA_SOURCES = legacy_domain("DATA_SOURCES")
+
+LEGACY_DATA_PROCESSINGS = legacy_domain("DATA_PROCESSINGS")
+
+LEGACY_ESTIMATION_TYPES = legacy_domain("ESTIMATION_TYPES")
+
+LEGACY_GEARS = legacy_domain("GEARS")
+
+LEGACY_GEARS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.gears")  # includes SORT for factorisation
+
+LEGACY_GEAR_TYPES = legacy_domain("GEAR_TYPES")
+
+LEGACY_FISHERY_TYPES = legacy_domain("V_FISHERY_TYPES")
+
+LEGACY_FISHERY_GROUPS = legacy_domain("V_FISHERY_GROUPS")
+
+LEGACY_FISHERY_GROUPS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_GROUPS") # includes SORT for factorisation
+
+LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE", "NAME_EN", "NAME_FR", "FISHERY_GROUP_CODE", "FISHERY_GROUP_NAME_FR", "FISHERY_TYPE_CODE", "FISHERY_TYPE_NAME_FR", "IS_AGGREGATE"))
 
 LEGACY_FISHERIES[, FISHERY_CATEGORY_CODE := ifelse(FISHERY_TYPE_CODE != "IN", 
                                                    "COASTAL", 
@@ -230,29 +224,94 @@ LEGACY_FISHERIES[, FISHERY_CATEGORY_CODE := ifelse(FISHERY_TYPE_CODE != "IN",
 
 LEGACY_FISHERIES[, IS_AGGREGATE := ifelse(IS_AGGREGATE == 1, TRUE, FALSE)]
 
-# Addition of FISHERY_GROUPS
-FISHERY_GROUPS = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_GROUPS")
+LEGACY_FISHERIES_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FISHERIES;")
 
-# Temp fix to include the SORT column
-LEGACY_FLEETS = legacy_domain("FLEETS")
-#LEGACY_FLEETS = query(DB_IOTDB(), "SELECT * FROM meta.FLEETS")
+LEGACY_SPECIES = legacy_domain("SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_AGGREGATE", "IS_IOTC"))                                
 
+LEGACY_SPECIES_IOTDB = query(DB_IOTDB(), "SELECT CODE, SORT, NAME_EN, NAME_LT AS NAME_SCIENTIFIC, IS_AGGREGATE, IS_IOTC, SPECIES_CATEGORY_CODE FROM meta.species")
 
-LEGACY_SPECIES_IOTC_MASTER = legacy_domain("SPECIES", columns = c("CODE", 
-                                                       "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", 
-                                                        "IS_AGGREGATE", "IS_IOTC"))                                
-# Temp extraction from IOTDB() to include SORT and SPECIES_CATEGORY_CODE
-# Which are used in some R functions
-LEGACY_SPECIES = query(DB_IOTDB(), "SELECT CODE, SORT, NAME_EN, NAME_LT AS NAME_SCIENTIFIC, IS_AGGREGATE, IS_IOTC, SPECIES_CATEGORY_CODE FROM meta.species")
+LEGACY_SPECIES_IOTDB = LEGACY_SPECIES_IOTDB[CODE %in% LEGACY_SPECIES$CODE] # includes SORT for factorisation
 
-LEGACY_SPECIES = LEGACY_SPECIES[CODE %in% LEGACY_SPECIES_IOTC_MASTER$CODE]
+LEGACY_FATES = legacy_domain("FATES")
+
+LEGACY_SAMPLED_CATCH_TYPES = legacy_domain("SAMPLED_CATCH_TYPES")
+
+LEGACY_CATCH_UNITS = legacy_domain("CATCH_UNITS")
+
+LEGACY_EFFORT_UNITS = legacy_domain("EFFORT_UNITS")
+
+LEGACY_SCHOOL_TYPES = legacy_domain("SCHOOL_TYPES")
+
+LEGACY_MEASUREMENT_TYPES = legacy_domain("MEASUREMENT_TYPES")
+
+LEGACY_MEASUREMENT_TOOLS = legacy_domain("MEASUREMENT_TOOLS")
+
+LEGACY_RAISINGS = legacy_domain("RAISINGS")
+
+LEGACY_BOAT_TYPES = legacy_domain("BOAT_TYPES")
+
+LEGACY_FAD_ACTIVITY_TYPES = legacy_domain("FAD_ACTIVITY_TYPES")
+
+LEGACY_FAD_TYPES = legacy_domain("FAD_TYPES")
+
+LEGACY_FAD_OWNERSHIPS = legacy_domain("FAD_OWNERSHIPS")
 
 ## Save package data as rda in data folder ####
-use_data(GEARS, overwrite = TRUE)
+use_data(LEGACY_FLEETS, overwrite = TRUE)
+use_data(LEGACY_FLEETS_IOTDB, overwrite = TRUE)
+use_data(LEGACY_MAIN_AREAS, overwrite = TRUE)
+use_data(LEGACY_DATA_TYPES, overwrite = TRUE)
+use_data(LEGACY_DATA_COVERAGE_TYPES, overwrite = TRUE)
+use_data(LEGACY_DATA_SOURCES, overwrite = TRUE)
+use_data(LEGACY_DATA_PROCESSINGS, overwrite = TRUE)
+use_data(LEGACY_ESTIMATION_TYPES, overwrite = TRUE)
+use_data(LEGACY_GEARS, overwrite = TRUE)
+use_data(LEGACY_GEARS_IOTDB, overwrite = TRUE)
+use_data(LEGACY_GEAR_TYPES, overwrite = TRUE)
+use_data(LEGACY_GEARS_IOTDB, overwrite = TRUE)
+use_data(LEGACY_GEAR_TYPES, overwrite = TRUE)
+use_data(LEGACY_FISHERY_TYPES, overwrite = TRUE)
+use_data(LEGACY_FISHERY_GROUPS, overwrite = TRUE)
+use_data(LEGACY_FISHERY_GROUPS_IOTDB, overwrite = TRUE)
 use_data(LEGACY_FISHERIES, overwrite = TRUE)
-use_data(LEGACY_FLEETS,    overwrite = TRUE)
-use_data(LEGACY_SPECIES,   overwrite = TRUE)
-use_data(FISHERY_GROUPS,   overwrite = TRUE)
+use_data(LEGACY_FISHERIES_IOTDB, overwrite = TRUE)
+use_data(LEGACY_SPECIES, overwrite = TRUE)
+use_data(LEGACY_SPECIES_IOTDB, overwrite = TRUE)
+use_data(LEGACY_FATES, overwrite = TRUE)
+use_data(LEGACY_SAMPLED_CATCH_TYPES, overwrite = TRUE)
+use_data(LEGACY_CATCH_UNITS, overwrite = TRUE)
+use_data(LEGACY_EFFORT_UNITS, overwrite = TRUE)
+use_data(LEGACY_SCHOOL_TYPES, overwrite = TRUE)
+use_data(LEGACY_MEASUREMENT_TYPES, overwrite = TRUE)
+use_data(LEGACY_MEASUREMENT_TOOLS, overwrite = TRUE)
+use_data(LEGACY_RAISINGS, overwrite = TRUE)
+use_data(LEGACY_BOAT_TYPES, overwrite = TRUE)    # To rename
+use_data(LEGACY_FAD_ACTIVITY_TYPES, overwrite = TRUE)
+use_data(LEGACY_FAD_TYPES, overwrite = TRUE)
+use_data(LEGACY_FAD_OWNERSHIPS, overwrite = TRUE)
+
+# Other codelists (that should be added in IOTC_master)
+# Currently downloaded in the R library: iotc-lib-base-common-data/R/iotc_base_common_data_factors.R
+LEGACY_WORKING_PARTIES_IOTDB    = query(DB_IOTDB(), "SELECT * FROM meta.WORKING_PARTIES")
+LEGACY_SPECIES_GROUPS_IOTDB     = query(DB_IOTDB(), "SELECT * FROM meta.SPECIES_GROUPS")
+LEGACY_SPECIES_CATEGORIES_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.SPECIES_CATEGORIES")
+LEGACY_IUCN_STATUS_IOTDB        = query(DB_IOTDB(), "SELECT * FROM meta.IUCN_STATUS")
+LEGACY_RAISINGS_IOTDB           = query(DB_IOTDB(), "SELECT * FROM meta.RAISINGS")
+LEGACY_FISHERY_TYPES_IOTDB      = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_TYPES")
+LEGACY_CONDITION_TYPES_IOTDB    = query(DB_IOTDB(), "SELECT * FROM meta.CONDITION_TYPES")
+LEGACY_FISHING_GROUNDS_IOTDB    = query(DB_IOTDB(), "SELECT * FROM meta.FISHING_GROUNDS")
+LEGACY_FATE_TYPES_IOTDB         = query(DB_IOTDB(), "SELECT * FROM meta.FATE_TYPES")
+
+## Save package data as rda in data folder ####
+use_data(LEGACY_WORKING_PARTIES_IOTDB, overwrite = TRUE)
+use_data(LEGACY_SPECIES_GROUPS_IOTDB, overwrite = TRUE)
+use_data(LEGACY_SPECIES_CATEGORIES_IOTDB, overwrite = TRUE)
+use_data(LEGACY_IUCN_STATUS_IOTDB, overwrite = TRUE)
+use_data(LEGACY_RAISINGS_IOTDB, overwrite = TRUE)
+use_data(LEGACY_FISHERY_TYPES_IOTDB, overwrite = TRUE)
+use_data(LEGACY_CONDITION_TYPES_IOTDB, overwrite = TRUE)
+use_data(LEGACY_FISHING_GROUNDS_IOTDB, overwrite = TRUE)
+use_data(LEGACY_FATE_TYPES_IOTDB, overwrite = TRUE)
 
 # SOCIO-ECONOMIC REFERENCES ####
 
