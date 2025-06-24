@@ -20,7 +20,7 @@ Here is all ROS Code-lists table and their pending in the IOTC_Master database.
 | Ros table name                                     | Present in IOTC_Master | IOTC_Master table name                                    |
 |----------------------------------------------------|------------------------|-----------------------------------------------------------|
 | ROS_analysis.FLAG_TO_FLEET                         | Yes                    | refs_admin.FLEET_TO_FLAGS_AND_FISHERIES                   |
-| ROS_references.CL_ACTIVITIES                       | ?                      |                                                           |
+| ROS_references.CL_ACTIVITIES                       | No                     |                                                           |
 | ROS_references.CL_BAIT_CONDITIONS                  | Yes                    | refs_biological.BAIT_CONDITIONS                           |
 | ROS_references.CL_BAIT_FISHING_METHODS             | Yes                    | refs_fishery.BAIT_FISHING_METHODS                         |
 | Ros_references.CL_BAIT_SCHOOL_DETECTION_METHODS    | Yes                    | refs_fishery.BAIT_SCHOOL_DETECTION_METHODS                |
@@ -28,7 +28,7 @@ Here is all ROS Code-lists table and their pending in the IOTC_Master database.
 | Ros_references.CL_CATCH_ESTIMATES_SAMPLING_METHODS | Yes                    | refs_biological.SAMPLING_METHODS_FOR_CATCH_ESTIMATION     |
 | ROS_references.CL_COUNTRIES                        | Yes                    | refs_admin.COUNTRIES                                      |
 | ROS_references.CL_DEHOOKER_DEVICES                 | Yes                    | refs_fishery.DEHOOKER_TYPES                               |
-| ROS_references.CL_DISPOSAL_METHODS                 | ?                      | refs_fishery.WASTE_DISPOSAL_METHODS                       |
+| ROS_references.CL_DISPOSAL_METHODS                 | No                     | refs_fishery.WASTE_DISPOSAL_METHODS                       |
 | ROS_references.CL_FAD_RAFT_DESIGNS                 | Yes                    | refs_fishery.FAD_RAFT_DESIGNS                             |
 | ROS_references.CL_FAD_TAIL_DESIGNS                 | Yes                    | refs_fishery.FAD_TAIL_DESIGNS                             |
 | Ros_references.CL_FATES                            | Yes                    | refs_biological.FATES                                     |
@@ -42,8 +42,8 @@ Here is all ROS Code-lists table and their pending in the IOTC_Master database.
 | Ros_references.CL_GILLNET_MATERIAL_TYPES           | Yes                    | refs_fishery.GILLNET_MATERIAL_TYPES                       |
 | ROS_references.CL_HANDLING_METHODS                 | Yes                    | refs_biological.HANDLING_METHODS                          |
 | Ros_references.CL_HOOKS                            | Yes                    | refs_fishery.HOOK_TYPES                                   |
-| ROS_references.CL_HULL_MATERIALS                   | ?                      | refs_fishery.HULL_MATERIAL_TYPES                          |
-| ROS_references.CL_INCIDENTAL_CAPTURES_CONDITIONS   | ?                      |                                                           |
+| ROS_references.CL_HULL_MATERIALS                   | No                     | refs_fishery.HULL_MATERIAL_TYPES                          |
+| ROS_references.CL_INCIDENTAL_CAPTURES_CONDITIONS   | No                     |                                                           |
 | Ros_references.CL_LENGTH_MEASUREMENT_TYPES         | Yes                    | refs_biological.MEASUREMENTS                              |
 | ROS_references.CL_LENGTH_MEASURING_TOOLS           | Yes                    | refs_biological.MEASUREMENT_TOOLS.Table                   |
 | ROS_references.CL_LIGHT_COLOURS                    | Yes                    | refs_fishery.LIGHT_COLOURS                                |
@@ -58,7 +58,7 @@ Here is all ROS Code-lists table and their pending in the IOTC_Master database.
 | Ros_references.CL_PORTS                            | Yes                    | refs_legacy.UN_LOCODE_PORTS                               |
 | Ros_references.CL_PROCESSING_TYPES                 | Yes                    | refs_fishery.FISH_PROCESSING_TYPES                        |
 | ROS_references.CL_SAMPLING_PROTOCOLS               | Yes                    | refs_biological.SAMPLING_PROTOCOLS                        |
-| ROS_references.CL_SCARS                            | ?                      |                                                           |
+| ROS_references.CL_SCARS                            | No                     |                                                           |
 | ROS_references.CL_SCHOOL_DETECTION_METHODS         | Yes                    | refs_fishery.SCHOOL_DETECTION_METHODS                     |
 | Ros_references.CL_SCHOOL_SIGHTING_CUES             | Yes                    | refs_fishery.SCHOOL_SIGHTING_CUES                         |
 | Ros_references.CL_SCHOOL_TYPE_CATEGORIES           | Yes                    | refs_fishery_config.FISHING_MODES                         |
