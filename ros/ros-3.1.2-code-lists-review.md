@@ -28,7 +28,7 @@ Here is all ROS Code-lists table and their pending in the IOTC_Master database.
 | Ros_references.CL_CATCH_ESTIMATES_SAMPLING_METHODS | Yes                    | refs_biological.SAMPLING_METHODS_FOR_CATCH_ESTIMATION     |
 | ROS_references.CL_COUNTRIES                        | Yes                    | refs_admin.COUNTRIES                                      |
 | ROS_references.CL_DEHOOKER_DEVICES                 | Yes                    | refs_fishery.DEHOOKER_TYPES                               |
-| ROS_references.CL_DISPOSAL_METHODS                 | No                     | refs_fishery.WASTE_DISPOSAL_METHODS                       |
+| ROS_references.CL_DISPOSAL_METHODS                 | Yes                    | refs_fishery.WASTE_DISPOSAL_METHODS                       |
 | ROS_references.CL_FAD_RAFT_DESIGNS                 | Yes                    | refs_fishery.FAD_RAFT_DESIGNS                             |
 | ROS_references.CL_FAD_TAIL_DESIGNS                 | Yes                    | refs_fishery.FAD_TAIL_DESIGNS                             |
 | Ros_references.CL_FATES                            | Yes                    | refs_biological.FATES                                     |
@@ -82,12 +82,12 @@ For all these tables:
 
 # Differences between ROS and IOTC_Statistics
 
-We list here only tables not covered by the previous section and that are need by some functions or views in Ros database.
+We list here only tables not covered by the previous section and that are needed by some functions, procedures or views 
+in Ros database.
 
 | Ros table name                                   | Present in IOTC_Statistics | IOTC_Statistics table name        |
 |--------------------------------------------------|----------------------------|-----------------------------------|
 | ROS_references.CL_ACTIVITIES                     | Yes                        | CL_ACTIVITIES                     |
-| ROS_references.CL_DISPOSAL_METHODS               | Yes                        | CL_DISPOSAL_METHODS               |
 | ROS_references.CL_HULL_MATERIALS                 | Yes                        | CL_HULL_MATERIAL                  |
 | ROS_references.CL_INCIDENTAL_CAPTURES_CONDITIONS | Yes                        | CL_INCIDENTAL_CAPTURES_CONDITIONS |
 | ROS_references.CL_SCARS                          | Yes                        | CL_SCARS                          |
