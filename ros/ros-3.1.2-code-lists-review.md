@@ -13,7 +13,7 @@ As a state of play, let's:
 * see differences between Ros and IOTC_Master databases
 * see differences between IOTC_Statistics and IOTC_Master databases and need to be push back in it (and in Ros database also)
 
-# Differences between ORS and IOTC_Master databases
+# Differences between ROS and IOTC_Master databases
 
 Here is all ROS Code-lists table and their pending in the IOTC_Master database.
 
@@ -80,7 +80,7 @@ For all these tables:
 2. replace the existing ros_references.XXX table by this one
 3. remove the existing ros_references.XXX table
 
-# Differences between Ros and IOTC_Statistics
+# Differences between ROS and IOTC_Statistics
 
 We list here only tables not covered by the previous section and that are need by some functions or views in Ros database.
 
@@ -99,6 +99,28 @@ For all these tables:
 1. clean them (remove columns CREATOR_ID, CREATION_DATE, UPDATER_ID, UPDATE_DATE)
 2. remove the ```CL_``` prefix on the table name
 3. import them to IOTC_Master in the correct schema
-4. disseminate them back to Ros
+4. disseminate them back to ROS
 5. replace the existing ros_references.XXX table 
 6. remove the existing ros_references.XXX table 
+
+# Changes to make to IOTC_master (manu)
+
+- Create [IOTC_master].[refs_legacy].[SPECIES_CONDITIONS] from [IOTC_master].[refs_legacy].[V_SPECIES_CONDITIONS] and remove the view which comes from IOTCStatistics
+- Rename [IOTC_master].[refs_fishery].[BOAT_CLASS_TYPES] to [IOTC_master].[refs_fishery].[VESSEL_SIZE_TYPES]
+- Rename [IOTC_master].[refs_fishery].[BOAT_LOCATIONS] to [IOTC_master].[refs_fishery].[VESSEL_LOCATIONS]
+- Rename [IOTC_master].[refs_fishery].[BOAT_TYPES] to [IOTC_master].[refs_fishery].[VESSEL_ARCHITECTURES]
+- Change schema of [IOTC_master].[dbo].[BOAT_SIZE_CLASS] to [refs_legacy].[dbo].[BOAT_SIZE_CLASS]
+- Rename [IOTC_master].[dbo].[1_DI] to [IOTC_master].[dataset].[DISCARD]
+- Rename [IOTC_master].[dbo].[1_RC] to [IOTC_master].[dataset].[RETAINED_CATCH]
+- Remove [IOTC_master].[dbo].[3_BU] since this dataset will be _a priori_managed in a dedicated Postgres database
+- Rename [IOTC_master].[dbo].[3_EF] to [IOTC_master].[dataset].[EFFORT]
+- Rename [IOTC_master].[dbo].[3_EF_CA] to [IOTC_master].[dataset].[EFFORT_CATCH]
+- Rename [IOTC_master].[dbo].[4_SF] to [IOTC_master].[dataset].[SIZE_FREQUENCY]
+- Remove [IOTC_master].[dbo].[TEMP_TRADUCTION_AREAS] when sure it is not useful
+
+Also, all table and view names coould become singular. This should be done in a second step as the code lists are exported to the library iotc.data.reference.codelist which is required by the Shiny Apps of the Data Validators and Data Browser (ongoing work led by manu Blondel).
+
+
+
+
+
