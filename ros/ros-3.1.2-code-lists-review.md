@@ -105,7 +105,7 @@ For all these tables:
 
 # Changes to make to IOTC_master (manu)
 
-- Create [IOTC_master].[refs_legacy].[SPECIES_CONDITIONS] from [IOTC_master].[refs_legacy].[V_SPECIES_CONDITIONS] and remove the view which comes from IOTCStatistics [x] 
+- Create [IOTC_master].[refs_legacy].[SPECIES_CONDITIONS] from [IOTC_master].[refs_legacy].[V_SPECIES_CONDITIONS] and remove the view which comes from IOTCStatistics ( [x] ) 
 - Rename [IOTC_master].[refs_fishery].[BOAT_CLASS_TYPES] to [IOTC_master].[refs_fishery].[VESSEL_SIZE_TYPES]
 - Rename [IOTC_master].[refs_fishery].[BOAT_LOCATIONS] to [IOTC_master].[refs_fishery].[VESSEL_LOCATIONS]
 - Rename [IOTC_master].[refs_fishery].[BOAT_TYPES] to [IOTC_master].[refs_fishery].[VESSEL_ARCHITECTURES]
