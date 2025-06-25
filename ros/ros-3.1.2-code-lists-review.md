@@ -105,18 +105,18 @@ For all these tables:
 
 # Changes to make to IOTC_master (manu)
 
-- Create IOTC_master.refs_legacy.SPECIES_CONDITIONS from IOTC_master.refs_legacy.V_SPECIES_CONDITIONS and remove the view which comes from IOTCStatistics ( x ) 
-- Rename IOTC_master.refs_fishery.BOAT_CLASS_TYPES to IOTC_master.refs_fishery.VESSEL_SIZE_TYPES
-- Rename IOTC_master.refs_fishery.BOAT_LOCATIONS to IOTC_master.refs_fishery.VESSEL_LOCATIONS
-- Rename IOTC_master.refs_fishery.BOAT_TYPES to IOTC_master.refs_fishery.VESSEL_ARCHITECTURES
-- Change schema of IOTC_master.dbo.BOAT_SIZE_CLASS to IOTC_master.refs_legacy.BOAT_SIZE_CLASS
-- Rename IOTC_master.dbo.1_DI to IOTC_master.dataset.DISCARDS x
-- Rename IOTC_master.dbo.1_RC to IOTC_master.dataset.RETAINED_CATCHES x
-- Remove IOTC_master.dbo.3_BU since this dataset will be _a priori_managed in a dedicated Postgres database x
-- Rename IOTC_master.dbo.3_EF to IOTC_master.dataset.EFFORTS x
-- Rename IOTC_master.dbo.3_EF_CA to IOTC_master.dataset.EFFORTS_CATCHES x
-- Rename IOTC_master.dbo.4_SF to IOTC_master.dataset.SIZE_FREQUENCIES x
-- Remove IOTC_master.dbo.TEMP_TRADUCTION_AREAS when sure it is not useful
+- Create IOTC_master.refs_legacy.SPECIES_CONDITIONS from IOTC_master.refs_legacy.V_SPECIES_CONDITIONS and remove the view which comes from IOTCStatistics (done) 
+- Rename IOTC_master.refs_fishery.BOAT_CLASS_TYPES to IOTC_master.refs_fishery.VESSEL_SIZE_TYPES (done)
+- Rename IOTC_master.refs_fishery.BOAT_LOCATIONS to IOTC_master.refs_fishery.VESSEL_LOCATIONS (done)
+- Rename IOTC_master.refs_fishery.BOAT_TYPES to IOTC_master.refs_fishery.VESSEL_ARCHITECTURES (done)
+- Change schema of IOTC_master.dbo.BOAT_SIZE_CLASS to IOTC_master.refs_legacy.BOAT_SIZE_CLASS (done and table improved)
+- Rename IOTC_master.dbo.1_DI to IOTC_master.dataset.DISCARDS (done)
+- Rename IOTC_master.dbo.1_RC to IOTC_master.dataset.RETAINED_CATCHES (to do)
+- Remove IOTC_master.dbo.3_BU since this dataset -- managed in a dedicated Postgres database (done)
+- Rename IOTC_master.dbo.3_EF to IOTC_master.dataset.EFFORTS (to do)
+- Rename IOTC_master.dbo.3_EF_CA to IOTC_master.dataset.EFFORTS_CATCHES (to do)
+- Rename IOTC_master.dbo.4_SF to IOTC_master.dataset.SIZE_FREQUENCIES (to do)
+- Remove IOTC_master.dbo.TEMP_TRADUCTION_AREAS when sure it is not useful (done)
 
 Also, all table and view names coould become singular. This should be done in a second step as the code lists are exported to the library iotc.data.reference.codelist which is required by the Shiny Apps of the Data Validators and Data Browser (ongoing work led by manu Blondel).
 
