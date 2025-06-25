@@ -110,12 +110,12 @@ For all these tables:
 - Rename [IOTC_master].[refs_fishery].[BOAT_LOCATIONS] to [IOTC_master].[refs_fishery].[VESSEL_LOCATIONS]
 - Rename [IOTC_master].[refs_fishery].[BOAT_TYPES] to [IOTC_master].[refs_fishery].[VESSEL_ARCHITECTURES]
 - Change schema of [IOTC_master].[dbo].[BOAT_SIZE_CLASS] to [refs_legacy].[dbo].[BOAT_SIZE_CLASS]
-- Rename [IOTC_master].[dbo].[1_DI] to [IOTC_master].[dataset].[DISCARD] - [x]
-- Rename [IOTC_master].[dbo].[1_RC] to [IOTC_master].[dataset].[RETAINED_CATCH] - [x]
+- Rename [IOTC_master].[dbo].[1_DI] to [IOTC_master].[dataset].[DISCARDS] - [x]
+- Rename [IOTC_master].[dbo].[1_RC] to [IOTC_master].[dataset].[RETAINED_CATCHES] - [x]
 - Remove [IOTC_master].[dbo].[3_BU] since this dataset will be _a priori_managed in a dedicated Postgres database - [x]
-- Rename [IOTC_master].[dbo].[3_EF] to [IOTC_master].[dataset].[EFFORT] - [x]
-- Rename [IOTC_master].[dbo].[3_EF_CA] to [IOTC_master].[dataset].[EFFORT_CATCH] - [x]
-- Rename [IOTC_master].[dbo].[4_SF] to [IOTC_master].[dataset].[SIZE_FREQUENCY] - [x]
+- Rename [IOTC_master].[dbo].[3_EF] to [IOTC_master].[dataset].[EFFORTS] - [x]
+- Rename [IOTC_master].[dbo].[3_EF_CA] to [IOTC_master].[dataset].[EFFORTS_CATCHES] - [x]
+- Rename [IOTC_master].[dbo].[4_SF] to [IOTC_master].[dataset].[SIZE_FREQUENCIES] - [x]
 - Remove [IOTC_master].[dbo].[TEMP_TRADUCTION_AREAS] when sure it is not useful
 
 Also, all table and view names coould become singular. This should be done in a second step as the code lists are exported to the library iotc.data.reference.codelist which is required by the Shiny Apps of the Data Validators and Data Browser (ongoing work led by manu Blondel).
