@@ -103,16 +103,21 @@ For all these tables:
 5. replace the existing ros_references.XXX table 
 6. remove the existing ros_references.XXX table 
 
-
 # Changes to make to IOTC_master (code-lists tables) (manu)
 
-- Create IOTC_master.refs_legacy.SPECIES_CONDITIONS from IOTC_master.refs_legacy.V_SPECIES_CONDITIONS and remove the view which comes from IOTCStatistics (done) 
-- Rename IOTC_master.refs_fishery.BOAT_CLASS_TYPES to IOTC_master.refs_fishery.VESSEL_SIZE_TYPES (done)
-- Rename IOTC_master.refs_fishery.BOAT_LOCATIONS to IOTC_master.refs_fishery.VESSEL_SECTIONS (done). I actually cannot find the table BOAT_LOCATIONS in the ROS model while it is supposed to be required in the hauling operations of longline. If not used anywhere in the ROS, the table should be removed (to check with Cynthia)
-- Rename IOTC_master.refs_fishery.BOAT_TYPES to IOTC_master.refs_fishery.VESSEL_ARCHITECTURES (done)
-- Change schema of IOTC_master.dbo.BOAT_SIZE_CLASS to IOTC_master.refs_legacy.BOAT_SIZE_CLASS (done and table improved)
-- Rename IOTC_master.refs_fishery.BOAT_LOCATIONS to IOTC_master.refs_fishery.VESSEL_SECTIONS (done). 
-- Rename IOTC_master.refs_fishery.BOAT_TYPES to IOTC_master.refs_fishery.VESSEL_ARCHITECTURES (done)
+| Action | IOTC_Master table name         | IOTC_Statistics table name        | Comment |
+|--------|--------------------------------|-----------------------------------|---------|
+| Add    | refs_legacy.SPECIES_CONDITIONS | SPECIES_CONDITIONS                | (1)     |
+| Rename | refs_fishery.BOAT_CLASS_TYPES  | refs_fishery.VESSEL_SIZE_TYPES    | (2)     |
+| Rename | refs_fishery.BOAT_LOCATIONS    | refs_fishery.VESSEL_SECTIONS      |         |
+| Rename | refs_fishery.BOAT_TYPES        | refs_fishery.VESSEL_ARCHITECTURES |         |
+| Move   | dbo.BOAT_SIZE_CLASS            | refs_legacy.BOAT_SIZE_CLASS       | (3)     |
+
+Notes:
+1. Remove the view which comes from IOTCStatistics
+2. I actually cannot find the table BOAT_LOCATIONS in the ROS model while it is supposed to be required in the hauling 
+   operations of longline. If not used anywhere in the ROS, the table should be removed (to check with Cynthia)
+3. table improved
 
 # Changes to make to IOTC_master (other tables) (manu)
 
