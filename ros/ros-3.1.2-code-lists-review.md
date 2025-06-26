@@ -85,12 +85,12 @@ For all these tables:
 We list here only tables not covered by the previous section and that are needed by some functions, procedures or views 
 in Ros database.
 
-| Ros table name                                   | Present in IOTC_Statistics | IOTC_Statistics table name        | New schema name |
-|--------------------------------------------------|----------------------------|-----------------------------------|-----------------|
-| ROS_references.CL_ACTIVITIES                     | Yes                        | CL_ACTIVITIES                     | refs_fishery    |
-| ROS_references.CL_HULL_MATERIALS                 | Yes                        | CL_HULL_MATERIAL                  | refs_fishery    |
-| ROS_references.CL_INCIDENTAL_CAPTURES_CONDITIONS | Yes                        | CL_INCIDENTAL_CAPTURES_CONDITIONS | biological      |
-| ROS_references.CL_SCARS                          | Yes                        | CL_SCARS                          | biological      |
+| Ros table name                                   | IOTC_Statistics table name        | New schema name |
+|--------------------------------------------------|-----------------------------------|-----------------|
+| ROS_references.CL_ACTIVITIES                     | CL_ACTIVITIES                     | refs_fishery    |
+| ROS_references.CL_HULL_MATERIALS                 | CL_HULL_MATERIAL                  | refs_fishery    |
+| ROS_references.CL_INCIDENTAL_CAPTURES_CONDITIONS | CL_INCIDENTAL_CAPTURES_CONDITIONS | biological      |
+| ROS_references.CL_SCARS                          | CL_SCARS                          | biological      |
 
 ## Actions
 
