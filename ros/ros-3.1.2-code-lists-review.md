@@ -103,11 +103,12 @@ For all these tables:
 5. replace the existing ros_references.XXX table 
 6. remove the existing ros_references.XXX table 
 
+
 # Changes to make to IOTC_master (manu)
 
 - Create IOTC_master.refs_legacy.SPECIES_CONDITIONS from IOTC_master.refs_legacy.V_SPECIES_CONDITIONS and remove the view which comes from IOTCStatistics (done) 
 - Rename IOTC_master.refs_fishery.BOAT_CLASS_TYPES to IOTC_master.refs_fishery.VESSEL_SIZE_TYPES (done)
-- Rename IOTC_master.refs_fishery.BOAT_LOCATIONS to IOTC_master.refs_fishery.VESSEL_LOCATIONS (done)
+- Rename IOTC_master.refs_fishery.BOAT_LOCATIONS to IOTC_master.refs_fishery.VESSEL_SECTIONS (done). I actually cannot find the table BOAT_LOCATIONS in the ROS model while it is supposed to be required in the hauling operations of longline. If not used anywhere in the ROS, the table should be removed (to check with Cynthia)
 - Rename IOTC_master.refs_fishery.BOAT_TYPES to IOTC_master.refs_fishery.VESSEL_ARCHITECTURES (done)
 - Change schema of IOTC_master.dbo.BOAT_SIZE_CLASS to IOTC_master.refs_legacy.BOAT_SIZE_CLASS (done and table improved)
 - Rename IOTC_master.dbo.1_DI to IOTC_master.dataset.DISCARDS (done)
@@ -117,6 +118,8 @@ For all these tables:
 - Rename IOTC_master.dbo.3_EF_CA to IOTC_master.dataset.EFFORTS_CATCHES (to do)
 - Rename IOTC_master.dbo.4_SF to IOTC_master.dataset.SIZE_FREQUENCIES (to do)
 - Remove IOTC_master.dbo.TEMP_TRADUCTION_AREAS when sure it is not useful (done)
+- Rename IOTC_master.refs_fishery.BOAT_LOCATIONS to IOTC_master.refs_fishery.VESSEL_SECTIONS (done). 
+- Rename IOTC_master.refs_fishery.BOAT_TYPES to IOTC_master.refs_fishery.VESSEL_ARCHITECTURES (done)
 
 Also, all table and view names coould become singular. This should be done in a second step as the code lists are exported to the library iotc.data.reference.codelist which is required by the Shiny Apps of the Data Validators and Data Browser (ongoing work led by manu Blondel).
 
