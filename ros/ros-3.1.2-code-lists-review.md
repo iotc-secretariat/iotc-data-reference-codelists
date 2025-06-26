@@ -31,6 +31,7 @@ Here is all ROS Code-lists table and their pending in the IOTC_Master database.
 | ROS_references.CL_DISPOSAL_METHODS                 | Yes                    | refs_fishery.WASTE_DISPOSAL_METHODS                       |
 | ROS_references.CL_FAD_RAFT_DESIGNS                 | Yes                    | refs_fishery.FAD_RAFT_DESIGNS                             |
 | ROS_references.CL_FAD_TAIL_DESIGNS                 | Yes                    | refs_fishery.FAD_TAIL_DESIGNS                             |
+| Ros_references.CL_HULL_MATERIALS                   | Yes                    | refs_fishery.HULL_MATERIAL_TYPES                          |
 | Ros_references.CL_FATES                            | Yes                    | refs_biological.FATES                                     |
 | Ros_references.CL_FISHING_GROUND                   | Yes                    | refs_gis.AREAS                                            |
 | Ros_references.CL_FISHING_GROUND_TYPES             | Yes                    | refs_gis.AREA_TYPES                                       |
@@ -88,7 +89,6 @@ in Ros database.
 | Ros table name                                   | IOTC_Statistics table name        | New schema name |
 |--------------------------------------------------|-----------------------------------|-----------------|
 | ROS_references.CL_ACTIVITIES                     | CL_ACTIVITIES                     | refs_fishery    |
-| ROS_references.CL_HULL_MATERIALS                 | CL_HULL_MATERIAL                  | refs_fishery    |
 | ROS_references.CL_INCIDENTAL_CAPTURES_CONDITIONS | CL_INCIDENTAL_CAPTURES_CONDITIONS | refs_biological |
 | ROS_references.CL_SCARS                          | CL_SCARS                          | refs_biological |
 
