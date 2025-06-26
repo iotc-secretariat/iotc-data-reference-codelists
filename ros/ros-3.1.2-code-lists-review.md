@@ -89,8 +89,8 @@ in Ros database.
 |--------------------------------------------------|-----------------------------------|-----------------|
 | ROS_references.CL_ACTIVITIES                     | CL_ACTIVITIES                     | refs_fishery    |
 | ROS_references.CL_HULL_MATERIALS                 | CL_HULL_MATERIAL                  | refs_fishery    |
-| ROS_references.CL_INCIDENTAL_CAPTURES_CONDITIONS | CL_INCIDENTAL_CAPTURES_CONDITIONS | biological      |
-| ROS_references.CL_SCARS                          | CL_SCARS                          | biological      |
+| ROS_references.CL_INCIDENTAL_CAPTURES_CONDITIONS | CL_INCIDENTAL_CAPTURES_CONDITIONS | refs_biological |
+| ROS_references.CL_SCARS                          | CL_SCARS                          | refs_biological |
 
 ## Actions
 
@@ -104,13 +104,18 @@ For all these tables:
 6. remove the existing ros_references.XXX table 
 
 
-# Changes to make to IOTC_master (manu)
+# Changes to make to IOTC_master (code-lists tables) (manu)
 
 - Create IOTC_master.refs_legacy.SPECIES_CONDITIONS from IOTC_master.refs_legacy.V_SPECIES_CONDITIONS and remove the view which comes from IOTCStatistics (done) 
 - Rename IOTC_master.refs_fishery.BOAT_CLASS_TYPES to IOTC_master.refs_fishery.VESSEL_SIZE_TYPES (done)
 - Rename IOTC_master.refs_fishery.BOAT_LOCATIONS to IOTC_master.refs_fishery.VESSEL_SECTIONS (done). I actually cannot find the table BOAT_LOCATIONS in the ROS model while it is supposed to be required in the hauling operations of longline. If not used anywhere in the ROS, the table should be removed (to check with Cynthia)
 - Rename IOTC_master.refs_fishery.BOAT_TYPES to IOTC_master.refs_fishery.VESSEL_ARCHITECTURES (done)
 - Change schema of IOTC_master.dbo.BOAT_SIZE_CLASS to IOTC_master.refs_legacy.BOAT_SIZE_CLASS (done and table improved)
+- Rename IOTC_master.refs_fishery.BOAT_LOCATIONS to IOTC_master.refs_fishery.VESSEL_SECTIONS (done). 
+- Rename IOTC_master.refs_fishery.BOAT_TYPES to IOTC_master.refs_fishery.VESSEL_ARCHITECTURES (done)
+
+# Changes to make to IOTC_master (other tables) (manu)
+
 - Rename IOTC_master.dbo.1_DI to IOTC_master.dataset.DISCARDS (done)
 - Rename IOTC_master.dbo.1_RC to IOTC_master.dataset.RETAINED_CATCHES (to do)
 - Remove IOTC_master.dbo.3_BU since this dataset -- managed in a dedicated Postgres database (done)
