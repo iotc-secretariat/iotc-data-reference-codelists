@@ -118,8 +118,6 @@ For all these tables:
 - Rename IOTC_master.dbo.3_EF_CA to IOTC_master.dataset.EFFORTS_CATCHES (to do)
 - Rename IOTC_master.dbo.4_SF to IOTC_master.dataset.SIZE_FREQUENCIES (to do)
 - Remove IOTC_master.dbo.TEMP_TRADUCTION_AREAS when sure it is not useful (done)
-- Rename IOTC_master.refs_fishery.BOAT_LOCATIONS to IOTC_master.refs_fishery.VESSEL_SECTIONS (done). 
-- Rename IOTC_master.refs_fishery.BOAT_TYPES to IOTC_master.refs_fishery.VESSEL_ARCHITECTURES (done)
 
 Also, all table and view names could become singular. This should be done in a second step as the code lists are 
 exported to the library iotc.data.reference.codelist which is required by the Shiny Apps of the Data Validators and 
