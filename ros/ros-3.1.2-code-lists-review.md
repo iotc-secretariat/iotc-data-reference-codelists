@@ -85,12 +85,12 @@ For all these tables:
 We list here only tables not covered by the previous section and that are needed by some functions, procedures or views 
 in Ros database.
 
-| Ros table name                                   | Present in IOTC_Statistics | IOTC_Statistics table name        |
-|--------------------------------------------------|----------------------------|-----------------------------------|
-| ROS_references.CL_ACTIVITIES                     | Yes                        | CL_ACTIVITIES                     |
-| ROS_references.CL_HULL_MATERIALS                 | Yes                        | CL_HULL_MATERIAL                  |
-| ROS_references.CL_INCIDENTAL_CAPTURES_CONDITIONS | Yes                        | CL_INCIDENTAL_CAPTURES_CONDITIONS |
-| ROS_references.CL_SCARS                          | Yes                        | CL_SCARS                          |
+| Ros table name                                   | Present in IOTC_Statistics | IOTC_Statistics table name        | New schema name |
+|--------------------------------------------------|----------------------------|-----------------------------------|-----------------|
+| ROS_references.CL_ACTIVITIES                     | Yes                        | CL_ACTIVITIES                     | refs_fishery    |
+| ROS_references.CL_HULL_MATERIALS                 | Yes                        | CL_HULL_MATERIAL                  | refs_fishery    |
+| ROS_references.CL_INCIDENTAL_CAPTURES_CONDITIONS | Yes                        | CL_INCIDENTAL_CAPTURES_CONDITIONS | biological      |
+| ROS_references.CL_SCARS                          | Yes                        | CL_SCARS                          | biological      |
 
 ## Actions
 
@@ -121,7 +121,9 @@ For all these tables:
 - Rename IOTC_master.refs_fishery.BOAT_LOCATIONS to IOTC_master.refs_fishery.VESSEL_SECTIONS (done). 
 - Rename IOTC_master.refs_fishery.BOAT_TYPES to IOTC_master.refs_fishery.VESSEL_ARCHITECTURES (done)
 
-Also, all table and view names coould become singular. This should be done in a second step as the code lists are exported to the library iotc.data.reference.codelist which is required by the Shiny Apps of the Data Validators and Data Browser (ongoing work led by manu Blondel).
+Also, all table and view names could become singular. This should be done in a second step as the code lists are 
+exported to the library iotc.data.reference.codelist which is required by the Shiny Apps of the Data Validators and 
+Data Browser (ongoing work led by manu Blondel).
 
 
 
