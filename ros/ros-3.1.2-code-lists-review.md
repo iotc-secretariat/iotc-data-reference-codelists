@@ -46,7 +46,7 @@ Here is all ROS Code-lists table and their pending in the IOTC_Master database.
 | ROS_references.CL_HULL_MATERIALS                   | No                     | refs_fishery.HULL_MATERIAL_TYPES                          |
 | ROS_references.CL_INCIDENTAL_CAPTURES_CONDITIONS   | No                     |                                                           |
 | Ros_references.CL_LENGTH_MEASUREMENT_TYPES         | Yes                    | refs_biological.MEASUREMENTS                              |
-| ROS_references.CL_LENGTH_MEASURING_TOOLS           | Yes                    | refs_biological.MEASUREMENT_TOOLS.Table                   |
+| ROS_references.CL_LENGTH_MEASURING_TOOLS           | Yes                    | refs_biological.MEASUREMENT_TOOLS                         |
 | ROS_references.CL_LIGHT_COLOURS                    | Yes                    | refs_fishery.LIGHT_COLOURS                                |
 | ROS_references.CL_LIGHT_TYPES                      | Yes                    | refs_fishery.LIGHT_TYPES                                  |
 | ROS_references.CL_LINE_MATERIAL_TYPES              | Yes                    | refs_fishery.LINE_MATERIAL_TYPES                          |
@@ -54,15 +54,15 @@ Here is all ROS Code-lists table and their pending in the IOTC_Master database.
 | ROS_references.CL_NET_COLOURS                      | Yes                    | refs_fishery.NET_COLOURS                                  |
 | ROS_references.CL_NET_CONDITIONS                   | Yes                    | refs_fishery.NET_CONDITIONS                               |
 | ROS_references.CL_NET_CONFIGURATIONS               | Yes                    | refs_fishery.NET_CONFIGURATIONS                           |
-| Ros_references.CL_NET_DEPLOY_DEPTHS                | Yes                    | refs_fishery_config.GEAR_CONFIGURATIONS                   |
+| Ros_references.CL_NET_DEPLOY_DEPTHS                | Yes                    | refs_fishery.NET_DEPLOY_DEPTHS                            |
 | ROS_references.CL_NET_SETTING_STRATEGIES           | Yes                    | refs_fishery.NET_SETTING_STRATEGIES                       |
-| Ros_references.CL_PORTS                            | Yes                    | refs_legacy.UN_LOCODE_PORTS                               |
+| Ros_references.CL_PORTS                            | Yes                    | refs_admin.PORTS                                          |
 | Ros_references.CL_PROCESSING_TYPES                 | Yes                    | refs_fishery.FISH_PROCESSING_TYPES                        |
 | ROS_references.CL_SAMPLING_PROTOCOLS               | Yes                    | refs_biological.SAMPLING_PROTOCOLS                        |
 | ROS_references.CL_SCARS                            | No                     |                                                           |
 | ROS_references.CL_SCHOOL_DETECTION_METHODS         | Yes                    | refs_fishery.SCHOOL_DETECTION_METHODS                     |
 | Ros_references.CL_SCHOOL_SIGHTING_CUES             | Yes                    | refs_fishery.SCHOOL_SIGHTING_CUES                         |
-| Ros_references.CL_SCHOOL_TYPE_CATEGORIES           | Yes                    | refs_fishery_config.FISHING_MODES                         |
+| Ros_references.CL_SCHOOL_TYPE_CATEGORIES           | Yes                    | refs_fishery.SCHOOL_TYPE_CATEGORIES                       |
 | Ros_references.CL_SEXES                            | Yes                    | refs_biological.SEX                                       |
 | ROS_references.CL_SINKER_MATERIAL_TYPES            | Yes                    | refs_fishery.SINKER_MATERIAL_TYPES                        |
 | Ros_references.CL_SPECIES                          | Yes                    | refs_biological.SPECIES                                   |
@@ -71,7 +71,6 @@ Here is all ROS Code-lists table and their pending in the IOTC_Master database.
 | ROS_references.CL_WASTE_CATEGORIES                 | Yes                    | refs_fishery.WASTE_CATEGORIES                             |
 | ROS_references.CL_WEIGHT_ESTIMATION_METHODS        | Yes                    | refs_biological.MEASUREMENT_TOOLS                         |
 | Ros_references.CL_WIND_SCALES                      | Yes                    | refs_fishery.WIND_SCALES                                  |
-| Ros_references.SCHOOL_DETECTION_METHODS            | Yes                    | refs_fishery.SCHOOL_DETECTION_METHODS                     |
 
 ## Actions
 
