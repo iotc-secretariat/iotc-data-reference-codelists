@@ -162,7 +162,7 @@ use_data(FOB_ACTIVITY_TYPES,   overwrite = TRUE)
 # BIOLOGICAL REFERENCES ####
 
 ## Extract the data from IOTC database ####
-SPECIES = biological_domain("V_SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_IOTC", "IS_AGGREGATE"))
+SPECIES = biological_domain("V_SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_IOTC", "IS_AGGREGATE", "SPECIES_CATEGORY_CODE", "SPECIES_CATEGORY_NAME_EN", "SPECIES_CATEGORY_NAME_FR"))
 SEX                  = biological_domain("SEX")
 TYPES_OF_FATE        = biological_domain("TYPES_OF_FATE")
 FATES                = biological_domain("FATES")
