@@ -1,4 +1,14 @@
+ALTER TABLE refs_fishery_config.GEARS ADD COLUMN code_orig CHAR(3);
+ALTER TABLE refs_fishery_config.GEARS ALTER COLUMN code_orig SET NOT NULL;
 ALTER TABLE refs_biological.FATES ADD COLUMN code_orig CHAR(3);
+ALTER TABLE refs_fishery.fish_preservation_methods ADD COLUMN code_orig CHAR(3);
+ALTER TABLE refs_biological.measurements ADD COLUMN code_orig CHAR(3);
+ALTER TABLE refs_biological.sex ADD COLUMN code_orig CHAR(3);
+UPDATE refs_fishery_config.GEARS SET code_orig = 'DLL' WHERE code = 'DL';
+UPDATE refs_fishery_config.GEARS SET code_orig = 'TPS' WHERE code = 'PS';
+UPDATE refs_fishery_config.GEARS SET code_orig = 'TPL' WHERE code = 'PL';
+UPDATE refs_fishery_config.GEARS SET code_orig = 'GIL' WHERE code = 'GD';
+UPDATE refs_fishery_config.GEARS SET code_orig = '???' WHERE gears.code_orig IS NULL;
 UPDATE refs_biological.FATES SET code_orig ='DDL' WHERE code ='DL' AND type_of_fate_code='DI';
 UPDATE refs_biological.FATES SET code_orig ='DDM' WHERE code ='DM' AND type_of_fate_code='DI';
 UPDATE refs_biological.FATES SET code_orig ='DDS' WHERE code ='DS' AND type_of_fate_code='DI';
@@ -19,28 +29,15 @@ UPDATE refs_biological.FATES SET code_orig ='RFL' WHERE code ='FL' AND type_of_f
 UPDATE refs_biological.FATES SET code_orig ='RFR' WHERE code ='FR' AND type_of_fate_code='RE';
 -- UPDATE refs_biological.FATES SET code_orig ='RFT' WHERE code ='UN' AND type_of_fate_code='RE';
 UPDATE refs_biological.FATES SET code_orig ='UNK' WHERE code ='UN' AND type_of_fate_code='RE';
-ALTER TABLE refs_biological.FATES ALTER COLUMN code_orig SET NOT NULL;
-
-ALTER TABLE refs_fishery.fish_preservation_methods ADD COLUMN code_orig CHAR(3);
 UPDATE refs_fishery.fish_preservation_methods SET code_orig = code;
 UPDATE refs_fishery.fish_preservation_methods SET code_orig = 'CWS' WHERE code = 'CW' ;
-ALTER TABLE refs_fishery.fish_preservation_methods ALTER COLUMN code_orig SET NOT NULL;
-
-ALTER TABLE refs_biological.measurements ADD COLUMN code_orig CHAR(3);
 UPDATE refs_biological.measurements SET code_orig = code;
 UPDATE refs_biological.measurements SET code_orig = 'TW' WHERE code = 'DW' ;
-ALTER TABLE refs_biological.measurements ALTER COLUMN code_orig SET NOT NULL;
-
-ALTER TABLE refs_biological.sex ADD COLUMN code_orig CHAR(3);
 UPDATE refs_biological.sex SET code_orig = code WHERE code != 'U';
 UPDATE refs_biological.sex SET code_orig = 'I' WHERE code = 'N';
 UPDATE refs_biological.sex SET code_orig = 'UNK' WHERE code = 'U';
-ALTER TABLE refs_biological.sex ALTER COLUMN code_orig SET NOT NULL;
 INSERT INTO refs_biological.sex ( code, code_orig, name_en, name_fr, is_determined) VALUES ('J', 'J', 'Juvenile', 'Juvénile', 0);
-
-ALTER TABLE ros_ll.ll_catch_details ADD COLUMN  type_of_fate_code CHAR(2);
-ALTER TABLE ros_gn.gn_catch_details ADD COLUMN  type_of_fate_code CHAR(2);
-ALTER TABLE ros_ps.ps_catch_details ADD COLUMN  type_of_fate_code CHAR(2);
-ALTER TABLE ros_pl.pl_catch_details ADD COLUMN  type_of_fate_code CHAR(2);
-ALTER TABLE ros_common.measured_lengths ADD COLUMN  type_of_measurement_code CHAR(2);
-ALTER TABLE ros_common.estimated_weights ADD COLUMN  type_of_measurement_code CHAR(2);
+ALTER TABLE refs_biological.FATES ALTER COLUMN code_orig SET NOT NULL;
+ALTER TABLE refs_fishery.fish_preservation_methods ALTER COLUMN code_orig SET NOT NULL;
+ALTER TABLE refs_biological.measurements ALTER COLUMN code_orig SET NOT NULL;
+ALTER TABLE refs_biological.sex ALTER COLUMN code_orig SET NOT NULL;
