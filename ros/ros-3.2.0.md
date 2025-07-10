@@ -80,9 +80,9 @@ Same remark for fields _Number active fishing days_ and _Number of days lost_.
 
 ### Modified fields
 
-Rename _Observed trip number_ to _Observed trip ID_.
+Rename _Observed trip number_ to _Observed trip ID_. [**AGREED**]
 
-Could not find the location of this data.
+Could not find the location of this data. [**NOT SURE**]
 
 * Rename _Observer IOTC registration number_ to _IOTC registration number of observer or EM observer/reviewer_.
 
@@ -102,7 +102,7 @@ And what is the revised new name?
 
 ### Added fields
 
-Add a new table named _ps_vessel_trip_details_ in the schema _ros_ps_ (since it is only for ps submodel).
+Add a new table named _ps_vessel_trip_details_ in the schema _ros_ps_ (since it is only for ps submodel). [**AGREED**]
 
 | Field name                                    | column (2)                       | Type                                 |
 |-----------------------------------------------|----------------------------------|--------------------------------------|
@@ -121,12 +121,12 @@ Add a new table named _ps_vessel_trip_details_ in the schema _ros_ps_ (since it 
 Notes: 
 
 1. If EEZ is needed, need then to add another column departure_eez_id and return_eez_id pointing to an eez reference table 
-   (that I did not find).
-2. Maybe we could remove _vessel_trip_ prefix on each field?
+   (that I did not find). [**[NJA spatial layer](https://data.iotc.org/reference/latest/domain/admin/#Indian_Ocean_National_Jurisdiction_Areas)**]
+2. Maybe we could remove _vessel_trip_ prefix on each field? [**AGREED**]
 3. The _ros_common.vessel_trip_details_ is linked with the _ros_common.general_vessel_and_trip_information_ table (via the
    _vessel_trip_details_id_ field), we need then to link the new table with _ros_common.vessel_trip_details_, we propose to
    add a field in the new table (since this one can't exist without the first one (composition link)), another solution 
-   is to create another association between the both tables.
+   is to create another association between the two tables. [**MAKES SENSE YES**]
 
 ## Subform vessel identification
 
@@ -168,7 +168,7 @@ Notes:
 | Mainline Length   | ros_ll | ll_general_gear_attributes | mainline_length_id    |
 | Mainline Diameter | ros_ll | ll_general_gear_attributes | mainline_diameter_id  |
 
-Removing these three columns make the table empty, so at the end remove _ros_ll.ll_general_gear_attributes_ table. 
+Removing these three columns make the table empty, so at the end remove _ros_ll.ll_general_gear_attributes_ table. [**There are some values in this table**]
 
 As a side effect, we need then to remove also field _ros_ll.ll_gear_specifications.ll_general_gear_attributes_id_
 
