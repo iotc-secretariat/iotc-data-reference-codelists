@@ -41,7 +41,7 @@ Add a new table named _ps_observer_embarkation_details_ in the schema _ros_ps_ (
 Notes: 
 
 1. If EEZ is needed, need then to add another column _starting_eez_id_ and _ending_eez_id_ pointing to an eez reference table 
-   (that I did not find). [_**Should be the [NJA]([https://data.iotc.org/reference/latest/domain/admin/#IOareasNJA) spatial layer**_]
+   (that I did not find). [_**Should be the [NJA](https://data.iotc.org/reference/latest/domain/admin/#IOareasNJA) spatial layer**_]
 2. Maybe we could remove _observation_ prefix on each field? [_**AGREED**_]
 
 ## Subform Observed trip summary
@@ -51,12 +51,12 @@ Notes:
 In table _ros_common.observed_trip_summary_
 
 * Rename _Number of fishing events / sets conducted by the vessel while the observer was on-board._ to 
-_Number of fishing events / sets conducted by the vessel during the observed period_.
+_Number of fishing events / sets conducted by the vessel during the observed period_. [_**AGREED**_]
 
-In table, the column is named _number_of_conducted_fishing_events_with_observer_onboard_, anything to do?
+In table, the column is named _number_of_conducted_fishing_events_with_observer_onboard_, anything to do? [_**I WILL EXPLAIN**_]
 
 * Rename _Number of fishing events / sets observed_ to 
-_Number of fishing events / sets with objective data collection_.
+_Number of fishing events / sets with objective data collection_. [_**HUM**_]
 
 In table, the column is named _number_of_observed_fishing_events_, anything to do?
 
@@ -66,7 +66,7 @@ _Record the total number of days/hours that the vessel was engaged in actively s
 In table, the column is named _number_of_days_searching_, anything to do?
 
 The field should be mandatory for PS and PL and optional for LL, but in database is optional... Should we move this 
-field into specialized tables for each submodel (PS,PL,LL,GN)?
+field into specialized tables for each submodel (PS,PL,LL,GN)? [_**TO DISCUSS**_]
 
 Same remark for fields _Number active fishing days_ and _Number of days lost_.
 
