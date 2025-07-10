@@ -17,8 +17,6 @@ _FK_ means _foreign key_.
 
 Bold fields mean **mandatory**, italic fields mean _optional_ in fields table description.
 
-\newpage{}
-
 # Form general vessel and trip info for all types of vessels
 
 ## Subform observer trip details
@@ -43,8 +41,8 @@ Add a new table named _ps_observer_embarkation_details_ in the schema _ros_ps_ (
 Notes: 
 
 1. If EEZ is needed, need then to add another column _starting_eez_id_ and _ending_eez_id_ pointing to an eez reference table 
-   (that I did not find).
-2. Maybe we could remove _observation_ prefix on each field?
+   (that I did not find). [_**Should be the [NJA]([https://data.iotc.org/reference/latest/domain/admin/#IOareasNJA) spatial layer**_]
+2. Maybe we could remove _observation_ prefix on each field? [_**AGREED**_]
 
 ## Subform Observed trip summary
 
