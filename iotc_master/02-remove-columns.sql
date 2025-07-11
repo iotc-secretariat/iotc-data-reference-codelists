@@ -1,0 +1,13 @@
+END TRANSACTION;
+BEGIN TRANSACTION;
+ALTER TABLE refs_admin.countries DROP COLUMN list_name_en;
+ALTER TABLE refs_admin.countries DROP COLUMN list_name_fr;
+ALTER TABLE refs_admin.entities DROP COLUMN list_name_en;
+ALTER TABLE refs_admin.entities DROP COLUMN list_name_fr;
+ALTER TABLE refs_biological.incidental_captures_conditions DROP COLUMN creation_date;
+ALTER TABLE refs_biological.incidental_captures_conditions DROP COLUMN id;
+ALTER TABLE refs_biological.scars DROP COLUMN creation_date;
+ALTER TABLE refs_biological.scars DROP COLUMN id;
+ALTER TABLE refs_fishery.activities DROP COLUMN creation_date;
+ALTER TABLE refs_fishery.activities DROP COLUMN id;
+COMMIT TRANSACTION;
