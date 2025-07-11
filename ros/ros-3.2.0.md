@@ -25,6 +25,8 @@ Bold fields mean **mandatory**, italic fields mean _optional_ in fields table de
 
 Add a new table named _ps_observer_embarkation_details_ in the schema _ros_ps_ (since it is only for ps submodel).
 
+→ Rename **ps_trip_details**
+
 | Field name                                | column  (2)                     | Type                              |
 |-------------------------------------------|---------------------------------|-----------------------------------|
 | _Observation starting port_               | observation_starting_port_id    | fk to ros_references.cl_port      |
@@ -55,6 +57,8 @@ _Number of fishing events / sets conducted by the vessel during the observed per
 
 In table, the column is named _number_of_conducted_fishing_events_with_observer_onboard_, anything to do? [_**I WILL EXPLAIN**_]
 
+→ _number_of_fishing_events_ and _number_of_observed_fishing_events_
+
 * Rename _Number of fishing events / sets observed_ to 
 _Number of fishing events / sets with objective data collection_. [_**HUM**_]
 
@@ -67,6 +71,10 @@ In table, the column is named _number_of_days_searching_, anything to do?
 
 The field should be mandatory for PS and PL and optional for LL, but in database is optional... Should we move this 
 field into specialized tables for each submodel (PS,PL,LL,GN)? [_**TO DISCUSS**_]
+
+→ Duplicate the table _ps_observer_trip_summary_ and _pl_observer_trip_summary_ ?
+
+→ May be create a view to compute this values.
 
 Same remark for fields _Number active fishing days_ and _Number of days lost_.
 
@@ -94,7 +102,11 @@ And what is the revised new name?
 
 * Rename _Observer name_ to _Observer or EM observer/reviewer name_.
 
+→ Nothing to rename
+
 Is it _ros_common.observer_identification.full_name_?
+
+→ Move ros_meta.ros_observers to ros_common and merge it with observers (observer_identification), add column date_of_birth.
 
 And what is the revised new name?
 
@@ -188,7 +200,6 @@ In table _ros_ll.ll_special_equipment_, rename column _line_setter_ to _line_set
 |------------|--------|-----------------------|--------|
 | VMS on     | ros_ll | ll_setting_operations | vms_on |
 
-
 ### Added fields
 
 Around table _ros_ll.ll_setting_operations_ add the following data:
@@ -213,6 +224,8 @@ There is already a table _ros_ll.lights_by_type_and_colour_ with this definition
 | ros_ll | lights_by_type_and_colour | _ll_setting_operation_id_             | fk to ll_setting_operations |
 
 Could we reuse this table? or do we have to create something else?
+
+→ Add proportion column here
 
 #### Leader material type
 
@@ -251,6 +264,10 @@ Description is talking about minimum total and maximum total, what exactly shoul
 | schema | table                                       | column                      | Type    |
 |--------|---------------------------------------------|-----------------------------|---------|
 | ros_ll | ll_setting_operations_leader_material_types | **total_branchline_length** | integer |
+
+→ Maybe change to real
+
+→ Move to table _ll_setting_operations_
 
 ### Modified fields
 
@@ -301,11 +318,16 @@ Actual content of this code list:
 | 3  | SP   | Spiking                 | null                          | 2016-12-12 13:56:23.000000 |
 | 4  | ELC  | Electrocution           | Électrocution                 | 2016-12-12 13:57:10.000000 |
 
+→ Remove this stunning code-list
+
 ### Modified fields
 
 * Rename _Number of retrieved hooks observed_ to _No of branchline haulings observed_.
 
 In table, rename column _number_of_hooks_observed_ to _number_of_branchline_hauling_observed_.
+
+→ No do not rename 
+→ Add _number_of_branchline_hauling_observed_ Optional for the moment... Validate at loading 
 
 ## Subform ll - depredation details
 
@@ -329,11 +351,15 @@ More over the column _ros_ll.ll_specimens.ll_depredation_detail_id_ is also opti
 
 Did not find this one.
 
+In fact do rename _ll_fishing_events.event_number_ to _event_identifier_.
+
 * Rename _Catch detail number_ to _Catch id_.
 
-In table _ros_ll.ll_catch_details_, rename column _catch_detail_number_ to _catch_id_.
+In table _ros_ll.ll_catch_details_, rename column _catch_detail_number_ to _catch_identifier_.
 
 Note: Using a ```_id``` suffix might not be coherent with other columns (a such column should a foreign key)
+
+→ Do rename but may be ask fabio about the meaning ```xxx_number``` column 
 
 ## Subform ll - additional details on non-target species
 
@@ -387,7 +413,7 @@ Column _rs_ps.ps_special_equipment.purse_winch_ is already optional, nothing to 
 
 Removing this foreign key between _ros_ps.ps_general_gear_attributes_ and _ros_common.powers_.
 
-**The code list (_ros_common.powers_) is no more used, should we remove it?** - Actually this code list is empty
+**The code list (_ros_common.powers_) is no more used, should we remove it?** Actually this code list is empty
 
 ### Modified fields
 
@@ -478,7 +504,7 @@ In table _ros_ll.ll_catch_details_ add one field:
 | Current speed     | ros_ps | current_details | current_speed     |
 | Current depth     | ros_ps | current_details | current_depth     |
 
-Removing these three columns leave on this table only two columns:
+Removing these three columns leaves on this table only two columns:
 
 * _id_
 * _ps_setting_operation_id_
@@ -494,7 +520,7 @@ Removing these three columns leave on this table only two columns:
 | Condition at capture | ros_common | additional_details_on_non_target_species | condition_at_capture_id |
 | Condition at release | ros_common | additional_details_on_non_target_species | condition_at_release_id |
 
-We cannot remove this table used by other business submodel (ll, pl and gn).
+We cannot remove this table used by other business submodels (ll, pl and gn).
 
 This code list is used in two _ros_ps_ schema tables:
 
@@ -503,7 +529,7 @@ This code list is used in two _ros_ps_ schema tables:
 | ros_ps | ps_specimens     | additional_specimen_details_non_target_species_id |
 | ros_ps | ps_catch_details | ps_additional_catch_details_non_target_species_id |
 
-We should then remove this two columns.
+We should then remove these two columns.
 
 ## Subform ps - tag details
 
