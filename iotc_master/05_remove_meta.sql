@@ -1,0 +1,1 @@
+DROP SCHEMA refs_meta CASCADE ;

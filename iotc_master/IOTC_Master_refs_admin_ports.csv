@@ -1,0 +1,55 @@
+id,code,country_code,name_en,name_fr,lat,lon,creation_date,update_date,remarkable,remarks,comment,point
+3999,FJILEV,FJI,Bureta Apt/Levuka,,17.667,178.817,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,POINT (178.817 17.667)
+4003,FJILEV,FJI,Levuka,,17.667,178.817,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,POINT (178.817 17.667)
+4330,FRA,FRA,Basse-Terre = GP BBR,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+4330,FRA,FRA,Basse-Terre = GP BBR,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+4330,FRA,FRA,Basse-Terre = GP BBR,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+4330,FRA,FRA,Basse-Terre = GP BBR,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+4330,FRA,FRA,Basse-Terre = GP BBR,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+4330,FRA,FRA,Basse-Terre = GP BBR,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+4592,FRACEP,FRA,Cergy,,49,2.033,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,POINT (2.33 49)
+4593,FRACEP,FRA,Cergy-Pontoise,,49,2.033,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,POINT (2.33 49)
+4927,FRA,FRA,Fort-de-France = MQ FDF,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+4927,FRA,FRA,Fort-de-France = MQ FDF,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+4927,FRA,FRA,Fort-de-France = MQ FDF,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+4927,FRA,FRA,Fort-de-France = MQ FDF,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+4927,FRA,FRA,Fort-de-France = MQ FDF,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+4927,FRA,FRA,Fort-de-France = MQ FDF,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5090,FRA,FRA,Kourou = GF QKR,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5090,FRA,FRA,Kourou = GF QKR,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5090,FRA,FRA,Kourou = GF QKR,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5090,FRA,FRA,Kourou = GF QKR,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5090,FRA,FRA,Kourou = GF QKR,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5090,FRA,FRA,Kourou = GF QKR,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5240,FRA,FRA,Le Port = RE LPT,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5240,FRA,FRA,Le Port = RE LPT,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5240,FRA,FRA,Le Port = RE LPT,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5240,FRA,FRA,Le Port = RE LPT,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5240,FRA,FRA,Le Port = RE LPT,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5240,FRA,FRA,Le Port = RE LPT,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5619,FRA,FRA,Pointe-a-Pitre = GP PTP,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5619,FRA,FRA,Pointe-a-Pitre = GP PTP,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5619,FRA,FRA,Pointe-a-Pitre = GP PTP,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5619,FRA,FRA,Pointe-a-Pitre = GP PTP,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5619,FRA,FRA,Pointe-a-Pitre = GP PTP,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5619,FRA,FRA,Pointe-a-Pitre = GP PTP,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5921,FRA,FRA,Saint-Laurent-du-Maroni = GF SLM,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5921,FRA,FRA,Saint-Laurent-du-Maroni = GF SLM,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5921,FRA,FRA,Saint-Laurent-du-Maroni = GF SLM,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5921,FRA,FRA,Saint-Laurent-du-Maroni = GF SLM,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5921,FRA,FRA,Saint-Laurent-du-Maroni = GF SLM,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5921,FRA,FRA,Saint-Laurent-du-Maroni = GF SLM,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5965,FRA,FRA,Saint-Pierre = PM FSP,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5965,FRA,FRA,Saint-Pierre = PM FSP,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5965,FRA,FRA,Saint-Pierre = PM FSP,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5965,FRA,FRA,Saint-Pierre = PM FSP,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5965,FRA,FRA,Saint-Pierre = PM FSP,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+5965,FRA,FRA,Saint-Pierre = PM FSP,,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+7869,INDNSA,IND,Jawaharlal Nehru (Nhava Sheva),,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+7925,INDMRM,IND,Marmagao (Marmugao),,15.4,73.783,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,POINT (73.783 15.4)
+7926,INDMRM,IND,Marmugao (Marmagao),,15.4,73.783,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,POINT (73.783 15.4)
+7953,INDNSA,IND,Nhava Sheva (Jawaharlal Nehru),,,,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,
+8663,ITAFCO,ITA,Fiumicino,,41.767,12.233,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,POINT (12.233 41.767)
+8664,ITAFCO,ITA,Fiumicino Apt/Roma,,41.767,12.233,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,POINT (12.233 41.767)
+8805,ITAPFX,ITA,Porto Foxi (Sarroch),,39.05,9,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,POINT (9 39.5)
+8874,ITAPFX,ITA,Sarroch (Porto Foxi),,39.05,9,2017-01-01 00:00:00,,,,Taken from the UN LOCODE list,POINT (9 39.5)

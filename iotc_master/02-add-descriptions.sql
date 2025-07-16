@@ -1,5 +1,5 @@
-END TRANSACTION;
-BEGIN TRANSACTION;
+-- END TRANSACTION;
+-- BEGIN TRANSACTION;
 ALTER TABLE refs_admin.countries ADD COLUMN name_en VARCHAR(255) DEFAULT 'TBD' NOT NULL;
 UPDATE refs_admin.countries AS a SET name_en = (SELECT b.short_name_en from refs_admin.countries b WHERE a.code = b.code);
 ALTER TABLE refs_admin.countries DROP COLUMN short_name_en;
@@ -270,4 +270,4 @@ ALTER TABLE refs_socio_economics.pricing_locations ADD COLUMN description_fr VAR
 ALTER TABLE refs_socio_economics.pricing_locations ADD COLUMN description_en VARCHAR(4096) DEFAULT 'TBD' NOT NULL;
 ALTER TABLE refs_socio_economics.product_types ADD COLUMN description_fr VARCHAR(4096) DEFAULT 'TBD' NOT NULL;
 ALTER TABLE refs_socio_economics.product_types ADD COLUMN description_en VARCHAR(4096) DEFAULT 'TBD' NOT NULL;
-COMMIT TRANSACTION;
+-- COMMIT TRANSACTION;
