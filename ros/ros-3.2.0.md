@@ -389,6 +389,16 @@ This data is located is _ros_ll.ll_additional_catch_details_on_ssi.gear_interact
 
 This data is located is _ros_ll.ll_additional_catch_details_on_ssi.leader_material_type_id_ which is optional, make it then mandatory.
 
+## Subform catch details
+
+### Added fields
+
+In table _ros_ll.ll_catch_details_ add one field:
+
+| Field name | column | Type    |
+|------------|--------|---------|
+| **Number** | number | integer |
+
 # Form purse seine information
 
 ## Subform ps special equipment or machinery
@@ -414,6 +424,8 @@ Column _rs_ps.ps_special_equipment.purse_winch_ is already optional, nothing to 
 Removing this foreign key between _ros_ps.ps_general_gear_attributes_ and _ros_common.powers_.
 
 **The code list (_ros_common.powers_) is no more used, should we remove it?** Actually this code list is empty
+
+→ Cynthia said we do not remove the ```powers```
 
 ### Modified fields
 
@@ -445,6 +457,8 @@ Column _rs_ps.ps_general_gear_attributes.maximum_brail_capacity_ is already opti
 |------------|--------|-----------------------|---------------|
 | Beaufort   | ros_ps | ps_setting_operations | wind_scale_id |
 
+→ Remove wind scale code-list
+
 ### Modified fields
 
 * Downgrade _School sighting cues_ to optional
@@ -460,7 +474,7 @@ Column _rs_ps.ps_general_gear_attributes.maximum_brail_capacity_ is already opti
 | Support  vessel name         | ros_ps | support_vessel_details | support_vessel_name          |
 | Support vessel participation | ros_ps | support_vessel_details | support_vessel_participation |
 
-Removing these three columns leave on this table only two columns:
+Removing these three columns leaves on this table only two columns:
 
 * _id_
 * _support_vessel_participation_description_
@@ -468,12 +482,16 @@ Removing these three columns leave on this table only two columns:
 
 **Should we remove the hole table (_ros_ps.support_vessel_details_) then?**
 
-## Subform ps object  details
+→ Remove this table.
+
+## Subform ps object details
 
 ### Modified fields
 
 * Rename _Buoy equipped with artificial lights_ to _FAD equipped with artificial lights_
 * Rename _Artificial FAD design_ to _FAD design_
+
+→ artificial lights are banned.
 
 ## Subform ps cetaceans and whale sharks sightings during setting
 
@@ -483,16 +501,6 @@ Removing these three columns leave on this table only two columns:
 * Upgrade _Species_ to mandatory
 * Upgrade _Number sighted_ to mandatory
 * Upgrade _Caught inside the net_ to mandatory
-
-## Subform catch details
-
-### Added fields
-
-In table _ros_ll.ll_catch_details_ add one field:
-
-| Field name | column | Type    |
-|------------|--------|---------|
-| **Number** | number | integer |
 
 ## Subform details on current
 
@@ -510,6 +518,8 @@ Removing these three columns leaves on this table only two columns:
 * _ps_setting_operation_id_
 
 **As a side effect, we should remove the hole table (_ros_ps.current_details_)**
+
+→ Remove the hole table
 
 ## Subform additional details on non-target species
 
@@ -560,7 +570,9 @@ This is a new section, add a new table _pl_tuna_fishing_trip_ in _ros_pl_ schema
 
 Note:
 
-1. Sampling methods to get total catch estimates per species: check if sample method is sampling protocol.
+1. Sampling methods to get total catch estimates per species: check if the sample method is sampling protocol.
+
+→ Use ```refs_bioligical.sampling_methods_for_catch_estimation``` 
 
 ## Subform general gear attributes
 
@@ -588,7 +600,12 @@ Note:
 
 ### Modified fields
 
+
 * Rename _Sampling methods for the collection of biological information_ to _Sampling methods for the collection of biometric information_
+
+→ Use ```refs_biological.sampling_methods_for_sample_collection```, There is nothing to rename here. 
+→ Manu will come back on this subject
+
 * Downgrade _Bait used_ to optional
 * Downgrade _Bait type_ to optional
 * Downgrade _Bait species_ to optional
@@ -659,7 +676,7 @@ We should then remove this table and his usages:
 | Sampling methods for obtaining total catch estimates per species | ros_pl | pl_catch_details    | estimated_weight_sampling_method_id |
 | Number                                                           | ros_pl | pl_catch_details    | estimated_catch_in_numbers          |
 
-The table _ros_pl.pl_catch_details_ is shared with 3 other tables :
+The table _ros_pl.pl_catch_details_ is shared with three other tables :
 
 | schema | table                                 | column             |
 |--------|---------------------------------------|--------------------|
@@ -668,6 +685,8 @@ The table _ros_pl.pl_catch_details_ is shared with 3 other tables :
 | ros_pl | pl_specimens                          | pl_catch_detail_id |
 
 **Make sure this is what you want**.
+
+→ Remove links
 
 ### Modified fields
 
@@ -694,7 +713,9 @@ The table _ros_pl.pl_catch_details_ is shared with 3 other tables :
 | Catch detail number | ros_pl | pl_catch_details    | catch_detail_number |
 | Specimen number     | ros_pl | pl_specimens        | specimen_number     |
 
-**Need to double-check for the *Event Number* and *Catch detail number* **
+**Need to double-check for the *Event Number* and *Catch detail number*
+
+→ Tony check
 
 ## Subform pl - bait fishing event
 
@@ -714,7 +735,7 @@ The table _ros_pl.pl_catch_details_ is shared with 3 other tables :
 | Condition at capture | ros_common | additional_details_on_non_target_species | condition_at_capture_id |
 | Condition at release | ros_common | additional_details_on_non_target_species | condition_at_release_id |
 
-We cannot remove this table used by other business submodel (ll, pl and gn).
+We cannot remove this table used by the other business submodels (ll, pl and gn).
 
 This code list is used in one ros_pl schema table:
 
@@ -736,7 +757,9 @@ Add on table named _pl_additional_catch_details_on_ssi_ in schema _ros_pl_ a fk:
 
 Note:
 
-1. Condition at capture and release: check if this is the good way of doing this.
+1. Condition at capture and release: check if this is the good way of doing this
+
+→ Do not link with ros_common
 
 ## Subform bait biometric information
 
@@ -758,6 +781,8 @@ Note:
 
 **Did not find database location for these fields in the ros_pl schema, do you mean to remove any biometric information 
 from the _ros_pl.specimen_ table?** 
+
+→ Do not remove the specimen, no link at all.
 
 ## Subform bait tag details
 
@@ -791,3 +816,5 @@ Removing these five columns on _ros_pl.pl_tag_details_ leave on this table only 
 | Activity   | ros_common | pl_observer_data_daily_activities |        |
 
 **Double-check that we want to remove the hole association table, should we do something else?**
+
+→ Remove this but need to re-check.
