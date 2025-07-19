@@ -1,5 +1,3 @@
--- END TRANSACTION;
--- BEGIN TRANSACTION;
 drop view refs_socio_economics.v_countries_currencies CASCADE ;
 create view refs_socio_economics.v_countries_currencies(country_code, country_name, currency_code, currency_name) as
     SELECT currencies.country_code,
@@ -24,4 +22,3 @@ ALTER TABLE refs_biological.scars DROP COLUMN creation_date;
 ALTER TABLE refs_biological.scars DROP COLUMN id;
 ALTER TABLE refs_fishery.activities DROP COLUMN creation_date;
 ALTER TABLE refs_fishery.activities DROP COLUMN id;
--- COMMIT TRANSACTION;

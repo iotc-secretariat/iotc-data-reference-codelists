@@ -19,3 +19,4 @@ DELETE FROM refs_admin.ports WHERE id='5921';
 INSERT INTO refs_admin.ports(id, code, country_code, name_en, name_fr) OVERRIDING SYSTEM VALUE VALUES (5921,'FRAGFSLM','FRA','Saint-Laurent-du-Maroni = GF SLM', NULL);
 DELETE FROM refs_admin.ports WHERE id='5240';
 INSERT INTO refs_admin.ports(id, code, country_code, name_en, name_fr) OVERRIDING SYSTEM VALUE VALUES (5240,'FRARELPT','FRA','Le Port = RE LPT', NULL);
+ALTER TABLE refs_admin.ports ADD CONSTRAINT uk_code UNIQUE (code);

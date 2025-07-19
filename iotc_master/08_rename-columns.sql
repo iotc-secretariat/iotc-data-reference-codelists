@@ -1,0 +1,1 @@
+ALTER TABLE refs_fishery.vessel_types RENAME vessel_type_code TO CODE;
