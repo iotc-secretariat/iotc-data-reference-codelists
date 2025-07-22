@@ -1,1 +1,1 @@
-CALL refs_history.add_audit();
+CALL public.add_audit();
