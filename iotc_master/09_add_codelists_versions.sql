@@ -1,5 +1,7 @@
 CREATE SCHEMA refs_meta;
 
+DROP TABLE IF EXISTS refs_meta.codelists_versions ;
+
 CREATE TABLE refs_meta.codelists_versions (
     cl_schema character varying(255) NOT NULL,
     cl_name character varying(255) NOT NULL,
