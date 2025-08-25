@@ -1,21 +1,34 @@
 # LIBRARIES ####
 library(iotc.base.common.data)
 library(usethis)
+library(data.table)
+
+# CONNECTION TO IOTC_REFERENCEDATA
+C_REFERENCE_DATA = 
+DBI::dbConnect(drv = RPostgres::Postgres(),
+               host = Sys.getenv("IOTC_REFERENCE_DATA_DB_SERVER"),
+               dbname = 'IOTC_ReferenceData_2025_07_23',
+               port = 5432,
+               user = Sys.getenv("IOTC_REFERENCE_DATA_DB_USER"),
+               password = Sys.getenv("IOTC_REFERENCE_DATA_DB_PWD")
+)
 
 # COMMON REFERENCE DATA MANAGEMENT FUNCTIONS ####
 
 load_codelist = function(codelist_domain, codelist_name, columns = NULL, connection = DB_IOTC_MASTER()) {
   if(is.null(columns)) columns = "*"
   else columns = paste0(columns, collapse = ", ")
-  return(
+  
+  CL = 
     query(
       connection,
-      paste0("SELECT ", columns, " FROM [", codelist_domain, "].[", codelist_name, "]")
+      paste0("SELECT ", columns, " FROM ", codelist_domain, ".", codelist_name)
     )
-  )
+  setnames(CL, new = toupper(names(CL)))
+  return(CL)
 }
 
-admin_domain = function(codelist_name, columns = NULL, connection = DB_IOTC_MASTER()) {
+admin_domain = function(codelist_name, columns = NULL, connection = C_REFERENCE_DATA) {
   return(load_codelist("refs_admin", codelist_name, columns, connection))
 }
 
@@ -23,40 +36,52 @@ gis_domain = function(codelist_name, columns = NULL, connection = DB_IOTC_MASTER
   return(load_codelist("refs_gis", codelist_name, columns, connection))
 }
 
-fishery_domain = function(codelist_name, columns = NULL, connection = DB_IOTC_MASTER()) {
+fishery_domain = function(codelist_name, columns = NULL, connection = C_REFERENCE_DATA) {
   return(load_codelist("refs_fishery", codelist_name, columns, connection))
 }
 
-biological_domain = function(codelist_name, columns = NULL, connection = DB_IOTC_MASTER()) {
-  return(load_codelist("refs_biological", codelist_name, columns, connection))
+biology_domain = function(codelist_name, columns = NULL, connection = C_REFERENCE_DATA) {
+  return(load_codelist("refs_biology", codelist_name, columns, connection))
 }
 
-data_domain = function(codelist_name, columns = NULL, connection = DB_IOTC_MASTER()) {
+data_domain = function(codelist_name, columns = NULL, connection = C_REFERENCE_DATA) {
   return(load_codelist("refs_data", codelist_name, columns, connection))
 }
 
-legacy_domain = function(codelist_name, columns = NULL, connection = DB_IOTC_MASTER()) {
+legacy_domain = function(codelist_name, columns = NULL, connection = C_REFERENCE_DATA) {
   return(load_codelist("refs_legacy", codelist_name, columns, connection))
 }
 
-socio_economics_domain = function(codelist_name, columns = NULL, connection = DB_IOTC_MASTER()) {
+socio_economics_domain = function(codelist_name, columns = NULL, connection = C_REFERENCE_DATA) {
   return(load_codelist("refs_socio_economics", codelist_name, columns, connection))
 }
 
 # ADMIN REFERENCES ####
 
 ## Extract the data from IOTC database ####
-ENTITIES     = admin_domain("ENTITIES")
-COUNTRIES    = admin_domain("COUNTRIES")
-FLEETS       = admin_domain("FLEETS")
-FLEETS_FLAGS = admin_domain("FLEET_TO_FLAGS_AND_FISHERIES")
-FLEETS_FLAGS = merge(FLEETS_FLAGS, FLEETS, by.x = "FLEET_CODE", by.y = "CODE")
+COUNTRIES                      = admin_domain("countries")
+CPC_HISTORY                    = admin_domain("cpc_history")  # Added for version 2
+CPC_TO_FLAGS                   = admin_domain("cpc_to_flags") # Added for version 2
+CPCS                           = admin_domain("cpcs")         # Added for version 2
+ENTITIES                       = admin_domain("entities")
+# FLEETS_FLAGS_FISHERIES = admin_domain("fleet_to_flags_and_fisheries") # Added for version 2
+FLEETS                         = admin_domain("fleets")
+FLEETS_FLAGS                   = merge(FLEETS_FLAGS, FLEETS, by.x = "FLEET_CODE", by.y = "CODE")
+IO_MAIN_AREAS                  = admin_domain("io_main_areas") # Added for version 2
+PORTS                          = admin_domain("ports")         # Added for version 2
+SPECIES_REPORTING_REQUIREMENTS = admin_domain("species_reporting_requirements") # Added for version 2
 
 ## Save package data as rda in data folder ####
-use_data(ENTITIES, overwrite = TRUE)
 use_data(COUNTRIES, overwrite = TRUE)
+use_data(CPC_HISTORY, overwrite = TRUE)
+use_data(CPC_TO_FLAGS, overwrite = TRUE)
+use_data(CPCS, overwrite = TRUE)
+use_data(ENTITIES, overwrite = TRUE)
 use_data(FLEETS, overwrite = TRUE)
 use_data(FLEETS_FLAGS, overwrite = TRUE)
+use_data(IO_MAIN_AREAS, overwrite = TRUE)
+use_data(PORTS, overwrite = TRUE)
+use_data(SPECIES_REPORTING_REQUIREMENTS, overwrite = TRUE)
 
 # DATA REFERENCES ####
 
@@ -83,7 +108,7 @@ use_data(DATA_COVERAGE_TYPES, overwrite = TRUE)
 ## Extract the data from IOTC database ####
 AREAS_COLUMNS = c("CODE", "NAME_EN", "NAME_FR", "OCEAN_AREA_KM2", "OCEAN_AREA_IO_KM2", "OCEAN_AREA_IOTC_KM2", "CENTER_LAT", "CENTER_LON")
 
-IOTC_AREA            = gis_domain("V_IOTC_AREA_OF_COMPETENCE",           columns = AREAS_COLUMNS)
+IOTC_AREA            = gis_domain("V_IOTC_AREA_OF_COMPETENCE", columns = AREAS_COLUMNS)
 IOTC_AREAS           = gis_domain("V_IOTC_AREAS",          columns = AREAS_COLUMNS)
 IOTC_MAIN_AREAS      = gis_domain("V_IOTC_MAIN_AREAS",     columns = AREAS_COLUMNS)
 IOTC_GRIDS_CE_SF     = gis_domain("V_IOTC_GRIDS_CE_SF",    columns = AREAS_COLUMNS)
@@ -159,19 +184,20 @@ use_data(PROCESSING_TYPES,     overwrite = TRUE)
 use_data(FOB_TYPES,            overwrite = TRUE)
 use_data(FOB_ACTIVITY_TYPES,   overwrite = TRUE)
 
-# BIOLOGICAL REFERENCES ####
+# BIOLOGY REFERENCES ####
 
 ## Extract the data from IOTC database ####
-SPECIES = biological_domain("V_SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_IOTC", "IS_AGGREGATE", "SPECIES_CATEGORY_CODE", "SPECIES_CATEGORY_NAME_EN", "SPECIES_CATEGORY_NAME_FR"))
-SEX                  = biological_domain("SEX")
-TYPES_OF_FATE        = biological_domain("TYPES_OF_FATE")
-FATES                = biological_domain("FATES")
-DISCARD_REASONS      = biological_domain("V_DISCARD_REASONS", columns = c("CODE", "NAME_EN", "NAME_FR"))
-RETAIN_REASONS       = biological_domain("V_RETAIN_REASONS",  columns = c("CODE", "NAME_EN", "NAME_FR"))
-CONDITIONS           = biological_domain("INDIVIDUAL_CONDITIONS")
-TYPES_OF_MEASUREMENT = biological_domain("TYPES_OF_MEASUREMENT")
-MEASUREMENTS         = biological_domain("MEASUREMENTS")
-MEASUREMENT_TOOLS    = biological_domain("MEASUREMENT_TOOLS")
+SPECIES = biology_domain("V_SPECIES", columns = toupper(c("code", "name_en", "name_fr", "name_scientific", "is_iotc", "is_aggregate", "species_category_code", "species_category_name_en", "species_category_name_fr")))
+
+SEX                  = biology_domain("SEX")
+TYPES_OF_FATE        = biology_domain("TYPES_OF_FATE")
+FATES                = biology_domain("FATES")
+DISCARD_REASONS      = biology_domain("V_DISCARD_REASONS", columns = c("code", "name_en", "name_fr"))
+RETAIN_REASONS       = biology_domain("V_RETAIN_REASONS",  columns = c("code", "name_en", "name_fr"))
+CONDITIONS           = biology_domain("INDIVIDUAL_CONDITIONS")
+TYPES_OF_MEASUREMENT = biology_domain("TYPES_OF_MEASUREMENT")
+MEASUREMENTS         = biology_domain("MEASUREMENTS")
+MEASUREMENT_TOOLS    = biology_domain("MEASUREMENT_TOOLS")
 
 ## Save package data as rda in data folder ####
 use_data(SPECIES,              overwrite = TRUE)
@@ -216,7 +242,7 @@ LEGACY_FISHERY_GROUPS = legacy_domain("V_FISHERY_GROUPS")
 
 LEGACY_FISHERY_GROUPS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_GROUPS") # includes SORT for factorisation
 
-LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = c("CODE", "NAME_EN", "NAME_FR", "FISHERY_GROUP_CODE", "FISHERY_GROUP_NAME_FR", "FISHERY_TYPE_CODE", "FISHERY_TYPE_NAME_FR", "IS_AGGREGATE"))
+LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = toupper(c("code", "name_en", "name_fr", "fishery_group_code", "fishery_group_name_fr", "fishery_type_code", "fishery_type_name_fr", "is_aggregate")))
 
 LEGACY_FISHERIES[, FISHERY_CATEGORY_CODE := ifelse(FISHERY_TYPE_CODE != "IN", 
                                                    "COASTAL", 
@@ -294,15 +320,16 @@ use_data(LEGACY_FAD_OWNERSHIPS, overwrite = TRUE)
 
 # Other codelists (that should be added in IOTC_master)
 # Currently downloaded in the R library: iotc-lib-base-common-data/R/iotc_base_common_data_factors.R
+LEGACY_CONDITION_TYPES_IOTDB    = query(DB_IOTDB(), "SELECT * FROM meta.CONDITION_TYPES")
+LEGACY_FATE_TYPES_IOTDB         = query(DB_IOTDB(), "SELECT * FROM meta.FATE_TYPES")
+
 LEGACY_WORKING_PARTIES_IOTDB    = query(DB_IOTDB(), "SELECT * FROM meta.WORKING_PARTIES")
 LEGACY_SPECIES_GROUPS_IOTDB     = query(DB_IOTDB(), "SELECT * FROM meta.SPECIES_GROUPS")
 LEGACY_SPECIES_CATEGORIES_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.SPECIES_CATEGORIES")
 LEGACY_IUCN_STATUS_IOTDB        = query(DB_IOTDB(), "SELECT * FROM meta.IUCN_STATUS")
 LEGACY_RAISINGS_IOTDB           = query(DB_IOTDB(), "SELECT * FROM meta.RAISINGS")
 LEGACY_FISHERY_TYPES_IOTDB      = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_TYPES")
-LEGACY_CONDITION_TYPES_IOTDB    = query(DB_IOTDB(), "SELECT * FROM meta.CONDITION_TYPES")
 LEGACY_FISHING_GROUNDS_IOTDB    = query(DB_IOTDB(), "SELECT * FROM meta.FISHING_GROUNDS")
-LEGACY_FATE_TYPES_IOTDB         = query(DB_IOTDB(), "SELECT * FROM meta.FATE_TYPES")
 
 ## Save package data as rda in data folder ####
 use_data(LEGACY_WORKING_PARTIES_IOTDB, overwrite = TRUE)
@@ -333,16 +360,16 @@ use_data(DESTINATION_MARKETS, overwrite = TRUE)
 
 ## Extract the data from IOTC database ####
 ### ISSUE: IOTC_EAST missing from AREA_INTERSECTIONS and AREA_INTERSECTIONS_IOTC
-EEZ_TO_IOTC_MAIN_AREAS = query(DB_IOTC_MASTER(), "
-  SELECT DISTINCT
-  	RIGHT(TARGET_CODE, 3) AS FLAG_CODE,
-  	SOURCE_CODE AS MAIN_IOTC_AREA_CODE
-  FROM [IOTC_master].[refs_gis].[AREA_INTERSECTIONS_IOTC]
-  WHERE SOURCE_CODE IN ('IOTC_EAST', 'IOTC_WEST')
-  AND TARGET_CODE LIKE 'NJA_%'
-  AND LEN(TARGET_CODE) = 7    -- to remove disputed NJAs
-")
+# EEZ_TO_IOTC_MAIN_AREAS = query(DB_IOTC_MASTER(), "
+#   SELECT DISTINCT
+#   	RIGHT(TARGET_CODE, 3) AS FLAG_CODE,
+#   	SOURCE_CODE AS MAIN_IOTC_AREA_CODE
+#   FROM [IOTC_master].[refs_gis].[AREA_INTERSECTIONS_IOTC]
+#   WHERE SOURCE_CODE IN ('IOTC_EAST', 'IOTC_WEST')
+#   AND TARGET_CODE LIKE 'NJA_%'
+#   AND LEN(TARGET_CODE) = 7    -- to remove disputed NJAs
+# ")
 
 ## Save package data as rda in data folder ####
-use_data(EEZ_TO_IOTC_MAIN_AREAS, overwrite = TRUE)
+#use_data(EEZ_TO_IOTC_MAIN_AREAS, overwrite = TRUE)
 
