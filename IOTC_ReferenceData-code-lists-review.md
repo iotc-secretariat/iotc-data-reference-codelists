@@ -83,8 +83,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_biology | MEASUREMENT_TOOLS | ```ALTER TABLE refs_biology.measurement_tools DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SAMPLING_METHODS_FOR_CATCH_ESTIMATION | ```ALTER TABLE refs_biology.sampling_methods_for_catch_estimation DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SAMPLING_METHODS_FOR_SAMPLING_COLLECTIONS | ```ALTER TABLE refs_biology.sampling_methods_for_sampling_collections DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | BAIT_FISHING_METHODS | ```ALTER TABLE refs_fishery.bait_fishing_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` 
-|
+| refs_fishery | BAIT_FISHING_METHODS | ```ALTER TABLE refs_fishery.bait_fishing_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | BRANCHLINE_STORAGES | ```ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | BUOY_ACTIVITY_TYPES | **TO DO** |
 | refs_fishery | CATCH_UNITS | ```ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;``` |
@@ -96,7 +95,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_fishery | GEAR_TYPES | **SHOULD BE REMOVED AND REPLACED BY refs_fishery_config.gear_groups** |
 | refs_fishery | GILLNET_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.gillnet_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | HOOK_TYPES | ```ALTER TABLE refs_fishery.hook_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | HULL_MATERIAL_TYPES | descriptions = definitions |
+| refs_fishery | HULL_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.hull_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | LIGHT_COLOURS | descriptions = definitions |
 | refs_fishery | LINE_MATERIAL_TYPES | descriptions = definitions |
 | refs_fishery | MECHANIZATION_TYPES | descriptions = definitions |
