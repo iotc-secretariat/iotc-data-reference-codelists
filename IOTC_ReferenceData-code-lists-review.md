@@ -31,7 +31,7 @@ CREATE TABLE refs_meta.CONDITION_TYPES(
 
 ## refs_socio_economics.currencies
 
-```{sql}
+```
 ALTER TABLE refs_socio_economics.currencies
 RENAME COLUMN currency_code TO code;
 
@@ -46,36 +46,56 @@ COMMENT ON TABLE refs_socio_economics.currencies IS 'Stores information on curre
 COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from list of ISO 4217 currency codes';
 ```
 
+# Common Code Lists
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:----------------------------------|
+| refs_admin | PORTS | ```ALTER TABLE refs_admin.ports DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_admin | IO_MAIN_AREAS | ```UPDATE refs_admin.io_main_areas SET description_fr = 'Partie Est de la zone de compétence de la CTOI correspondant à la zone FAO 57', description_en = 'Eastern part of the IOTC area of competence corresponding to FAO area 57' WHERE code = 'IREASIO'``` |
+| refs_admin | IO_MAIN_AREAS | ```UPDATE refs_admin.io_main_areas SET description_fr = 'Partie ouest de la zone de compétence de la CTOI correspondant à la zone FAO 51 dont la ligne occidentale a été étendue de 20 à 30 degrés est', description_en = 'Western part of the IOTC area of competence corresponding to FAO area 51, whose western boundary has been extended from 20 to 30 degrees east' WHERE code = 'IRWESIO'``` |
+| refs_data | ESTIMATIONS | ```ALTER TABLE refs_data.estimations DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_data | TYPES | ```UPDATE refs_data.types SET description_fr = 'TO DO', description_en = 'TO DO'``` |
+| refs_data | COVERAGE_TYPES | **Add Events and include descriptions for all fields, especially to differentiate sets/events** |
+| refs_data | DATASETS | **removed "datasets" from each definition label, original definitions as descriptions |
+| refs_data | PROCESSINGS | **HARD TO DO - we should revisit definitions** |
+| refs_data | RAISINGS | descriptions + definitions |
+| refs_data | SOURCES | descriptions = definitions, definitions revised |
+| refs_biology | SAMPLING_PERIODS | ```ALTER TABLE refs_biology.sampling_periods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | SAMPLING_PROTOCOLS | ```ALTER TABLE refs_biology.sampling_protocols DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | SEX | ```ALTER TABLE refs_biology.sex DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | TYPES_OF_FATE | ```ALTER TABLE refs_biology.types_of_fate DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | SPECIES | ```ALTER TABLE refs_biology.species DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | SPECIES_AGGREGATES | **added columns "name_en", "name_fr", and "name_scientific". The descriptions = the names in fr and en respectively. NOTE\* species have multiple aggregate codes. Would they report multiple codes? or do we need to include a distinction in the descriptions?** |
+| refs_biology | SPECIES_CATEGORIES | ```ALTER TABLE refs_biology.species_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | SPECIES_GROUPS | ```ALTER TABLE refs_biology.species_groups DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | FISHERIES | description = definitions **To shorten??** |
+| refs_fishery | FOB_TYPES | descriptions = definitions **review French translations** |
+
 # Changes in ROS Code List Component
 
 ## Changes in Structure
 
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:----------------------------------|
-| refs_biology | BAIT_CONDITIONS | "ALTER TABLE refs_biology.bait_conditions DROP COLUMN description_fr, DROP COLUMN description_en;" |
-| refs_biology | BAIT_TYPES | "ALTER TABLE refs_biology.bait_types DROP COLUMN description_fr, DROP COLUMN description_en;" |
-| refs_biology | DEPREDATION_SOURCES | "ALTER TABLE refs_biology.depredation_sources DROP COLUMN description_fr, DROP COLUMN description_en;" |
-| refs_biology | MEASUREMENT_TOOLS | descriptions = definitions |
-| refs_biology | SAMPLING_METHODS_FOR_CATCH_ESTIMATION | "ALTER TABLE refs_biology.sampling_methods_for_catch_estimation DROP COLUMN description_fr, DROP COLUMN description_en;" |
-| refs_biology | SAMPLING_METHODS_FOR_SAMPLING_COLLECTIONS | "ALTER TABLE refs_biology.sampling_methods_for_sampling_collections DROP COLUMN description_fr, DROP COLUMN description_en;" |
-| refs_biology | SAMPLING_PERIODS | "ALTER TABLE refs_biology.sampling_periods DROP COLUMN description_fr, DROP COLUMN description_en;" |
-| refs_biology | SAMPLING_PROTOCOLS | "ALTER TABLE refs_biology.sampling_protocols DROP COLUMN description_fr, DROP COLUMN description_en;" |
-| refs_biology | SEX | description = definition |
-| refs_biology | TYPES_OF_FATE | descriptions = definitions |
-| refs_data | ESTIMATIONS | descriptions = definitions |
-| refs_data | TYPES | descriptions = definitions |
-| refs_fishery | BAIT_FISHING_METHODS | descriptions = definitions |
-| refs_fishery | BRANCHLINE_STORAGE | descriptions = definitions |
-| refs_fishery | BUOY_ACTIVITY_TYPES | descriptions = definitions |
-| refs_fishery | CATCH_UNITS | descriptions = definitions |
-| refs_fishery | DEHOOKER_TYPES | descriptions = definitions |
-| refs_fishery | FISH_STORAGE_TYPES | descriptions = definitions |
-| refs_fishery | FLOAT_TYPES | description = definition |
-| refs_fishery | FOB_ACTIVITY_TYPES | descriptions = definitions |
-| refs_fishery | FISH_PRESERVATION_METHODS | descriptions = definitions |
-| refs_fishery | GEAR_TYPES | descriptions = definitions |
-| refs_fishery | GILLNET_MATERIAL_TYPES | descriptions = definitions |
-| refs_fishery | HOOK_TYPES | descriptions = definitions |
+| refs_biology | BAIT_CONDITIONS | ```ALTER TABLE refs_biology.bait_conditions DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | BAIT_TYPES | ```ALTER TABLE refs_biology.bait_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | DEPREDATION_SOURCES | ```ALTER TABLE refs_biology.depredation_sources DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | MEASUREMENT_TOOLS | ```ALTER TABLE refs_biology.measurement_tools DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | SAMPLING_METHODS_FOR_CATCH_ESTIMATION | ```ALTER TABLE refs_biology.sampling_methods_for_catch_estimation DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | SAMPLING_METHODS_FOR_SAMPLING_COLLECTIONS | ```ALTER TABLE refs_biology.sampling_methods_for_sampling_collections DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | BAIT_FISHING_METHODS | ```ALTER TABLE refs_fishery.bait_fishing_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` 
+|
+| refs_fishery | BRANCHLINE_STORAGES | ```ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | BUOY_ACTIVITY_TYPES | **TO DO** |
+| refs_fishery | CATCH_UNITS | ```ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | DEHOOKER_TYPES | ```ALTER TABLE refs_fishery.dehooker_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | FISH_STORAGE_TYPES | ```ALTER TABLE refs_fishery.fish_storage_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | FLOAT_TYPES | ```ALTER TABLE refs_fishery.float_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | FOB_ACTIVITY_TYPES | **TO DO** |
+| refs_fishery | FISH_PRESERVATION_METHODS | ```ALTER TABLE refs_fishery.fish_preservation_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | GEAR_TYPES | **SHOULD BE REMOVED AND REPLACED BY refs_fishery_config.gear_groups** |
+| refs_fishery | GILLNET_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.gillnet_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | HOOK_TYPES | ```ALTER TABLE refs_fishery.hook_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | HULL_MATERIAL_TYPES | descriptions = definitions |
 | refs_fishery | LIGHT_COLOURS | descriptions = definitions |
 | refs_fishery | LINE_MATERIAL_TYPES | descriptions = definitions |
@@ -99,7 +119,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_fishery | VESSEL_SIZE_TYPES | descriptions = definitions |
 | refs_fishery | WASTE_CATEGORIES | descriptions = definitions |
 | refs_fishery | WASTE_DISPOSAL_METHODS | descriptions = definitions |
-| refs_fishery | WIND_SCALES | description = definitions |
+| refs_fishery | WIND_SCALES | description = definitions **TO REMOVE? - Not required anymore?** |
 
 ## Changes in Values
 
@@ -114,18 +134,9 @@ Some improvements were made to the ROS code lists:
 | refs_biology | INCIDENTAL_CAPTURE_CONDITIONS | descriptions = definitions, maybe "stunned" needs better distinction from unknown |
 | refs_biology | INDIVIDUAL CONDITIONS | descriptions = definitions, maybe "stunned" needs better distinction from unknown |
 | refs_biology | SCARS | revised definition: sharks or cetaceans. Description identifies cetaceans as false killer whales,short-finned pilot whales, killer whales |
-| refs_biology | SPECIES | description = definition, there are separate species for scientific names and other classifications. Should those be included in definitions |
-| refs_biology | SPECIES_AGGREGATES | added columns "name_en", "name_fr", and "name_scientific". The descriptions = the names in fr and en respectively. NOTE\* species have multiple aggregate codes. Would they report multiple codes? or do we need to include a distinction in the descriptions? |
-| refs_biology | SPECIES_CATEGORIES | description = definition, but do you want to identify individual species? |
-| refs_biology | SPECIES_GROUPS | description = definition, but do you want to identify individual species? |
 | refs_biology | TAG_TYPES | shortened definitions, original definitions used for descriptions |
 | refs_biology | TYPES_OF_MEASUREMENT | shortened definitions, original definitions used for descriptions |
 | refs_biology | RECOMMENDED_MEASUREMENTS | copied file but did not edit, unsure what to define/describe |
-| refs_data | COVERAGE_TYPES | descriptions = definitions, should agree on / add definitions for sets/events\* |
-| refs_data | DATASETS | removed "datasets" from each definition label, original definitions as descriptions |
-| refs_data | PROCESSINGS | HARD TO DO - we should revisit definitions |
-| refs_data | RAISINGS | descriptions + definitions |
-| refs_data | SOURCES | descriptions = definitions, definitions revised |
 | refs_fishery | ACTIVITIES | descriptions = definitions, definitions revised |
 | refs_fishery | BAIT_SCHOOL_DETECTION_METHODS | descriptions = definitions, definitions shortened |
 | refs_fishery | CARDINAL_POINTS | descriptions = definitions, but are their specific decimal degrees we want to use?? |
@@ -133,8 +144,17 @@ Some improvements were made to the ROS code lists:
 | refs_fishery | FAD_RAFT_DESIGNS | descriptions = definitions, definitions shortened |
 | refs_fishery | FAD_TAIL_DESIGNS | descriptions = definitions, definitions shortened |
 | refs_fishery | FISH_PROCESSING_TYPES | descriptions = definitions, definitions shortened |
-| refs_fishery | FISHERIES | description = definitions \*\*do we want to shorten?? will become acronyms |
-| refs_fishery | FOB_TYPES | descriptions = definitions \*\* review French translations |
 | refs_fishery | NET_CONDITIONS | descriptions = definitions, definitions revised |
 | refs_fishery | SCHOOL_SIGHTING_CUES | descriptions = definitions, definitions shortened |
 | refs_fishery | SURFACE_FISHERY_ACTIVITIES | descriptions = definitions, definitions shortened |
+
+## Update Table refs_meta.codelists_versions
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:----------------------------------|
+refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_admin', 'PORTS', 0, '2025-08-25 11:30:00');``` |
+refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'RECOMMENDED_MEASUREMENTS', 0, '2024-02-13 00:00:00');``` |
+refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE cl_schema = 'refs_biological_config';``` |
+refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET cl_schema = REPLACE(cl_schema, 'refs_biological', 'refs_biology');``` |
+refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET last_update = '2023-11-02 00:00:00' WHERE CL_NAME = 'FOB_ACTIVITY_TYPES';``` |
+
