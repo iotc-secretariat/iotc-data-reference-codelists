@@ -11,7 +11,7 @@ Historical tables which include a SORT column and are required by in some IOTC R
 -   refs_meta.CONDITION_TYPES
 
 ```         
-CREATE TABLE refs_meta.CONDITION_TYPES(
+CREATE TABLE refs_legacy.CONDITION_TYPES(
   SORT INTEGER, 
   CODE VARCHAR(16) PRIMARY KEY NOT NULL,  
   NAME_EN VARCHAR(64) 
@@ -85,40 +85,40 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_biology | SAMPLING_METHODS_FOR_SAMPLING_COLLECTIONS | ```ALTER TABLE refs_biology.sampling_methods_for_sampling_collections DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | BAIT_FISHING_METHODS | ```ALTER TABLE refs_fishery.bait_fishing_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | BRANCHLINE_STORAGES | ```ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | BUOY_ACTIVITY_TYPES | **TO DO** |
+| refs_fishery | BUOY_ACTIVITY_TYPES | **To do** |
 | refs_fishery | CATCH_UNITS | ```ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | DEHOOKER_TYPES | ```ALTER TABLE refs_fishery.dehooker_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | FISH_STORAGE_TYPES | ```ALTER TABLE refs_fishery.fish_storage_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | FLOAT_TYPES | ```ALTER TABLE refs_fishery.float_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | FOB_ACTIVITY_TYPES | **TO DO** |
+| refs_fishery | FOB_ACTIVITY_TYPES | **To do** |
 | refs_fishery | FISH_PRESERVATION_METHODS | ```ALTER TABLE refs_fishery.fish_preservation_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | GEAR_TYPES | **SHOULD BE REMOVED AND REPLACED BY refs_fishery_config.gear_groups** |
+| refs_fishery | GEAR_TYPES | **table to remove and replace by refs_fishery_config.gear_groups** |
 | refs_fishery | GILLNET_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.gillnet_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | HOOK_TYPES | ```ALTER TABLE refs_fishery.hook_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | HULL_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.hull_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | LIGHT_COLOURS | descriptions = definitions |
-| refs_fishery | LINE_MATERIAL_TYPES | descriptions = definitions |
-| refs_fishery | MECHANIZATION_TYPES | descriptions = definitions |
-| refs_fishery | MITIGATION_DEVICES | descriptions = definitions |
-| refs_fishery | NET_COLOURS | descriptions = definitions |
-| refs_fishery | NET_CONFIGURATIONS | descriptions = definitions |
-| refs_fishery | NET_DEPLOY_DEPTH | descriptions = definitions |
-| refs_fishery | NET_SETTING_STRATEGIES | descriptions = definitions |
-| refs_fishery | OFFAL_MANAGEMENT_TYPES | descriptions = definitions |
-| refs_fishery | POLE_MATERIAL_TYPES | descriptions = definitions |
-| refs_fishery | REASONS_DAYS_LOST | descriptions = definitions |
-| refs_fishery | SCHOOL_DETECTION_METHOD | descriptions = definitions |
-| refs_fishery | SCHOOL_TYPE_CATEGORIES | descriptions = definitions |
-| refs_fishery | SINKER_MATERIAL_TYPES | descriptions = definitions |
-| refs_fishery | STREAMER_TYPES | descriptions = definitions |
-| refs_fishery | STUNNING_METHODS | descriptions = definitions |
-| refs_fishery | TRANSHIPMENT_CATEGORIES | descriptions = definitions |
-| refs_fishery | VESSEL_ARCHITECTURES | descriptions =definitions |
-| refs_fishery | VESSEL_SECTIONS | descriptions = definitions |
-| refs_fishery | VESSEL_SIZE_TYPES | descriptions = definitions |
-| refs_fishery | WASTE_CATEGORIES | descriptions = definitions |
-| refs_fishery | WASTE_DISPOSAL_METHODS | descriptions = definitions |
-| refs_fishery | WIND_SCALES | description = definitions **TO REMOVE? - Not required anymore?** |
+| refs_fishery | LIGHT_COLOURS | ```ALTER TABLE refs_fishery.light_colours DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | LINE_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.line_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | MECHANIZATION_TYPES | ```ALTER TABLE refs_fishery.mechanization_types DROP COLUMN description_fr, DROP COLUMN description_en; UPDATE refs_fishery.mechanization_types SET name_fr = 'Inconnu' WHERE code LIKE 'UN';``` |
+| refs_fishery | MITIGATION_DEVICES | ```ALTER TABLE refs_fishery.mitigation_devices DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | NET_COLOURS | ```ALTER TABLE refs_fishery.net_colours DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | NET_CONFIGURATIONS | ```ALTER TABLE refs_fishery.net_configurations DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | NET_DEPLOY_DEPTHS | ```ALTER TABLE refs_fishery.net_deploy_depths DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | NET_SETTING_STRATEGIES | ```ALTER TABLE refs_fishery.net_setting_strategies DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | OFFAL_MANAGEMENT_TYPES | **code_orig to remove;** ```ALTER TABLE refs_fishery.offal_management_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | POLE_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.pole_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | REASONS_DAYS_LOST | ```ALTER TABLE refs_fishery.reasons_days_lost DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | SCHOOL_DETECTION_METHODS | ```ALTER TABLE refs_fishery.school_detection_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | SCHOOL_TYPE_CATEGORIES | ```ALTER TABLE refs_fishery.school_type_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` **Could benefit from descriptions*** |
+| refs_fishery | SINKER_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.sinker_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | STREAMER_TYPES | **code_orig to remove;** ```ALTER TABLE refs_fishery.streamer_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | STUNNING_METHODS | ```ALTER TABLE refs_fishery.stunning_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | TRANSHIPMENT_CATEGORIES | ```ALTER TABLE refs_fishery.transhipment_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | VESSEL_ARCHITECTURES | ```ALTER TABLE refs_fishery.vessel_architectures DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | VESSEL_SECTIONS | ```ALTER TABLE refs_fishery.vessel_sections DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | VESSEL_SIZE_TYPES | ```ALTER TABLE refs_fishery.vessel_size_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | WASTE_CATEGORIES | ```ALTER TABLE refs_fishery.waste_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | WASTE_DISPOSAL_METHODS | ```ALTER TABLE refs_fishery.waste_disposal_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | WIND_SCALES | **Add descriptions available [here](https://www.weather.gov/mfl/beaufort) - To remove as not required?**  |
 
 ## Changes in Values
 
