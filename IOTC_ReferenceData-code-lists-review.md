@@ -92,10 +92,11 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_fishery | FLOAT_TYPES | ```ALTER TABLE refs_fishery.float_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | FOB_ACTIVITY_TYPES | **To do** |
 | refs_fishery | FISH_PRESERVATION_METHODS | ```ALTER TABLE refs_fishery.fish_preservation_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | GEAR_TYPES | **table to remove and replace by refs_fishery_config.gear_groups** |
+| refs_fishery | GEAR_TYPES | ALTER TABLE refs_fishery.gear_types DROP COLUMN description_fr, DROP COLUMN description_en; **table to remove and replace by refs_fishery_config.gear_groups** |
 | refs_fishery | GILLNET_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.gillnet_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | HOOK_TYPES | ```ALTER TABLE refs_fishery.hook_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | HULL_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.hull_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | LIGHT_TYPES | ```ALTER TABLE refs_fishery.light_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | LIGHT_COLOURS | ```ALTER TABLE refs_fishery.light_colours DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | LINE_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.line_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | MECHANIZATION_TYPES | ```ALTER TABLE refs_fishery.mechanization_types DROP COLUMN description_fr, DROP COLUMN description_en; UPDATE refs_fishery.mechanization_types SET name_fr = 'Inconnu' WHERE code LIKE 'UN';``` |
@@ -156,4 +157,4 @@ refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_
 refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE cl_schema = 'refs_biological_config';``` |
 refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET cl_schema = REPLACE(cl_schema, 'refs_biological', 'refs_biology');``` |
 refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET last_update = '2023-11-02 00:00:00' WHERE CL_NAME = 'FOB_ACTIVITY_TYPES';``` |
-
+refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_fishery', 'WASTE_DISPOSAL_METHODS', 0, '2025-08-25 11:30:00');``` |
