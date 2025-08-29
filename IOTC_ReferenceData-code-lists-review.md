@@ -2,6 +2,19 @@
 
 This document describes the ongoing improvements in the IOTC code lists.
 
+# References Tables To Remove
+
+Remove a few backup tables (_bkp) used to update the inputs for the fishery wizard. The SQL server IOTC_master database can be used as sandbox.
+
+```
+DROP TABLE IF EXISTS refs_fishery_config.gear_to_fishery_type_new;
+DROP TABLE IF EXISTS refs_fishery_config.fishery_types_new;
+DROP TABLE IF EXISTS refs_fishery_config.gear_to_fishery_type_bkp;
+DROP TABLE IF EXISTS refs_fishery_config.fishery_types_bkp;
+DROP TABLE IF EXISTS refs_fishery_config.gear_fishery_type_to_configuration_bkp;
+DROP TABLE IF EXISTS refs_fishery_config.gear_fishery_type_to_fishing_mode_bkp;
+``` 
+
 # Reference Tables To Add
 
 ## Legacy Tables
@@ -27,9 +40,13 @@ CREATE TABLE refs_legacy.CONDITION_TYPES(
 
 ## New tables for ROS
 
-- Position of offal disposal (position code)
-- Maturity scale and stage
-- Sample type and preservation method (should include the following details on the collection of samples: a) type (e.g. otoliths, spine clippings, and genetic samples) b) preservation method (e.g. alcohol, frozen, etc.) c) destination (i.e. location to be sent/stored)
+These reference tables aim to support the collection of biological samples by the observer. They are in the data dictionary but currently miss from the reporting forms.
+
+<!-- - Position of offal disposal (position code) - use [refs_fishery.vessel_sections](https://data.iotc.org/reference/latest/domain/fisheries/#vesselSections) -->
+- refs_biology.macro_maturity_stage: Maturity scale and stage
+- refs_biology.sample_type: e.g., otoliths, spine clippings, and genetic samples
+- refs_biology.sample_preservation_method: e.g., preservation method (e.g., alcohol, frozen, etc.)
+- refs_biology.sample_destination: destination, i.e., location to be sent/stored
 
 # To Modify
 
@@ -103,7 +120,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_fishery | LIGHT_TYPES | ```ALTER TABLE refs_fishery.light_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | LIGHT_COLOURS | ```ALTER TABLE refs_fishery.light_colours DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | LINE_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.line_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | MECHANIZATION_TYPES | ```ALTER TABLE refs_fishery.mechanization_types DROP COLUMN description_fr, DROP COLUMN description_en; UPDATE refs_fishery.mechanization_types SET name_fr = 'Inconnu' WHERE code LIKE 'UN';``` |
+| refs_fishery | MECHANIZATION_TYPES | ```ALTER TABLE refs_fishery.mechanization_types RENAME TO mechanisation_types; ALTER TABLE refs_fishery.mechanisation_types DROP COLUMN description_fr, DROP COLUMN description_en; UPDATE refs_fishery.mechanisation_types SET name_fr = 'Inconnu' WHERE code LIKE 'UN';``` |
 | refs_fishery | MITIGATION_DEVICES | ```ALTER TABLE refs_fishery.mitigation_devices DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | NET_COLOURS | ```ALTER TABLE refs_fishery.net_colours DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | NET_CONFIGURATIONS | ```ALTER TABLE refs_fishery.net_configurations DROP COLUMN description_fr, DROP COLUMN description_en;``` |
@@ -164,3 +181,4 @@ refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET cl_s
 refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE cl_schema = 'refs_biological_config';``` |
 refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET last_update = '2023-11-02 00:00:00' WHERE CL_NAME = 'FOB_ACTIVITY_TYPES';``` |
 refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_fishery', 'WASTE_DISPOSAL_METHODS', 0, '2025-08-25 11:30:00');``` |
+refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE CL_NAME = 'SAMPLING_METHODS_FOR_CATCH_ESTIM';``` |
