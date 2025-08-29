@@ -2,22 +2,20 @@
 
 This document describes the ongoing improvements in the IOTC code lists.
 
-# Reference Tables To Add
+# Reference Tables To Add {#additions}
 
 ## Legacy Tables
 
 Historical tables which include a SORT column and are required by in some IOTC R libraries. Note those tables were extracted from the SQL Server database IOTDB and exported to Zenodo/GitHub. Including them in IOTC_ReferenceData will remove the dependency on the IOTDB database.
 
 -   refs_meta.CONDITION_TYPES
-
-```         
+<!--```         
 CREATE TABLE refs_legacy.CONDITION_TYPES(
   SORT INTEGER, 
   CODE VARCHAR(16) PRIMARY KEY NOT NULL,  
   NAME_EN VARCHAR(64) 
 )
-```
-
+``` -->
 -   refs_meta.FATE_TYPES
 -   refs_meta.FISHERY_TYPES
 -   refs_meta.FISHING_GROUNDS
@@ -26,6 +24,12 @@ CREATE TABLE refs_legacy.CONDITION_TYPES(
 -   refs_meta.SPECIES_CATEGORIES
 -   refs_meta.SPECIES_GROUPS
 -   refs_meta.WORKING_PARTIES
+
+## New tables for ROS
+
+- Position of offal disposal (position code)
+- Maturity scale and stage
+- Sample type and preservation method (should include the following details on the collection of samples: a) type (e.g. otoliths, spine clippings, and genetic samples) b) preservation method (e.g. alcohol, frozen, etc.) c) destination (i.e. location to be sent/stored)
 
 # To Modify
 
@@ -46,7 +50,7 @@ COMMENT ON TABLE refs_socio_economics.currencies IS 'Stores information on curre
 COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from list of ISO 4217 currency codes';
 ```
 
-# Common Code Lists
+# Changes in Common Code Lists
 
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:----------------------------------|
@@ -85,14 +89,14 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_biology | SAMPLING_METHODS_FOR_SAMPLING_COLLECTIONS | ```ALTER TABLE refs_biology.sampling_methods_for_sampling_collections DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | BAIT_FISHING_METHODS | ```ALTER TABLE refs_fishery.bait_fishing_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | BRANCHLINE_STORAGES | ```ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | BUOY_ACTIVITY_TYPES | **To do** |
+| refs_fishery | BUOY_ACTIVITY_TYPES | **To define descriptions** |
 | refs_fishery | CATCH_UNITS | ```ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | DEHOOKER_TYPES | ```ALTER TABLE refs_fishery.dehooker_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | FISH_STORAGE_TYPES | ```ALTER TABLE refs_fishery.fish_storage_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | FLOAT_TYPES | ```ALTER TABLE refs_fishery.float_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | FOB_ACTIVITY_TYPES | **To do** |
 | refs_fishery | FISH_PRESERVATION_METHODS | ```ALTER TABLE refs_fishery.fish_preservation_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | GEAR_TYPES | ALTER TABLE refs_fishery.gear_types DROP COLUMN description_fr, DROP COLUMN description_en; **table to remove and replace by refs_fishery_config.gear_groups** |
+| refs_fishery | GEAR_TYPES | ```ALTER TABLE refs_fishery.gear_types DROP COLUMN description_fr, DROP COLUMN description_en;``` **table to remove and replace by refs_fishery_config.gear_groups** |
 | refs_fishery | GILLNET_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.gillnet_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | HOOK_TYPES | ```ALTER TABLE refs_fishery.hook_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | HULL_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.hull_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
@@ -109,7 +113,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_fishery | POLE_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.pole_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | REASONS_DAYS_LOST | ```ALTER TABLE refs_fishery.reasons_days_lost DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | SCHOOL_DETECTION_METHODS | ```ALTER TABLE refs_fishery.school_detection_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | SCHOOL_TYPE_CATEGORIES | ```ALTER TABLE refs_fishery.school_type_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` **Could benefit from descriptions*** |
+| refs_fishery | SCHOOL_TYPE_CATEGORIES | ```ALTER TABLE refs_fishery.school_type_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` **Would benefit from descriptions*** |
 | refs_fishery | SINKER_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.sinker_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | STREAMER_TYPES | **code_orig to remove;** ```ALTER TABLE refs_fishery.streamer_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | STUNNING_METHODS | ```ALTER TABLE refs_fishery.stunning_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
@@ -123,11 +127,11 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 
 ## Changes in Values
 
-Some improvements were made to the ROS code lists:
+Some improvements were made to the ROS code lists. The tables must now be imported in the ROS and IOTC_ReferenceData databases.
 
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:----------------------------------|
-| refs_biology | DEPREDATION_SOURCES | "Requins / Baleines odontocètes" changed to "Requins / baleines odontocètes" |
+| refs_biology | DEPREDATION_SOURCES | ```UPDATE refs_biology.depredation_sources SET name_fr = 'Requins / baleines odontocètes' WHERE code = 'SW';``` |
 | refs_biology | FATES | simplified definitions, descriptions are original definitions (refs_biological.FATES.edited.csv) |
 | refs_biology | GEAR_INTERACTIONS | simplified definitions, descriptions are original definitions |
 | refs_biology | HANDLING_METHODS | removed "using a" from definitions, descriptions are original definitions |
@@ -150,11 +154,13 @@ Some improvements were made to the ROS code lists:
 
 ## Update Table refs_meta.codelists_versions
 
+This tables provides information on the version of each table and date of last update. It is required for generating these two fields for each code list in the IOTC Reference Data Catalogue as well as in the webpages describing the forms. The new tables added (see section [Reference Tables To Add](#additions))
+
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:----------------------------------|
 refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_admin', 'PORTS', 0, '2025-08-25 11:30:00');``` |
 refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'RECOMMENDED_MEASUREMENTS', 0, '2024-02-13 00:00:00');``` |
-refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE cl_schema = 'refs_biological_config';``` |
 refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET cl_schema = REPLACE(cl_schema, 'refs_biological', 'refs_biology');``` |
+refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE cl_schema = 'refs_biological_config';``` |
 refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET last_update = '2023-11-02 00:00:00' WHERE CL_NAME = 'FOB_ACTIVITY_TYPES';``` |
 refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_fishery', 'WASTE_DISPOSAL_METHODS', 0, '2025-08-25 11:30:00');``` |
