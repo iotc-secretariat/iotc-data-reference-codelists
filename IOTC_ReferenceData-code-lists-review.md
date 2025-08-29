@@ -2,7 +2,7 @@
 
 This document describes the ongoing improvements in the IOTC code lists.
 
-# Reference Tables To Add {#additions}
+# Reference Tables To Add
 
 ## Legacy Tables
 
@@ -154,7 +154,7 @@ Some improvements were made to the ROS code lists. The tables must now be import
 
 ## Update Table refs_meta.codelists_versions
 
-This tables provides information on the version of each table and date of last update. It is required for generating these two fields for each code list in the IOTC Reference Data Catalogue as well as in the webpages describing the forms. The new tables added (see section [Reference Tables To Add](#additions))
+This tables provides information on the version of each table and date of last update. It is required for generating these two fields for each code list in the IOTC Reference Data Catalogue as well as in the webpages describing the forms. The new tables added (see section [Reference Tables To Add](#reference-tables-to-add))
 
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:----------------------------------|
