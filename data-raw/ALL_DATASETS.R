@@ -65,8 +65,8 @@ CPC_TO_FLAGS                   = admin_domain("cpc_to_flags") # Added for versio
 CPCS                           = admin_domain("cpcs")         # Added for version 2
 ENTITIES                       = admin_domain("entities")
 # FLEETS_FLAGS_FISHERIES = admin_domain("fleet_to_flags_and_fisheries") # Added for version 2
-FLEETS                         = admin_domain("fleets")
-FLEETS_FLAGS                   = merge(FLEETS_FLAGS, FLEETS, by.x = "FLEET_CODE", by.y = "CODE")
+FLEETS                         = admin_domain("v_fleets_out")
+FLEETS_FLAGS                   = merge(FLEETS[, .(FLEET_CODE = CODE, FLAG_CODE)], ENTITIES, by.x = "FLAG_CODE", by.y = "CODE") %>% setcolorder(neworder = "FLEET_CODE")
 IO_MAIN_AREAS                  = admin_domain("io_main_areas") # Added for version 2
 PORTS                          = admin_domain("ports")         # Added for version 2
 SPECIES_REPORTING_REQUIREMENTS = admin_domain("species_reporting_requirements") # Added for version 2
@@ -183,6 +183,7 @@ use_data(PRESERVATION_METHODS, overwrite = TRUE)
 use_data(PROCESSING_TYPES,     overwrite = TRUE)
 use_data(FOB_TYPES,            overwrite = TRUE)
 use_data(FOB_ACTIVITY_TYPES,   overwrite = TRUE)
+use_data(LEGACY_EFFORT_UNITS_IOTDB, overwrite = TRUE)
 
 # BIOLOGY REFERENCES ####
 
