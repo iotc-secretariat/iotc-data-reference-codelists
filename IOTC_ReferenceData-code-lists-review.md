@@ -91,6 +91,8 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_biology | SPECIES_GROUPS | ```ALTER TABLE refs_biology.species_groups DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | FISHERIES | description = definitions **To shorten??** |
 | refs_fishery | FOB_TYPES | descriptions = definitions **review French translations** |
+| refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET label_fr = REPLACE(label_fr, 'térrestre', 'terrestre') WHERE label_fr LIKE '%térrestre%';``` |
+| refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';``` | 
 
 # Changes in ROS Code List Component
 
@@ -176,6 +178,7 @@ This tables provides information on the version of each table and date of last u
 
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:----------------------------------|
+<<<<<<< HEAD
 | refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_admin', 'PORTS', 0, '2025-08-25 11:30:00');``` |
 | refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'RECOMMENDED_MEASUREMENTS', 0, '2024-02-13 00:00:00');``` |
 | refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET cl_schema = REPLACE(cl_schema, 'refs_biological', 'refs_biology');``` |
