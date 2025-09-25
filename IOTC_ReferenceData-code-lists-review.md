@@ -168,6 +168,7 @@ Some improvements were made to the ROS code lists. The tables must now be import
 | refs_fishery | NET_CONDITIONS | descriptions = definitions, definitions revised |
 | refs_fishery | SCHOOL_SIGHTING_CUES | descriptions = definitions, definitions shortened |
 | refs_fishery | SURFACE_FISHERY_ACTIVITIES | descriptions = definitions, definitions shortened |
+| refs_data    | SOURCES_RO | ```INSERT INTO refs_data.datasets(code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'Regional Observer Scheme dataset', 'Jeu de données du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); INSERT INTO refs_data.sources(dataset_code, code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'OS', 'Data collected at sea by scientific observers under the Regional Observer Scheme', 'Données collectées en mer par des observateurs scientifiques dans le cadre du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); INSERT INTO refs_data.sources(dataset_code, code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'EM', 'Data derived from the review of information collected using Electronic Monitoring Systems under the Regional Observer Scheme', 'Données issues de l''analyse des informations recueillies à l''aide de systèmes de suivi électronique dans le cadre du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); CREATE OR REPLACE VIEW refs_data.v_sources_ro AS SELECT sources.dataset_code, sources.code, sources.name_en, sources.name_fr FROM refs_data.sources WHERE sources.dataset_code = 'RO';``` |
 
 ## Update Table refs_meta.codelists_versions
 
@@ -175,11 +176,16 @@ This tables provides information on the version of each table and date of last u
 
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:----------------------------------|
-refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_admin', 'PORTS', 0, '2025-08-25 11:30:00');``` |
-refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'RECOMMENDED_MEASUREMENTS', 0, '2024-02-13 00:00:00');``` |
-refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET cl_schema = REPLACE(cl_schema, 'refs_biological', 'refs_biology');``` |
-refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE cl_schema = 'refs_biological_config';``` |
-refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET last_update = '2023-11-02 00:00:00' WHERE CL_NAME = 'FOB_ACTIVITY_TYPES';``` |
-refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_fishery', 'WASTE_DISPOSAL_METHODS', 0, '2025-08-25 11:30:00');``` |
-refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE CL_NAME = 'SAMPLING_METHODS_FOR_CATCH_ESTIM';``` |
-refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'WEIGHT_ESTIMATION_METHODS', 0, '2023-05-12 00:00:00');``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_admin', 'PORTS', 0, '2025-08-25 11:30:00');``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'RECOMMENDED_MEASUREMENTS', 0, '2024-02-13 00:00:00');``` |
+| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET cl_schema = REPLACE(cl_schema, 'refs_biological', 'refs_biology');``` |
+| refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE cl_schema = 'refs_biological_config';``` |
+| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET last_update = '2023-11-02 00:00:00' WHERE CL_NAME = 'FOB_ACTIVITY_TYPES';``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_fishery', 'WASTE_DISPOSAL_METHODS', 0, '2025-08-25 11:30:00');``` |
+| refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE CL_NAME = 'SAMPLING_METHODS_FOR_CATCH_ESTIM';``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'WEIGHT_MEASUREMENT_TOOLS', 0, '2023-05-12 00:00:00');``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'LENGTH_MEASUREMENT_TOOLS', 0, '2023-05-12 00:00:00');``` |
+| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET last_update = '2025-09-11 14:44:00' WHERE cl_name = 'SOURCES';``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'LENGTH_MEASUREMENTS', 6, '2024-09-28 00:00:00')``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'WEIGHT_MEASUREMENTS', 6, '2024-09-28 00:00:00')``` |
+
