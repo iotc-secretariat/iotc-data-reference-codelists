@@ -273,6 +273,8 @@ LEGACY_SCHOOL_TYPES = legacy_domain("SCHOOL_TYPES")
 
 LEGACY_MEASUREMENT_TYPES = legacy_domain("MEASUREMENT_TYPES")
 
+LEGACY_MEASURE_TYPES_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.MEASURE_TYPES")
+
 LEGACY_MEASUREMENT_TOOLS = legacy_domain("MEASUREMENT_TOOLS")
 
 LEGACY_RAISINGS = legacy_domain("RAISINGS")
@@ -312,6 +314,7 @@ use_data(LEGACY_CATCH_UNITS, overwrite = TRUE)
 use_data(LEGACY_EFFORT_UNITS, overwrite = TRUE)
 use_data(LEGACY_SCHOOL_TYPES, overwrite = TRUE)
 use_data(LEGACY_MEASUREMENT_TYPES, overwrite = TRUE)
+use_data(LEGACY_MEASURE_TYPES_IOTDB, overwrite = TRUE)
 use_data(LEGACY_MEASUREMENT_TOOLS, overwrite = TRUE)
 use_data(LEGACY_RAISINGS, overwrite = TRUE)
 use_data(LEGACY_BOAT_TYPES, overwrite = TRUE)    # To rename
