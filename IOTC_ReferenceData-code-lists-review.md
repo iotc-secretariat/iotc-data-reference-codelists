@@ -22,13 +22,6 @@ DROP TABLE IF EXISTS refs_fishery_config.gear_fishery_type_to_fishing_mode_bkp;
 Historical tables which include a SORT column and are required by in some IOTC R libraries. Note those tables were extracted from the SQL Server database IOTDB and exported to Zenodo/GitHub. Including them in IOTC_ReferenceData will remove the dependency on the IOTDB database.
 
 -   refs_meta.CONDITION_TYPES
-<!--```         
-CREATE TABLE refs_legacy.CONDITION_TYPES(
-  SORT INTEGER, 
-  CODE VARCHAR(16) PRIMARY KEY NOT NULL,  
-  NAME_EN VARCHAR(64) 
-)
-``` -->
 -   refs_meta.FATE_TYPES
 -   refs_meta.FISHERY_TYPES
 -   refs_meta.FISHING_GROUNDS
@@ -93,6 +86,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_fishery | FOB_TYPES | descriptions = definitions **review French translations** |
 | refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET label_fr = REPLACE(label_fr, 'térrestre', 'terrestre') WHERE label_fr LIKE '%térrestre%';``` |
 | refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';``` | 
+| refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET name_en = REPLACE(name_en, 'areas under national jurisdiction (AUNJ)', 'national jurisdiction area (NJA)') WHERE name_en LIKE '%under national jurisdiction%';```
 
 # Changes in ROS Code List Component
 
@@ -143,6 +137,40 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_fishery | WASTE_CATEGORIES | ```ALTER TABLE refs_fishery.waste_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | WASTE_DISPOSAL_METHODS | ```ALTER TABLE refs_fishery.waste_disposal_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | WIND_SCALES | **Add descriptions available [here](https://www.weather.gov/mfl/beaufort) - To remove as not required?**  |
+| refs_legacy | boat_size_class | ```ALTER TABLE refs_legacy.boat_size_class DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | boat_types | ```ALTER TABLE refs_legacy.boat_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | catch_units | ```ALTER TABLE refs_legacy.catch_units DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | coverage_types | ```ALTER TABLE refs_legacy.coverage_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | data_processings | ```ALTER TABLE refs_legacy.data_processings DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | data_sources | ```ALTER TABLE refs_legacy.data_sources DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | data_types | ```ALTER TABLE refs_legacy.data_types DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
+| refs_legacy | effort_units | ```ALTER TABLE refs_legacy.effort_units DROP COLUMN description_fr, DROP COLUMN description_en; ALTER TABLE refs_legacy.effort_units ALTER COLUMN code TYPE VARCHAR(6); ALTER TABLE refs_legacy.effort_units ADD COLUMN sort INTEGER; DELETE FROM refs_legacy.effort_units``` SQL statement of data insertion: "Z:\03_Data\04_Data_management\Databases\IOTC_ReferenceData\05_revisions\insert_legacy_effort_units.sql" | 
+| refs_legacy | estimation_types | ```ALTER TABLE refs_legacy.estimation_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | fad_activity_types | ```ALTER TABLE refs_legacy.fad_activity_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | fad_ownerships | ```ALTER TABLE refs_legacy.fad_ownerships DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | fad_types | ```ALTER TABLE refs_legacy.fad_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | fates | ```ALTER TABLE refs_legacy.fates DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | fisheries | ```ALTER TABLE refs_legacy.fisheries DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
+| refs_legacy | fleets | ```ALTER TABLE refs_legacy.fleets DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | gear_types | ```ALTER TABLE refs_legacy.gear_types DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
+| refs_legacy | gears | ```ALTER TABLE refs_legacy.gears DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | isscfg_gear_groups | ```ALTER TABLE refs_legacy.isscfg_gear_groups DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | isscfg_gears | ```ALTER TABLE refs_legacy.isscfg_gears DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | iucn_status | ```ALTER TABLE refs_legacy.iucn_status DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | main_areas | ```ALTER TABLE refs_legacy.main_areas DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | measurement_tools | ```ALTER TABLE refs_legacy.measurement_tools DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
+| refs_legacy | measurement_types | ```ALTER TABLE refs_legacy.measurement_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | nocs_codes | ```ALTER TABLE refs_legacy.nocs_codes DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_legacy | nocs_names_en | ```ALTER TABLE refs_legacy.nocs_names_en DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
+| refs_legacy | nocs_names_fr | ```ALTER TABLE refs_legacy.nocs_names_fr DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
+| refs_legacy | raisings | ```ALTER TABLE refs_legacy.raisings DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
+| refs_legacy | sampled_catch_types | ```ALTER TABLE refs_legacy.sampled_catch_types DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
+| refs_legacy | school_types | ```ALTER TABLE refs_legacy.school_types DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
+| refs_legacy | species | ```ALTER TABLE refs_legacy.species DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
+| refs_legacy | species_con | ```DROP TABLE refs_legacy.species_con;``` |
+| refs_legacy | species_conditions | ```ALTER TABLE refs_legacy.species_conditions DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
+| refs_legacy | species_to_grsf | ```ALTER TABLE refs_legacy.species_to_grsf DROP COLUMN description_fr, DROP COLUMN description_en;``` SQL statement of data update: "Z:\03_Data\04_Data_management\Databases\IOTC_ReferenceData\05_revisions\Update_French_names_refs_legacy_species_to_grsf.sql" | 
+| refs_legacy | un_locode_ports | ```ALTER TABLE refs_legacy.un_locode_ports DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 
 ## Changes in Values
 
