@@ -19,17 +19,19 @@ DROP TABLE IF EXISTS refs_fishery_config.gear_fishery_type_to_fishing_mode_bkp;
 
 ## Legacy Tables
 
-Historical tables which include a SORT column and are required by in some IOTC R libraries. Note those tables were extracted from the SQL Server database IOTDB and exported to Zenodo/GitHub. Including them in IOTC_ReferenceData will remove the dependency on the IOTDB database.
+Historical tables which include a SORT column and are required by in some IOTC R libraries. Note those tables were extracted from the SQL Server database IOTDB and exported to Zenodo/GitHub. Including them in IOTC_ReferenceData will remove the dependency on the IOTDB database. The R scripts and associated `.sql` files are available here: "Z:\03_Data\04_Data_management\Databases\IOTC_ReferenceData\05_revisions\".
 
--   refs_meta.CONDITION_TYPES
--   refs_meta.FATE_TYPES
--   refs_meta.FISHERY_TYPES
--   refs_meta.FISHING_GROUNDS
--   refs_meta.IUCN_STATUS
--   refs_meta.RAISINGS
--   refs_meta.SPECIES_CATEGORIES
--   refs_meta.SPECIES_GROUPS
--   refs_meta.WORKING_PARTIES
+| Table to Migrate | Schema | Table | SQL File | 
+|:------------------------------- | :---------- | :------------- | :--------------- |
+| IOTDB.refs_meta.CONDITION_TYPES | refs_legacy | condition_types | `insert_legacy_condition_types.sql` |
+| IOTDB.refs_meta.FATE_TYPES | refs_legacy | fate_types | `insert_legacy_fate_types.sql` |
+| IOTDB.refs_meta.FISHERY_TYPES | refs_legacy | fishery_types | `insert_legacy_fishery_types.sql` |
+| IOTDB.refs_meta.FISHING_GROUNDS | refs_legacy | fishing_grounds | `insert_legacy_fishing_grounds.sql` | 
+| IOTDB.refs_meta.RAISINGS | refs_legacy | iucn_status |  `update_iucn_status.sql` |
+| IOTDB.refs_meta.RAISINGS | refs_legacy | raisings | manual sql inserts for adding 'sort' column |
+| IOTDB.refs_meta.SPECIES_CATEGORIES | refs_legacy | species_categories | `insert_legacy_species_categories.sql` |
+| IOTDB.refs_meta.SPECIES_GROUPS | refs_legacy | species_groups |  `insert_legacy_species_groups.sql` |
+| IOTDB.refs_meta.WORKING_PARTIES | refs_legacy | working_parties | `insert_legacy_working_parties.sql` |
 
 ## New tables for ROS
 
@@ -87,6 +89,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET label_fr = REPLACE(label_fr, 'térrestre', 'terrestre') WHERE label_fr LIKE '%térrestre%';``` |
 | refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';``` | 
 | refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET name_en = REPLACE(name_en, 'areas under national jurisdiction (AUNJ)', 'national jurisdiction area (NJA)') WHERE name_en LIKE '%under national jurisdiction%';```
+| refs_legacy | IUCN_STATUS | addition of SORT column for the data browser | 
 
 # Changes in ROS Code List Component
 
