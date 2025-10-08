@@ -326,8 +326,11 @@ use_data(LEGACY_FAD_OWNERSHIPS, overwrite = TRUE)
 
 # Other codelists (that should be added in IOTC_master)
 # Currently downloaded in the R library: iotc-lib-base-common-data/R/iotc_base_common_data_factors.R
-LEGACY_CONDITION_TYPES_IOTDB    = query(DB_IOTDB(), "SELECT * FROM meta.CONDITION_TYPES")
-LEGACY_FATE_TYPES_IOTDB         = query(DB_IOTDB(), "SELECT * FROM meta.FATE_TYPES")
+
+#LEGACY_CONDITION_TYPES_IOTDB    = query(DB_IOTDB(), "SELECT * FROM meta.CONDITION_TYPES")
+LEGACY_CONDITION_TYPES_IOTDB = legacy_domain("condition_types")
+# LEGACY_FATE_TYPES_IOTDB         = query(DB_IOTDB(), "SELECT * FROM meta.FATE_TYPES")
+LEGACY_FATE_TYPES_IOTDB = legacy_domain("fate_types")
 
 LEGACY_WORKING_PARTIES_IOTDB    = query(DB_IOTDB(), "SELECT * FROM meta.WORKING_PARTIES")
 LEGACY_SPECIES_GROUPS_IOTDB     = query(DB_IOTDB(), "SELECT * FROM meta.SPECIES_GROUPS")

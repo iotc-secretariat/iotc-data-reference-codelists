@@ -37,11 +37,11 @@ Historical tables which include a SORT column and are required by in some IOTC R
 
 These reference tables aim to support the collection of biological samples by the observer. They are in the data dictionary but currently miss from the reporting forms.
 
-<!-- - Position of offal disposal (position code) - use [refs_fishery.vessel_sections](https://data.iotc.org/reference/latest/domain/fisheries/#vesselSections) -->
-- refs_biology.macro_maturity_stage: Maturity scale and stage
-- refs_biology.sample_type: e.g., otoliths, spine clippings, and genetic samples
-- refs_biology.sample_preservation_method: e.g., preservation method (e.g., alcohol, frozen, etc.)
-- refs_biology.sample_destination: destination, i.e., location to be sent/stored
+| schema | table | description |
+|:----------- | :---------------- | :------------------------- |
+| refs_biology | macro_maturity_stage | Maturity scale and stage |
+| refs_biology | sample_type | e.g., otoliths, spine clippings, and genetic samples |
+| refs_biology | sample_preservation_method | e.g., preservation method (e.g., alcohol, frozen, etc.) |
 
 # To Modify
 
@@ -90,6 +90,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';``` | 
 | refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET name_en = REPLACE(name_en, 'areas under national jurisdiction (AUNJ)', 'national jurisdiction area (NJA)') WHERE name_en LIKE '%under national jurisdiction%';```
 | refs_legacy | IUCN_STATUS | addition of SORT column for the data browser | 
+| refs_fishery | BUOY_MODELS | addition of code list derived from IATTC form | 
 
 # Changes in ROS Code List Component
 
@@ -106,7 +107,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_fishery | BAIT_FISHING_METHODS | ```ALTER TABLE refs_fishery.bait_fishing_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | BRANCHLINE_STORAGES | ```ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | BUOY_ACTIVITY_TYPES | **To define descriptions** |
-| refs_fishery | CATCH_UNITS | ```ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | CATCH_UNITS | ```ALTER TABLE refs_fishery.catch_units DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | DEHOOKER_TYPES | ```ALTER TABLE refs_fishery.dehooker_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | FISH_STORAGE_TYPES | ```ALTER TABLE refs_fishery.fish_storage_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | FLOAT_TYPES | ```ALTER TABLE refs_fishery.float_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
@@ -219,6 +220,7 @@ This tables provides information on the version of each table and date of last u
 | refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'WEIGHT_MEASUREMENT_TOOLS', 0, '2023-05-12 00:00:00');``` |
 | refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'LENGTH_MEASUREMENT_TOOLS', 0, '2023-05-12 00:00:00');``` |
 | refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET last_update = '2025-09-11 14:44:00' WHERE cl_name = 'SOURCES';``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'LENGTH_MEASUREMENTS', 6, '2024-09-28 00:00:00')``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'WEIGHT_MEASUREMENTS', 6, '2024-09-28 00:00:00')``` |
-
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'LENGTH_MEASUREMENTS', 0, '2024-09-28 00:00:00')``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'WEIGHT_MEASUREMENTS', 0, '2024-09-28 00:00:00')``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'SCARS', 0, '2020-06-15 00:00:00')``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_fishery', 'GEAR_GROUPS', 0, '2020-06-15 00:00:00')``` |
