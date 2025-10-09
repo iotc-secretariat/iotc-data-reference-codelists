@@ -84,6 +84,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_biology | SPECIES_AGGREGATES | **added columns "name_en", "name_fr", and "name_scientific". The descriptions = the names in fr and en respectively. NOTE\* species have multiple aggregate codes. Would they report multiple codes? or do we need to include a distinction in the descriptions?** |
 | refs_biology | SPECIES_CATEGORIES | ```ALTER TABLE refs_biology.species_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SPECIES_GROUPS | ```ALTER TABLE refs_biology.species_groups DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | SPECIES_TARGET | ```DROP VIEW IF EXISTS refs_biology.species_target;```| 
 | refs_fishery | FISHERIES | description = definitions **To shorten??** |
 | refs_fishery | FOB_TYPES | descriptions = definitions **review French translations** |
 | refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET label_fr = REPLACE(label_fr, 'térrestre', 'terrestre') WHERE label_fr LIKE '%térrestre%';``` |
@@ -91,6 +92,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET name_en = REPLACE(name_en, 'areas under national jurisdiction (AUNJ)', 'national jurisdiction area (NJA)') WHERE name_en LIKE '%under national jurisdiction%';```
 | refs_legacy | IUCN_STATUS | addition of SORT column for the data browser | 
 | refs_fishery | BUOY_MODELS | addition of code list derived from IATTC form | 
+| refs_legacy | V_TARGET_SPECIES | addition of target species view derived from table refs_biology.species and field 'IS_TARGET' |
 
 # Changes in ROS Code List Component
 

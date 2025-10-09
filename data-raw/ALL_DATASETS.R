@@ -64,9 +64,14 @@ CPC_HISTORY                    = admin_domain("cpc_history")  # Added for versio
 CPC_TO_FLAGS                   = admin_domain("cpc_to_flags") # Added for version 2
 CPCS                           = admin_domain("cpcs")         # Added for version 2
 ENTITIES                       = admin_domain("entities")
-# FLEETS_FLAGS_FISHERIES = admin_domain("fleet_to_flags_and_fisheries") # Added for version 2
 FLEETS                         = admin_domain("v_fleets_out")
+
 FLEETS_FLAGS                   = merge(FLEETS[, .(FLEET_CODE = CODE, FLAG_CODE)], ENTITIES, by.x = "FLAG_CODE", by.y = "CODE") %>% setcolorder(neworder = "FLEET_CODE")
+
+ENTITY_FLEET_TO_FLAG = unique(admin_domain("fleet_to_flags_and_fisheries")[, .(REPORTING_ENTITY_CODE, FLAG_CODE, FLEET_CODE)]) # Added for version 2
+
+ENTITY_FLEET_TO_FLAG = merge(ENTITY_FLEET_TO_FLAG, FLEETS[, .(CODE, NAME_EN, NAME_FR)], by.x = "FLEET_CODE", by.y = "CODE")
+
 IO_MAIN_AREAS                  = admin_domain("io_main_areas") # Added for version 2
 PORTS                          = admin_domain("ports")         # Added for version 2
 SPECIES_REPORTING_REQUIREMENTS = admin_domain("species_reporting_requirements") # Added for version 2
@@ -77,6 +82,7 @@ use_data(CPC_HISTORY, overwrite = TRUE)
 use_data(CPC_TO_FLAGS, overwrite = TRUE)
 use_data(CPCS, overwrite = TRUE)
 use_data(ENTITIES, overwrite = TRUE)
+use_data(ENTITY_FLEET_TO_FLAG, overwrite = TRUE)
 use_data(FLEETS, overwrite = TRUE)
 use_data(FLEETS_FLAGS, overwrite = TRUE)
 use_data(IO_MAIN_AREAS, overwrite = TRUE)
@@ -237,7 +243,7 @@ LEGACY_GEARS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.gears")  # includes S
 
 LEGACY_GEAR_TYPES = legacy_domain("GEAR_TYPES")
 
-LEGACY_FISHERY_TYPES = legacy_domain("V_FISHERY_TYPES")
+LEGACY_FISHERY_TYPES = legacy_domain("FISHERY_TYPES")
 
 LEGACY_FISHERY_GROUPS = legacy_domain("V_FISHERY_GROUPS")
 
