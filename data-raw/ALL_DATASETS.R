@@ -60,9 +60,9 @@ socio_economics_domain = function(codelist_name, columns = NULL, connection = C_
   return(load_codelist("refs_socio_economics", codelist_name, columns, connection))
 }
 
-# ADMIN REFERENCES ####
+# ADMIN DOMAIN ####
 
-## Extract the data from IOTC database ####
+## Extract the data from IOTC database
 COUNTRIES                      = admin_domain("countries")
 ENTITIES                       = admin_domain("entities")
 CURRENT_CPCS                   = admin_domain("v_current_cpcs")         # Added for version 2
@@ -79,7 +79,7 @@ IO_MAIN_AREAS                  = admin_domain("io_main_areas") # Added for versi
 PORTS                          = admin_domain("ports")         # Added for version 2
 SPECIES_REPORTING_REQUIREMENTS = admin_domain("species_reporting_requirements") # Added for version 2
 
-## Save package data as rda in data folder ####
+## Save package data as rda in data folder
 use_data(COUNTRIES, overwrite = TRUE)
 use_data(ENTITIES, overwrite = TRUE)
 use_data(CURRENT_CPCS, overwrite = TRUE)
@@ -92,9 +92,9 @@ use_data(IO_MAIN_AREAS, overwrite = TRUE)
 use_data(PORTS, overwrite = TRUE)
 use_data(SPECIES_REPORTING_REQUIREMENTS, overwrite = TRUE)
 
-# GIS REFERENCES ####
+# GIS DOMAIN ####
 
-## Extract the data from IOTC database ####
+## Extract the data from IOTC database
 AREAS_COLUMNS = c("CODE", "NAME_EN", "NAME_FR", "OCEAN_AREA_KM2", "OCEAN_AREA_IO_KM2", "OCEAN_AREA_IOTC_KM2", "CENTER_LAT", "CENTER_LON")
 
 IOTC_AREA            = gis_domain("V_IOTC_AREA_OF_COMPETENCE", columns = AREAS_COLUMNS)
@@ -117,7 +117,7 @@ IO_GRIDS_10x20       = gis_domain("V_IO_GRIDS_10x20",   columns = AREAS_COLUMNS)
 IO_GRIDS_20x20       = gis_domain("V_IO_GRIDS_20x20",   columns = AREAS_COLUMNS)
 IO_GRIDS_30x30       = gis_domain("V_IO_GRIDS_30x30",   columns = AREAS_COLUMNS)
 
-## Save package data as rda in data folder ####
+## Save package data as rda in data folder
 use_data(IOTC_AREA,           overwrite = TRUE)
 use_data(IOTC_AREAS,          overwrite = TRUE)
 use_data(IOTC_MAIN_AREAS,     overwrite = TRUE)
@@ -140,10 +140,25 @@ use_data(IO_GRIDS_30x30, overwrite = TRUE)
 
 # FISHERY REFERENCES ####
 
-## Extract the data from IOTC database ####
+## Fisheries And Gears ####
+
+## Extract the data from IOTC database
 FISHERIES = fishery_domain("V_FISHERIES_OUT")
 FISHERIES[, IS_AGGREGATE := str_detect(CODE, "\\+")]
 
+# Fishery configuration sub-domain
+FISHERY_CATEGORIES  = fishery_config_domain("FISHERY_CATEGORIES") # Added for version 2
+FISHERY_TYPES       = fishery_config_domain("FISHERY_TYPES") # Added for version 2
+FISHERY_PURPOSES    = fishery_config_domain("FISHERY_PURPOSES") # Added for version 2
+AREAS_OF_OPERATION  = fishery_config_domain("AREAS_OF_OPERATION") # Added for version 2
+LOA_CLASSES         = fishery_config_domain("LOA_CLASSES") # Added for version 2
+GEAR_GROUPS         = fishery_config_domain("GEAR_GROUPS") # Added for version 2
+GEARS               = fishery_config_domain("GEARS") # Added for version 2
+GEAR_CONFIGURATIONS = fishery_config_domain("GEAR_CONFIGURATIONS") # Added for version 2
+FISHING_MODES       = fishery_config_domain("FISHING_MODES") # Added for version 2
+TARGET_SPECIES      = fishery_config_domain("TARGET_SPECIES") # Added for version 2
+
+# Fishing Trip Details ####
 REASONS_DAYS_LOST          = fishery_domain("REASONS_DAYS_LOST")
 CARDINAL_POINTS            = fishery_domain("CARDINAL_POINTS")
 VESSEL_SECTIONS            = fishery_domain("VESSEL_SECTIONS")
@@ -169,12 +184,12 @@ NET_CONFIGURATIONS         = fishery_domain("NET_CONFIGURATIONS")
 NET_CONDITIONS             = fishery_domain("NET_CONDITIONS")
 FLOAT_TYPES                = fishery_domain("FLOAT_TYPES")
 SINKER_MATERIAL_TYPES      = fishery_domain("SINKER_MATERIAL_TYPES")
-SURFACE_FISHERY_ACTIVITIES = fishery_domain("SURFACE_FISHERY_ACTIVITIES")
 
+## Fishing Activities ####
+SURFACE_FISHERY_ACTIVITIES = fishery_domain("SURFACE_FISHERY_ACTIVITIES")
 CATCH_UNITS   = fishery_domain("CATCH_UNITS")
 EFFORT_UNITS  = fishery_domain("EFFORT_UNITS")
 DISCARD_UNITS = CATCH_UNITS
-
 FISH_PROCESSING_TYPES = fishery_domain("FISH_PROCESSING_TYPES")
 STUNNING_METHODS      = fishery_domain("STUNNING_METHODS")
 BAIT_FISHING_METHODS  = fishery_domain("BAIT_FISHING_METHODS")
@@ -191,22 +206,34 @@ FOB_TYPES                  = fishery_domain("FOB_TYPES")
 
 FAD_RAFT_DESIGNS   = fishery_domain("FAD_RAFT_DESIGNS")
 FAD_TAIL_DESIGNS   = fishery_domain("FAD_TAIL_DESIGNS")
+
+## Mitigation Measures ####
 MITIGATION_DEVICES = fishery_domain("MITIGATION_DEVICES")
 LIGHT_TYPES        = fishery_domain("LIGHT_TYPES")
 LIGHT_COLOURS      = fishery_domain("LIGHT_COLOURS")
 STREAMER_TYPES     = fishery_domain("STREAMER_TYPES")
 DEHOOKER_TYPES     = fishery_domain("DEHOOKER_TYPES")
 
-## Save package data as rda in data folder ####
+## Save package data as rda in data folder
 use_data(FISHERIES, overwrite = TRUE)
+use_data(FISHERY_CATEGORIES, overwrite = TRUE)
+use_data(FISHERY_TYPES, overwrite = TRUE)
+use_data(FISHERY_PURPOSES, overwrite = TRUE)
+use_data(AREAS_OF_OPERATION, overwrite = TRUE)
+use_data(LOA_CLASSES, overwrite = TRUE)
+use_data(GEAR_GROUPS, overwrite = TRUE)
+use_data(GEARS, overwrite = TRUE)
+use_data(GEAR_CONFIGURATIONS, overwrite = TRUE)
+use_data(FISHING_MODES, overwrite = TRUE)
+use_data(TARGET_SPECIES, overwrite = TRUE)
 use_data(REASONS_DAYS_LOST, overwrite = TRUE)  # v2
 use_data(CARDINAL_POINTS, overwrite = TRUE)    # v2
 use_data(VESSEL_SECTIONS, overwrite = TRUE)    # v2
 use_data(VESSEL_TYPES, overwrite = TRUE)       # v2
 use_data(VESSEL_ARCHITECTURES, overwrite = TRUE)
-use_data(VESSEL_SIZE_TYPES,    overwrite = TRUE)
+use_data(VESSEL_SIZE_TYPES, overwrite = TRUE)
 use_data(HULL_MATERIAL_TYPES, overwrite = TRUE)  # v2
-use_data(MECHANISATION_TYPES,  overwrite = TRUE)
+use_data(MECHANISATION_TYPES, overwrite = TRUE)
 use_data(FISH_PRESERVATION_METHODS, overwrite = TRUE) # renamed from preservation_methods
 use_data(FISH_STORAGE_TYPES, overwrite = TRUE)        # v2
 use_data(WASTE_CATEGORIES, overwrite = TRUE) # v2
@@ -228,7 +255,6 @@ use_data(SURFACE_FISHERY_ACTIVITIES, overwrite = TRUE) # v2
 use_data(CATCH_UNITS, overwrite = TRUE)
 use_data(DISCARD_UNITS, overwrite = TRUE)
 use_data(EFFORT_UNITS, overwrite = TRUE)
-
 use_data(FISH_PROCESSING_TYPES, overwrite = TRUE) # renamed from PROCESSING_TYPES
 use_data(STUNNING_METHODS, overwrite = TRUE) # v2
 use_data(BAIT_FISHING_METHODS, overwrite = TRUE) # v2
@@ -248,33 +274,9 @@ use_data(LIGHT_COLOURS, overwrite = TRUE) #v2
 use_data(STREAMER_TYPES, overwrite = TRUE) #v2
 use_data(DEHOOKER_TYPES, overwrite = TRUE) #v2
 
-# Fishery configuration sub-domain
-FISHERY_CATEGORIES  = fishery_config_domain("FISHERY_CATEGORIES") # Added for version 2
-FISHERY_TYPES       = fishery_config_domain("FISHERY_TYPES") # Added for version 2
-PURPOSES            = fishery_config_domain("PURPOSES") # Added for version 2
-AREAS_OF_OPERATION  = fishery_config_domain("AREAS_OF_OPERATION") # Added for version 2
-LOA_CLASSES         = fishery_config_domain("LOA_CLASSES") # Added for version 2
-GEAR_GROUPS         = fishery_config_domain("GEAR_GROUPS") # Added for version 2
-GEARS               = fishery_config_domain("GEARS") # Added for version 2
-GEAR_CONFIGURATIONS = fishery_config_domain("GEAR_CONFIGURATIONS") # Added for version 2
-FISHING_MODES       = fishery_config_domain("FISHING_MODES") # Added for version 2
-TARGET_SPECIES      = fishery_config_domain("TARGET_SPECIES") # Added for version 2
+# BIOLOGY DOMAIN ####
 
-## Save package data as rda in data folder ####
-use_data(FISHERY_CATEGORIES, overwrite = TRUE)
-use_data(FISHERY_TYPES, overwrite = TRUE)
-use_data(PURPOSES, overwrite = TRUE)
-use_data(AREAS_OF_OPERATION, overwrite = TRUE)
-use_data(LOA_CLASSES, overwrite = TRUE)
-use_data(GEAR_GROUPS, overwrite = TRUE)
-use_data(GEARS, overwrite = TRUE)
-use_data(GEAR_CONFIGURATIONS, overwrite = TRUE)
-use_data(FISHING_MODES, overwrite = TRUE)
-use_data(TARGET_SPECIES, overwrite = TRUE)
-
-# BIOLOGY REFERENCES ####
-
-## Extract the data from IOTC database ####
+## Extract the data from IOTC database
 SPECIES = biology_domain("V_SPECIES", columns = toupper(c("code", "name_en", "name_fr", "name_scientific", "is_iotc", "is_aggregate", "species_category_code", "species_category_name_en", "species_category_name_fr")))
 
 SEX                  = biology_domain("SEX")
@@ -327,29 +329,17 @@ LEGACY_FLEETS       = legacy_domain("FLEETS")
 LEGACY_FLEETS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FLEETS")
 
 LEGACY_MAIN_AREAS = legacy_domain("MAIN_AREAS") 
-
 LEGACY_DATA_TYPES = legacy_domain("DATA_TYPES")
-
 LEGACY_DATA_COVERAGE_TYPES = legacy_domain("COVERAGE_TYPES")
-
 LEGACY_DATA_SOURCES = legacy_domain("DATA_SOURCES")
-
 LEGACY_DATA_PROCESSINGS = legacy_domain("DATA_PROCESSINGS")
-
 LEGACY_ESTIMATION_TYPES = legacy_domain("ESTIMATION_TYPES")
-
 LEGACY_GEARS = legacy_domain("GEARS")
-
 LEGACY_GEARS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.gears")  # includes SORT for factorisation
-
 LEGACY_GEAR_TYPES = legacy_domain("GEAR_TYPES")
-
 LEGACY_FISHERY_TYPES = legacy_domain("FISHERY_TYPES")
-
 LEGACY_FISHERY_GROUPS = legacy_domain("V_FISHERY_GROUPS")
-
 LEGACY_FISHERY_GROUPS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_GROUPS") # includes SORT for factorisation
-
 LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = toupper(c("code", "name_en", "name_fr", "fishery_group_code", "fishery_group_name_fr", "fishery_type_code", "fishery_type_name_fr", "is_aggregate")))
 
 LEGACY_FISHERIES[, FISHERY_CATEGORY_CODE := ifelse(FISHERY_TYPE_CODE != "IN", 

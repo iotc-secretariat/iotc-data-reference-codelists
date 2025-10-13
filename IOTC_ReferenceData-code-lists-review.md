@@ -87,6 +87,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_biology | SPECIES_TARGET | ```DROP VIEW IF EXISTS refs_biology.species_target;```| 
 | refs_fishery | FISHERIES | description = definitions **To shorten??** |
 | refs_fishery | FOB_TYPES | descriptions = definitions **review French translations** |
+| refs_fishery_config | PURPOSES | ```ALTER TABLE IF EXISTS refs_fishery_config.purposes RENAME TO fishery_purposes;``` |
 | refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET label_fr = REPLACE(label_fr, 'térrestre', 'terrestre') WHERE label_fr LIKE '%térrestre%';``` |
 | refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';``` | 
 | refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET name_en = REPLACE(name_en, 'areas under national jurisdiction (AUNJ)', 'national jurisdiction area (NJA)') WHERE name_en LIKE '%under national jurisdiction%';```
@@ -226,3 +227,4 @@ This tables provides information on the version of each table and date of last u
 | refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'WEIGHT_MEASUREMENTS', 0, '2024-09-28 00:00:00')``` |
 | refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'SCARS', 0, '2020-06-15 00:00:00')``` |
 | refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_fishery', 'GEAR_GROUPS', 0, '2020-06-15 00:00:00')``` |
+| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET cl_name = 'FISHERY_PURPOSES' WHERE cl_name = 'PURPOSES';``` |
