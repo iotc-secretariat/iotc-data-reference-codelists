@@ -279,31 +279,55 @@ use_data(DEHOOKER_TYPES, overwrite = TRUE) #v2
 ## Extract the data from IOTC database
 SPECIES = biology_domain("V_SPECIES", columns = toupper(c("code", "name_en", "name_fr", "name_scientific", "is_iotc", "is_aggregate", "species_category_code", "species_category_name_en", "species_category_name_fr")))
 
-SEX                  = biology_domain("SEX")
 TYPES_OF_FATE        = biology_domain("TYPES_OF_FATE")
 FATES                = biology_domain("FATES")
-DISCARD_REASONS      = biology_domain("V_DISCARD_REASONS", columns = c("code", "name_en", "name_fr"))
 RETAIN_REASONS       = biology_domain("V_RETAIN_REASONS",  columns = c("code", "name_en", "name_fr"))
+DISCARD_REASONS      = biology_domain("V_DISCARD_REASONS", columns = c("code", "name_en", "name_fr"))
 CONDITIONS           = biology_domain("INDIVIDUAL_CONDITIONS")
+DEPREDATION_SOURCES  = biology_domain("DEPREDATION_SOURCES")
+SCARS                = biology_domain("SCARS")
+TAG_TYPES            = biology_domain("TAG_TYPES")
+
+## Sampling ####
+SAMPLING_PERIODS     = biology_domain("SAMPLING_PERIODS")
+SAMPLING_PROTOCOLS   = biology_domain("SAMPLING_PROTOCOLS")
+SAMPLE_TYPES         = biology_domain("SAMPLE_TYPES")
+SEX                  = biology_domain("SEX")
+MATURITY_STAGES      = biology_domain("MATURITY_STAGES")
+SAMPLING_METHODS_FOR_SAMPLING_COLLECTIONS = biology_domain("SAMPLING_METHODS_FOR_SAMPLING_COLLECTIONS")
+SAMPLING_METHODS_FOR_CATCH_ESTIMATION = biology_domain("SAMPLING_METHODS_FOR_CATCH_ESTIMATION")
+SAMPLE_PRESERVATION_METHODS = biology_domain("SAMPLE_PRESERVATION_METHODS")
+
+## Morphometrics ####
 TYPES_OF_MEASUREMENT = biology_domain("TYPES_OF_MEASUREMENT")
 MEASUREMENTS         = biology_domain("MEASUREMENTS")
 MEASUREMENT_TOOLS    = biology_domain("MEASUREMENT_TOOLS")
 
-## Save package data as rda in data folder ####
+## Save package data as rda in data folder
 use_data(SPECIES,              overwrite = TRUE)
-use_data(SEX,                  overwrite = TRUE)
 use_data(TYPES_OF_FATE,        overwrite = TRUE)
 use_data(FATES,                overwrite = TRUE)
 use_data(DISCARD_REASONS,      overwrite = TRUE)
 use_data(RETAIN_REASONS,       overwrite = TRUE)
 use_data(CONDITIONS,           overwrite = TRUE)
+use_data(DEPREDATION_SOURCES,  overwrite = TRUE)  #v2
+use_data(SCARS,                overwrite = TRUE)  #v2
+use_data(TAG_TYPES,            overwrite = TRUE)  #v2
+use_data(SAMPLING_PERIODS,     overwrite = TRUE)  #v2
+use_data(SAMPLING_PROTOCOLS,   overwrite = TRUE)  #v2
+use_data(SAMPLE_TYPES,         overwrite = TRUE)  #v2
+use_data(SEX,                  overwrite = TRUE)  #v2
+use_data(MATURITY_STAGES,      overwrite = TRUE)  #v2
+use_data(SAMPLING_METHODS_FOR_SAMPLING_COLLECTIONS, overwrite = TRUE) #v2
+use_data(SAMPLING_METHODS_FOR_CATCH_ESTIMATION, overwrite = TRUE) #v2
+use_data(SAMPLE_PRESERVATION_METHODS, overwrite = TRUE) #v2
 use_data(TYPES_OF_MEASUREMENT, overwrite = TRUE)
 use_data(MEASUREMENTS,         overwrite = TRUE)
 use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
 
-# DATA REFERENCES ####
+# DATA DOMAIN ####
 
-## Extract the data from IOTC database ####
+## Extract the data from IOTC database
 DATA_TYPES       = data_domain("TYPES")
 DATA_RAISINGS    = data_domain("RAISINGS")
 
@@ -313,15 +337,15 @@ DATA_PROCESSINGS    = data_domain("PROCESSINGS")
 DATA_ESTIMATIONS    = data_domain("ESTIMATIONS")
 DATA_COVERAGE_TYPES = data_domain("COVERAGE_TYPES")
 
-## Save package data as rda in data folder ####
-use_data(DATA_TYPES,    overwrite = TRUE)
-use_data(DATA_RAISINGS, overwrite = TRUE)
-use_data(DATA_SOURCES,        overwrite = TRUE)
-use_data(DATA_PROCESSINGS,    overwrite = TRUE)
-use_data(DATA_ESTIMATIONS,    overwrite = TRUE)
+## Save package data as rda in data folder
+use_data(DATA_TYPES,       overwrite = TRUE)
+use_data(DATA_RAISINGS,    overwrite = TRUE)
+use_data(DATA_SOURCES,     overwrite = TRUE)
+use_data(DATA_PROCESSINGS, overwrite = TRUE)
+use_data(DATA_ESTIMATIONS, overwrite = TRUE)
 use_data(DATA_COVERAGE_TYPES, overwrite = TRUE)
 
-# LEGACY REFERENCES ####
+# LEGACY DOMAIN ####
 
 # There are currently two possible versions of the LEGACY CODE LISTS, depending on whether they come from the IOTDB database or from IOTC_master. The tables from IOTDB do include a SORT column which is required in the library 'iotc.base.common.data' for the factorisation process of the main variables (e.g., species) 
 
@@ -354,10 +378,7 @@ LEGACY_FISHERIES_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FISHERIES;")
 
 LEGACY_SPECIES = legacy_domain("SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_AGGREGATE", "IS_IOTC"))                                
 
-#LEGACY_SPECIES_IOTDB = query(DB_IOTDB(), "SELECT CODE, SORT, NAME_EN, NAME_LT AS NAME_SCIENTIFIC, IS_AGGREGATE, IS_IOTC, SPECIES_CATEGORY_CODE FROM meta.species")
-
 LEGACY_SPECIES_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.species")
-
 LEGACY_SPECIES_IOTDB = LEGACY_SPECIES_IOTDB[CODE %in% LEGACY_SPECIES$CODE] # includes SORT for factorisation
 
 LEGACY_FATES = legacy_domain("FATES")
@@ -370,26 +391,17 @@ LEGACY_EFFORT_UNITS = legacy_domain("EFFORT_UNITS")
 
 # Temp fix pour EFFORT_UNITS to feed the Data Browser
 LEGACY_EFFORT_UNITS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.EFFORT_UNITS")
-
 LEGACY_SCHOOL_TYPES = legacy_domain("SCHOOL_TYPES")
-
 LEGACY_MEASUREMENT_TYPES = legacy_domain("MEASUREMENT_TYPES")
-
 LEGACY_MEASURE_TYPES_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.MEASURE_TYPES")
-
 LEGACY_MEASUREMENT_TOOLS = legacy_domain("MEASUREMENT_TOOLS")
-
 LEGACY_RAISINGS = legacy_domain("RAISINGS")
-
 LEGACY_BOAT_TYPES = legacy_domain("BOAT_TYPES")
-
 LEGACY_FAD_ACTIVITY_TYPES = legacy_domain("FAD_ACTIVITY_TYPES")
-
 LEGACY_FAD_TYPES = legacy_domain("FAD_TYPES")
-
 LEGACY_FAD_OWNERSHIPS = legacy_domain("FAD_OWNERSHIPS")
 
-## Save package data as rda in data folder ####
+## Save package data as rda in data folder
 use_data(LEGACY_FLEETS, overwrite = TRUE)
 use_data(LEGACY_FLEETS_IOTDB, overwrite = TRUE)
 use_data(LEGACY_MAIN_AREAS, overwrite = TRUE)
@@ -428,9 +440,7 @@ use_data(LEGACY_FAD_OWNERSHIPS, overwrite = TRUE)
 # Other codelists (that should be added in IOTC_master)
 # Currently downloaded in the R library: iotc-lib-base-common-data/R/iotc_base_common_data_factors.R
 
-#LEGACY_CONDITION_TYPES_IOTDB    = query(DB_IOTDB(), "SELECT * FROM meta.CONDITION_TYPES")
 LEGACY_CONDITION_TYPES_IOTDB = legacy_domain("condition_types")
-# LEGACY_FATE_TYPES_IOTDB         = query(DB_IOTDB(), "SELECT * FROM meta.FATE_TYPES")
 LEGACY_FATE_TYPES_IOTDB = legacy_domain("fate_types")
 
 LEGACY_WORKING_PARTIES_IOTDB    = query(DB_IOTDB(), "SELECT * FROM meta.WORKING_PARTIES")
