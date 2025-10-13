@@ -40,6 +40,10 @@ fishery_domain = function(codelist_name, columns = NULL, connection = C_REFERENC
   return(load_codelist("refs_fishery", codelist_name, columns, connection))
 }
 
+fishery_config_domain = function(codelist_name, columns = NULL, connection = C_REFERENCE_DATA) {
+  return(load_codelist("refs_fishery_config", codelist_name, columns, connection))
+}
+
 biology_domain = function(codelist_name, columns = NULL, connection = C_REFERENCE_DATA) {
   return(load_codelist("refs_biology", codelist_name, columns, connection))
 }
@@ -60,13 +64,12 @@ socio_economics_domain = function(codelist_name, columns = NULL, connection = C_
 
 ## Extract the data from IOTC database ####
 COUNTRIES                      = admin_domain("countries")
+ENTITIES                       = admin_domain("entities")
+CURRENT_CPCS                   = admin_domain("v_current_cpcs")         # Added for version 2
 CPC_HISTORY                    = admin_domain("cpc_history")  # Added for version 2
 CPC_TO_FLAGS                   = admin_domain("cpc_to_flags") # Added for version 2
-CPCS                           = admin_domain("cpcs")         # Added for version 2
-ENTITIES                       = admin_domain("entities")
 FLEETS                         = admin_domain("v_fleets_out")
-
-FLEETS_FLAGS                   = merge(FLEETS[, .(FLEET_CODE = CODE, FLAG_CODE)], ENTITIES, by.x = "FLAG_CODE", by.y = "CODE") %>% setcolorder(neworder = "FLEET_CODE")
+FLEETS_FLAGS                   = merge(FLEETS[, .(FLEET_CODE = CODE, FLAG_CODE)], ENTITIES, by.x = "FLAG_CODE", by.y = "CODE") %>% setcolorder(neworder = "FLEET_CODE") # Added for version 2
 
 ENTITY_FLEET_TO_FLAG = unique(admin_domain("fleet_to_flags_and_fisheries")[, .(REPORTING_ENTITY_CODE, FLAG_CODE, FLEET_CODE)]) # Added for version 2
 
@@ -78,36 +81,16 @@ SPECIES_REPORTING_REQUIREMENTS = admin_domain("species_reporting_requirements") 
 
 ## Save package data as rda in data folder ####
 use_data(COUNTRIES, overwrite = TRUE)
+use_data(ENTITIES, overwrite = TRUE)
+use_data(CURRENT_CPCS, overwrite = TRUE)
 use_data(CPC_HISTORY, overwrite = TRUE)
 use_data(CPC_TO_FLAGS, overwrite = TRUE)
-use_data(CPCS, overwrite = TRUE)
-use_data(ENTITIES, overwrite = TRUE)
-use_data(ENTITY_FLEET_TO_FLAG, overwrite = TRUE)
 use_data(FLEETS, overwrite = TRUE)
 use_data(FLEETS_FLAGS, overwrite = TRUE)
+use_data(ENTITY_FLEET_TO_FLAG, overwrite = TRUE)
 use_data(IO_MAIN_AREAS, overwrite = TRUE)
 use_data(PORTS, overwrite = TRUE)
 use_data(SPECIES_REPORTING_REQUIREMENTS, overwrite = TRUE)
-
-# DATA REFERENCES ####
-
-## Extract the data from IOTC database ####
-DATA_TYPES       = data_domain("TYPES")
-DATA_RAISINGS    = data_domain("RAISINGS")
-
-# These shall be further specialized by type of dataset...
-DATA_SOURCES        = data_domain("SOURCES")
-DATA_PROCESSINGS    = data_domain("PROCESSINGS")
-DATA_ESTIMATIONS    = data_domain("ESTIMATIONS")
-DATA_COVERAGE_TYPES = data_domain("COVERAGE_TYPES")
-
-## Save package data as rda in data folder ####
-use_data(DATA_TYPES,    overwrite = TRUE)
-use_data(DATA_RAISINGS, overwrite = TRUE)
-use_data(DATA_SOURCES,        overwrite = TRUE)
-use_data(DATA_PROCESSINGS,    overwrite = TRUE)
-use_data(DATA_ESTIMATIONS,    overwrite = TRUE)
-use_data(DATA_COVERAGE_TYPES, overwrite = TRUE)
 
 # GIS REFERENCES ####
 
@@ -158,38 +141,136 @@ use_data(IO_GRIDS_30x30, overwrite = TRUE)
 # FISHERY REFERENCES ####
 
 ## Extract the data from IOTC database ####
-FISHERIES = fishery_domain("FISHERIES")
+FISHERIES = fishery_domain("V_FISHERIES_OUT")
 FISHERIES[, IS_AGGREGATE := str_detect(CODE, "\\+")]
 
-CATCH_UNITS          = fishery_domain("CATCH_UNITS")
-DISCARD_UNITS        = CATCH_UNITS
-EFFORT_UNITS         = fishery_domain("EFFORT_UNITS")
-#BOAT_TYPES           = fishery_domain("BOAT_TYPES")
-VESSEL_ARCHITECTURES = fishery_domain("VESSEL_ARCHITECTURES")
-#BOAT_CLASS_TYPES     = fishery_domain("BOAT_CLASS_TYPES")
-VESSEL_SIZE_TYPES    = fishery_domain("VESSEL_SIZE_TYPES")
-MECHANISATION_TYPES  = fishery_domain("MECHANISATION_TYPES")
-PRESERVATION_METHODS = fishery_domain("FISH_PRESERVATION_METHODS")
-PROCESSING_TYPES     = fishery_domain("FISH_PROCESSING_TYPES")
-FOB_TYPES            = fishery_domain("FOB_TYPES")
-FOB_ACTIVITY_TYPES   = fishery_domain("FOB_ACTIVITY_TYPES")
+REASONS_DAYS_LOST          = fishery_domain("REASONS_DAYS_LOST")
+CARDINAL_POINTS            = fishery_domain("CARDINAL_POINTS")
+VESSEL_SECTIONS            = fishery_domain("VESSEL_SECTIONS")
+VESSEL_TYPES               = fishery_domain("VESSEL_TYPES")
+VESSEL_ARCHITECTURES       = fishery_domain("VESSEL_ARCHITECTURES")
+VESSEL_SIZE_TYPES          = fishery_domain("VESSEL_SIZE_TYPES")
+HULL_MATERIAL_TYPES        = fishery_domain("HULL_MATERIAL_TYPES")
+MECHANISATION_TYPES        = fishery_domain("MECHANISATION_TYPES")
+FISH_PRESERVATION_METHODS  = fishery_domain("FISH_PRESERVATION_METHODS")
+FISH_STORAGE_TYPES         = fishery_domain("FISH_STORAGE_TYPES")
+WASTE_CATEGORIES           = fishery_domain("WASTE_CATEGORIES")
+WASTE_DISPOSAL_METHODS     = fishery_domain("WASTE_DISPOSAL_METHODS")
+OFFAL_MANAGEMENT_TYPES     = fishery_domain("OFFAL_MANAGEMENT_TYPES")
+POLE_MATERIAL_TYPES        = fishery_domain("POLE_MATERIAL_TYPES")
+LINE_MATERIAL_TYPES        = fishery_domain("LINE_MATERIAL_TYPES")
+BRANCHLINE_STORAGES        = fishery_domain("BRANCHLINE_STORAGES")
+HOOK_TYPES                 = fishery_domain("HOOK_TYPES")
+GILLNET_MATERIAL_TYPES     = fishery_domain("GILLNET_MATERIAL_TYPES")
+NET_COLOURS                = fishery_domain("NET_COLOURS")
+NET_DEPLOY_DEPTHS          = fishery_domain("NET_DEPLOY_DEPTHS")
+NET_SETTING_STRATEGIES     = fishery_domain("NET_SETTING_STRATEGIES")
+NET_CONFIGURATIONS         = fishery_domain("NET_CONFIGURATIONS")
+NET_CONDITIONS             = fishery_domain("NET_CONDITIONS")
+FLOAT_TYPES                = fishery_domain("FLOAT_TYPES")
+SINKER_MATERIAL_TYPES      = fishery_domain("SINKER_MATERIAL_TYPES")
+SURFACE_FISHERY_ACTIVITIES = fishery_domain("SURFACE_FISHERY_ACTIVITIES")
 
-# Temp fix pour EFFORT_UNITS to feed the Data Browser
-LEGACY_EFFORT_UNITS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.EFFORT_UNITS")
+CATCH_UNITS   = fishery_domain("CATCH_UNITS")
+EFFORT_UNITS  = fishery_domain("EFFORT_UNITS")
+DISCARD_UNITS = CATCH_UNITS
+
+FISH_PROCESSING_TYPES = fishery_domain("FISH_PROCESSING_TYPES")
+STUNNING_METHODS      = fishery_domain("STUNNING_METHODS")
+BAIT_FISHING_METHODS  = fishery_domain("BAIT_FISHING_METHODS")
+
+SCHOOL_TYPE_CATEGORIES        = fishery_domain("SCHOOL_TYPE_CATEGORIES")
+SCHOOL_SIGHTING_CUES          = fishery_domain("SCHOOL_SIGHTING_CUES")
+SCHOOL_DETECTION_METHODS      = fishery_domain("SCHOOL_DETECTION_METHODS")
+BAIT_SCHOOL_DETECTION_METHODS = fishery_domain("BAIT_SCHOOL_DETECTION_METHODS")
+
+BUOY_MODELS                = fishery_domain("BUOY_MODELS")
+BUOY_ACTIVITY_TYPES        = fishery_domain("BUOY_ACTIVITY_TYPES")
+FOB_ACTIVITY_TYPES         = fishery_domain("FOB_ACTIVITY_TYPES")
+FOB_TYPES                  = fishery_domain("FOB_TYPES")
+
+FAD_RAFT_DESIGNS   = fishery_domain("FAD_RAFT_DESIGNS")
+FAD_TAIL_DESIGNS   = fishery_domain("FAD_TAIL_DESIGNS")
+MITIGATION_DEVICES = fishery_domain("MITIGATION_DEVICES")
+LIGHT_TYPES        = fishery_domain("LIGHT_TYPES")
+LIGHT_COLOURS      = fishery_domain("LIGHT_COLOURS")
+STREAMER_TYPES     = fishery_domain("STREAMER_TYPES")
+DEHOOKER_TYPES     = fishery_domain("DEHOOKER_TYPES")
 
 ## Save package data as rda in data folder ####
-use_data(FISHERIES,            overwrite = TRUE)
-use_data(CATCH_UNITS,          overwrite = TRUE)
-use_data(DISCARD_UNITS,        overwrite = TRUE)
-use_data(EFFORT_UNITS,         overwrite = TRUE)
+use_data(FISHERIES, overwrite = TRUE)
+use_data(REASONS_DAYS_LOST, overwrite = TRUE)  # v2
+use_data(CARDINAL_POINTS, overwrite = TRUE)    # v2
+use_data(VESSEL_SECTIONS, overwrite = TRUE)    # v2
+use_data(VESSEL_TYPES, overwrite = TRUE)       # v2
 use_data(VESSEL_ARCHITECTURES, overwrite = TRUE)
 use_data(VESSEL_SIZE_TYPES,    overwrite = TRUE)
+use_data(HULL_MATERIAL_TYPES, overwrite = TRUE)  # v2
 use_data(MECHANISATION_TYPES,  overwrite = TRUE)
-use_data(PRESERVATION_METHODS, overwrite = TRUE)
-use_data(PROCESSING_TYPES,     overwrite = TRUE)
-use_data(FOB_TYPES,            overwrite = TRUE)
-use_data(FOB_ACTIVITY_TYPES,   overwrite = TRUE)
-use_data(LEGACY_EFFORT_UNITS_IOTDB, overwrite = TRUE)
+use_data(FISH_PRESERVATION_METHODS, overwrite = TRUE) # renamed from preservation_methods
+use_data(FISH_STORAGE_TYPES, overwrite = TRUE)        # v2
+use_data(WASTE_CATEGORIES, overwrite = TRUE) # v2
+use_data(WASTE_DISPOSAL_METHODS, overwrite = TRUE) # v2
+use_data(OFFAL_MANAGEMENT_TYPES, overwrite = TRUE) # v2
+use_data(POLE_MATERIAL_TYPES, overwrite = TRUE) # v2
+use_data(LINE_MATERIAL_TYPES, overwrite = TRUE) # v2
+use_data(BRANCHLINE_STORAGES, overwrite = TRUE) # v2
+use_data(HOOK_TYPES, overwrite = TRUE) # v2
+use_data(GILLNET_MATERIAL_TYPES, overwrite = TRUE)  # v2
+use_data(NET_COLOURS, overwrite = TRUE) # v2NET_DEPLOY_DEPTHS # v2
+use_data(NET_SETTING_STRATEGIES, overwrite = TRUE) # v2
+use_data(NET_CONFIGURATIONS, overwrite = TRUE) # v2
+use_data(NET_CONDITIONS, overwrite = TRUE) # v2
+use_data(FLOAT_TYPES, overwrite = TRUE) # v2
+use_data(SINKER_MATERIAL_TYPES, overwrite = TRUE) # v2 
+use_data(SURFACE_FISHERY_ACTIVITIES, overwrite = TRUE) # v2 
+
+use_data(CATCH_UNITS, overwrite = TRUE)
+use_data(DISCARD_UNITS, overwrite = TRUE)
+use_data(EFFORT_UNITS, overwrite = TRUE)
+
+use_data(FISH_PROCESSING_TYPES, overwrite = TRUE) # renamed from PROCESSING_TYPES
+use_data(STUNNING_METHODS, overwrite = TRUE) # v2
+use_data(BAIT_FISHING_METHODS, overwrite = TRUE) # v2
+use_data(SCHOOL_TYPE_CATEGORIES, overwrite = TRUE) #v2
+use_data(SCHOOL_SIGHTING_CUES, overwrite = TRUE) #v2
+use_data(SCHOOL_DETECTION_METHODS, overwrite = TRUE) #v2
+use_data(BAIT_SCHOOL_DETECTION_METHODS, overwrite = TRUE) #v2
+use_data(BUOY_MODELS, overwrite = TRUE) # v2
+use_data(BUOY_ACTIVITY_TYPES, overwrite = TRUE)
+use_data(FOB_ACTIVITY_TYPES,  overwrite = TRUE)
+use_data(FOB_TYPES, overwrite = TRUE)
+use_data(FAD_RAFT_DESIGNS, overwrite = TRUE) #v2
+use_data(FAD_TAIL_DESIGNS, overwrite = TRUE) #v2
+use_data(MITIGATION_DEVICES, overwrite = TRUE) #v2
+use_data(LIGHT_TYPES, overwrite = TRUE) #v2
+use_data(LIGHT_COLOURS, overwrite = TRUE) #v2
+use_data(STREAMER_TYPES, overwrite = TRUE) #v2
+use_data(DEHOOKER_TYPES, overwrite = TRUE) #v2
+
+# Fishery configuration sub-domain
+FISHERY_CATEGORIES  = fishery_config_domain("FISHERY_CATEGORIES") # Added for version 2
+FISHERY_TYPES       = fishery_config_domain("FISHERY_TYPES") # Added for version 2
+PURPOSES            = fishery_config_domain("PURPOSES") # Added for version 2
+AREAS_OF_OPERATION  = fishery_config_domain("AREAS_OF_OPERATION") # Added for version 2
+LOA_CLASSES         = fishery_config_domain("LOA_CLASSES") # Added for version 2
+GEAR_GROUPS         = fishery_config_domain("GEAR_GROUPS") # Added for version 2
+GEARS               = fishery_config_domain("GEARS") # Added for version 2
+GEAR_CONFIGURATIONS = fishery_config_domain("GEAR_CONFIGURATIONS") # Added for version 2
+FISHING_MODES       = fishery_config_domain("FISHING_MODES") # Added for version 2
+TARGET_SPECIES      = fishery_config_domain("TARGET_SPECIES") # Added for version 2
+
+## Save package data as rda in data folder ####
+use_data(FISHERY_CATEGORIES, overwrite = TRUE)
+use_data(FISHERY_TYPES, overwrite = TRUE)
+use_data(PURPOSES, overwrite = TRUE)
+use_data(AREAS_OF_OPERATION, overwrite = TRUE)
+use_data(LOA_CLASSES, overwrite = TRUE)
+use_data(GEAR_GROUPS, overwrite = TRUE)
+use_data(GEARS, overwrite = TRUE)
+use_data(GEAR_CONFIGURATIONS, overwrite = TRUE)
+use_data(FISHING_MODES, overwrite = TRUE)
+use_data(TARGET_SPECIES, overwrite = TRUE)
 
 # BIOLOGY REFERENCES ####
 
@@ -217,6 +298,26 @@ use_data(CONDITIONS,           overwrite = TRUE)
 use_data(TYPES_OF_MEASUREMENT, overwrite = TRUE)
 use_data(MEASUREMENTS,         overwrite = TRUE)
 use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
+
+# DATA REFERENCES ####
+
+## Extract the data from IOTC database ####
+DATA_TYPES       = data_domain("TYPES")
+DATA_RAISINGS    = data_domain("RAISINGS")
+
+# These shall be further specialized by type of dataset...
+DATA_SOURCES        = data_domain("SOURCES")
+DATA_PROCESSINGS    = data_domain("PROCESSINGS")
+DATA_ESTIMATIONS    = data_domain("ESTIMATIONS")
+DATA_COVERAGE_TYPES = data_domain("COVERAGE_TYPES")
+
+## Save package data as rda in data folder ####
+use_data(DATA_TYPES,    overwrite = TRUE)
+use_data(DATA_RAISINGS, overwrite = TRUE)
+use_data(DATA_SOURCES,        overwrite = TRUE)
+use_data(DATA_PROCESSINGS,    overwrite = TRUE)
+use_data(DATA_ESTIMATIONS,    overwrite = TRUE)
+use_data(DATA_COVERAGE_TYPES, overwrite = TRUE)
 
 # LEGACY REFERENCES ####
 
@@ -277,6 +378,9 @@ LEGACY_CATCH_UNITS = legacy_domain("CATCH_UNITS")
 
 LEGACY_EFFORT_UNITS = legacy_domain("EFFORT_UNITS")
 
+# Temp fix pour EFFORT_UNITS to feed the Data Browser
+LEGACY_EFFORT_UNITS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.EFFORT_UNITS")
+
 LEGACY_SCHOOL_TYPES = legacy_domain("SCHOOL_TYPES")
 
 LEGACY_MEASUREMENT_TYPES = legacy_domain("MEASUREMENT_TYPES")
@@ -320,6 +424,7 @@ use_data(LEGACY_FATES, overwrite = TRUE)
 use_data(LEGACY_SAMPLED_CATCH_TYPES, overwrite = TRUE)
 use_data(LEGACY_CATCH_UNITS, overwrite = TRUE)
 use_data(LEGACY_EFFORT_UNITS, overwrite = TRUE)
+use_data(LEGACY_EFFORT_UNITS_IOTDB, overwrite = TRUE)
 use_data(LEGACY_SCHOOL_TYPES, overwrite = TRUE)
 use_data(LEGACY_MEASUREMENT_TYPES, overwrite = TRUE)
 use_data(LEGACY_MEASURE_TYPES_IOTDB, overwrite = TRUE)
