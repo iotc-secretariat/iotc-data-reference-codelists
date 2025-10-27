@@ -158,7 +158,7 @@ GEAR_CONFIGURATIONS = fishery_config_domain("GEAR_CONFIGURATIONS") # Added for v
 FISHING_MODES       = fishery_config_domain("FISHING_MODES") # Added for version 2
 TARGET_SPECIES      = fishery_config_domain("TARGET_SPECIES") # Added for version 2
 
-# Fishing Trip Details ####
+## Fishing Trip Details ####
 REASONS_DAYS_LOST          = fishery_domain("REASONS_DAYS_LOST")
 CARDINAL_POINTS            = fishery_domain("CARDINAL_POINTS")
 VESSEL_SECTIONS            = fishery_domain("VESSEL_SECTIONS")
@@ -203,6 +203,7 @@ BUOY_MODELS                = fishery_domain("BUOY_MODELS")
 BUOY_ACTIVITY_TYPES        = fishery_domain("BUOY_ACTIVITY_TYPES")
 FOB_ACTIVITY_TYPES         = fishery_domain("FOB_ACTIVITY_TYPES")
 FOB_TYPES                  = fishery_domain("FOB_TYPES")
+DFAD_BIODEGRADABILITY_CATEGORIES = fishery_domain("DFAD_BIODEGRADABILITY_CATEGORIES")
 
 FAD_RAFT_DESIGNS   = fishery_domain("FAD_RAFT_DESIGNS")
 FAD_TAIL_DESIGNS   = fishery_domain("FAD_TAIL_DESIGNS")
@@ -268,6 +269,7 @@ use_data(FOB_ACTIVITY_TYPES,  overwrite = TRUE)
 use_data(FOB_TYPES, overwrite = TRUE)
 use_data(FAD_RAFT_DESIGNS, overwrite = TRUE) #v2
 use_data(FAD_TAIL_DESIGNS, overwrite = TRUE) #v2
+use_data(DFAD_BIODEGRADABILITY_CATEGORIES, overwrite = TRUE) #v2
 use_data(MITIGATION_DEVICES, overwrite = TRUE) #v2
 use_data(LIGHT_TYPES, overwrite = TRUE) #v2
 use_data(LIGHT_COLOURS, overwrite = TRUE) #v2
@@ -362,19 +364,21 @@ LEGACY_GEARS = legacy_domain("GEARS")
 LEGACY_GEARS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.gears")  # includes SORT for factorisation
 LEGACY_GEAR_TYPES = legacy_domain("GEAR_TYPES")
 LEGACY_FISHERY_TYPES = legacy_domain("FISHERY_TYPES")
-LEGACY_FISHERY_GROUPS = legacy_domain("V_FISHERY_GROUPS")
-LEGACY_FISHERY_GROUPS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_GROUPS") # includes SORT for factorisation
-LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = toupper(c("code", "name_en", "name_fr", "fishery_group_code", "fishery_group_name_fr", "fishery_type_code", "fishery_type_name_fr", "is_aggregate")))
+LEGACY_FISHERY_GROUPS = legacy_domain("FISHERY_GROUPS")
+#LEGACY_FISHERY_GROUPS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_GROUPS") # includes SORT for factorisation
+#LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = toupper(c("code", "name_en", "name_fr", "fishery_group_code", "fishery_group_name_fr", "fishery_type_code", "fishery_type_name_fr", "is_aggregate")))
 
-LEGACY_FISHERIES[, FISHERY_CATEGORY_CODE := ifelse(FISHERY_TYPE_CODE != "IN", 
-                                                   "COASTAL", 
-                                                    ifelse(FISHERY_GROUP_CODE == "LL", 
-                                                      "LONGLINE", 
-                                                      "SURFACE"))]
+#LEGACY_FISHERIES[, FISHERY_CATEGORY_CODE := ifelse(FISHERY_TYPE_CODE != "IN", 
+                                                   # "COASTAL", 
+                                                   #  ifelse(FISHERY_GROUP_CODE == "LL", 
+                                                   #    "LONGLINE", 
+                                                   #    "SURFACE"))]
 
-LEGACY_FISHERIES[, IS_AGGREGATE := ifelse(IS_AGGREGATE == 1, TRUE, FALSE)]
+#LEGACY_FISHERIES[, IS_AGGREGATE := ifelse(IS_AGGREGATE == 1, TRUE, FALSE)]
 
-LEGACY_FISHERIES_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FISHERIES;")
+#sLEGACY_FISHERIES_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FISHERIES;")
+
+LEGACY_FISHERIES = legacy_domain("FISHERIES")
 
 LEGACY_SPECIES = legacy_domain("SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_AGGREGATE", "IS_IOTC"))                                
 
