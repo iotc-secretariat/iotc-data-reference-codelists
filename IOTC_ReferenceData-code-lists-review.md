@@ -85,6 +85,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_biology | SPECIES_CATEGORIES | ```ALTER TABLE refs_biology.species_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SPECIES_GROUPS | ```ALTER TABLE refs_biology.species_groups DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SPECIES_TARGET | ```DROP VIEW IF EXISTS refs_biology.species_target;```| 
+| refs_fishery | TARGET_SPECIES | SQL statements of data insertion: "Z:\03_Data\04_data_management\03_databases\IOTC_ReferenceData\05_revisions\adding_code_lists.R"| 
 | refs_fishery | FISHERIES | description = definitions **To shorten??** |
 | refs_fishery | FOB_TYPES | descriptions = definitions **review French translations** |
 | refs_fishery | DFAD_BIODEGRADABILITY_CATEGORIES | SQL statement of data insertion: "Z:\03_Data\04_Data_management\Databases\IOTC_ReferenceData\05_revisions\insert_dfad_biodegradability_categories.sql"  |
