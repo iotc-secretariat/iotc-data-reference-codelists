@@ -103,6 +103,7 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:----------------------------------|
+| refs_biology | SPECIES | ```ALTER TABLE refs_biology.species DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | BAIT_CONDITIONS | ```ALTER TABLE refs_biology.bait_conditions DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | BAIT_TYPES | ```ALTER TABLE refs_biology.bait_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | DEPREDATION_SOURCES | ```ALTER TABLE refs_biology.depredation_sources DROP COLUMN description_fr, DROP COLUMN description_en;``` |
