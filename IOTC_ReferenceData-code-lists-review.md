@@ -66,6 +66,9 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:----------------------------------|
+| refs_admin | CPCS | ```ALTER TABLE refs_admin.cpcs DROP COLUMN description_fr, DROP COLUMN description_en;```
+| refs_admin | CPCS | ```INSERT INTO refs_admin.cpcs(code, name_en, name_fr, is_coastal, is_sids) VALUES ('PAN', 'Panama', 'Panama (le)', 0, 0);``` |
+| refs_admin | CPC_HISTORY | ```INSERT INTO refs_admin.cpc_history(cpc_code, contracting_party, acceptance_date, withdrawal_date) VALUES('PAN', 0, '2025-04-17', NULL);``` |
 | refs_admin | PORTS | ```ALTER TABLE refs_admin.ports DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_admin | IO_MAIN_AREAS | ```UPDATE refs_admin.io_main_areas SET description_fr = 'Partie Est de la zone de compétence de la CTOI correspondant à la zone FAO 57', description_en = 'Eastern part of the IOTC area of competence corresponding to FAO area 57' WHERE code = 'IREASIO'``` |
 | refs_admin | IO_MAIN_AREAS | ```UPDATE refs_admin.io_main_areas SET description_fr = 'Partie ouest de la zone de compétence de la CTOI correspondant à la zone FAO 51 dont la ligne occidentale a été étendue de 20 à 30 degrés est', description_en = 'Western part of the IOTC area of competence corresponding to FAO area 51, whose western boundary has been extended from 20 to 30 degrees east' WHERE code = 'IRWESIO'``` |
