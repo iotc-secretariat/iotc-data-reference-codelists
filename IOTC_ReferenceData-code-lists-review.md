@@ -40,14 +40,27 @@ These reference tables aim to support the collection of biological samples by th
 | schema | table | description |
 |:----------- | :---------------- | :------------------------- |
 | refs_biology | macro_maturity_stage | Maturity scale and stage |
-| refs_biology | sample_type | e.g., otoliths, spine clippings, and genetic samples |
+| refs_biology | sample_types | e.g., otoliths, spine clippings, and genetic samples |
 | refs_biology | sample_preservation_method | e.g., preservation method (e.g., alcohol, frozen, etc.) |
+
+```sql
+ALTER TABLE refs_biology.sample_types RENAME TO biological_materials;
+UPDATE refs_biology.biological_materials SET name_en = 'Skin', name_fr = 'Peau' WHERE code = 'SK';
+INSERT INTO refs_biology.biological_materials (code, name_en, name_fr) VALUES ('SC', 'Scales', 'Écailles');
+UPDATE refs_meta.codelists_versions SET cl_name = 'BIOLOGICAL_MATERIALS' WHERE cl_name = 'SAMPLE_TYPES';
+```
+
+## New tables for biological sampling
+
+| schema | table | description |
+|:----------- | :---------------- | :------------------------- |
+| refs_biology | fish_status | frozen/fresh/defrosted status of fish at sampling | 
 
 # To Modify
 
 ## refs_socio_economics.currencies
 
-```
+```sql
 ALTER TABLE refs_socio_economics.currencies
 RENAME COLUMN currency_code TO code;
 
