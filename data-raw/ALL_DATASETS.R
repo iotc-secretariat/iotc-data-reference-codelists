@@ -291,6 +291,7 @@ SCARS                = biology_domain("SCARS")
 TAG_TYPES            = biology_domain("TAG_TYPES")
 
 ## Sampling ####
+FISH_STATUS          = biology_domain("FISH_STATUS")
 SAMPLING_PERIODS     = biology_domain("SAMPLING_PERIODS")
 SAMPLING_PROTOCOLS   = biology_domain("SAMPLING_PROTOCOLS")
 SAMPLE_TYPES         = biology_domain("SAMPLE_TYPES")
@@ -315,6 +316,7 @@ use_data(CONDITIONS,           overwrite = TRUE)
 use_data(DEPREDATION_SOURCES,  overwrite = TRUE)  #v2
 use_data(SCARS,                overwrite = TRUE)  #v2
 use_data(TAG_TYPES,            overwrite = TRUE)  #v2
+use_data(FISH_STATUS,          overwrite = TRUE)  #v2
 use_data(SAMPLING_PERIODS,     overwrite = TRUE)  #v2
 use_data(SAMPLING_PROTOCOLS,   overwrite = TRUE)  #v2
 use_data(SAMPLE_TYPES,         overwrite = TRUE)  #v2
