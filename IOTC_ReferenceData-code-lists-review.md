@@ -86,12 +86,14 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_admin | IO_MAIN_AREAS | ```UPDATE refs_admin.io_main_areas SET description_fr = 'Partie Est de la zone de compétence de la CTOI correspondant à la zone FAO 57', description_en = 'Eastern part of the IOTC area of competence corresponding to FAO area 57' WHERE code = 'IREASIO'``` |
 | refs_admin | IO_MAIN_AREAS | ```UPDATE refs_admin.io_main_areas SET description_fr = 'Partie ouest de la zone de compétence de la CTOI correspondant à la zone FAO 51 dont la ligne occidentale a été étendue de 20 à 30 degrés est', description_en = 'Western part of the IOTC area of competence corresponding to FAO area 51, whose western boundary has been extended from 20 to 30 degrees east' WHERE code = 'IRWESIO'``` |
 | refs_data | ESTIMATIONS | ```ALTER TABLE refs_data.estimations DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_data | TYPES | ```UPDATE refs_data.types SET description_fr = 'TO DO', description_en = 'TO DO'``` |
-| refs_data | COVERAGE_TYPES | **Add Events and include descriptions for all fields, especially to differentiate sets/events** |
-| refs_data | DATASETS | **removed "datasets" from each definition label, original definitions as descriptions |
-| refs_data | PROCESSINGS | **HARD TO DO - we should revisit definitions** |
-| refs_data | RAISINGS | descriptions + definitions |
-| refs_data | SOURCES | descriptions = definitions, definitions revised |
+| refs_data | TYPES | ```UPDATE refs_data.types SET description_en = 'Official, complete version of the dataset, submitted according to IOTC deadlines; fully checked and considered final', description_fr = 'Version officielle et complète du jeu de données, soumise selon les échéances CTOI ; entièrement vérifiée et considérée comme finale'
+WHERE code = 'FI'; UPDATE refs_data.types SET  description_en = 'Early version of the dataset, submitted prior to the final deadline; may be incomplete, under verification, or subject to updates. Indicates potential uncertainty in the data at the time of preparation', description_fr = 'Version préliminaire du jeu de données, soumise avant l’échéance finale ; peut être incomplète, en cours de vérification ou susceptible d’être mise à jour. Indique une incertitude possible des données au moment de la préparation'
+WHERE code = 'PR';``` |
+| refs_data | COVERAGE_TYPES | Fully revised |
+| refs_data | DATASETS | Fully revised |
+| refs_data | PROCESSINGS | Fully revised |
+| refs_data | RAISINGS | Fully revised |
+| refs_data | SOURCES | Fully revised |
 | refs_biology | SAMPLING_PERIODS | ```ALTER TABLE refs_biology.sampling_periods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SAMPLING_PROTOCOLS | ```ALTER TABLE refs_biology.sampling_protocols DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SEX | ```ALTER TABLE refs_biology.sex DROP COLUMN description_fr, DROP COLUMN description_en;``` |
@@ -106,9 +108,9 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 | refs_fishery | FOB_TYPES | descriptions = definitions **review French translations** |
 | refs_fishery | DFAD_BIODEGRADABILITY_CATEGORIES | SQL statement of data insertion: "Z:\03_Data\04_Data_management\Databases\IOTC_ReferenceData\05_revisions\insert_dfad_biodegradability_categories.sql"  |
 | refs_fishery_config | PURPOSES | ```ALTER TABLE IF EXISTS refs_fishery_config.purposes RENAME TO fishery_purposes;``` |
-| refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET label_fr = REPLACE(label_fr, 'térrestre', 'terrestre') WHERE label_fr LIKE '%térrestre%';``` |
-| refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';``` | 
-| refs_gis     | AREAS     | ```UPDATE refs_gis.AREAS SET name_en = REPLACE(name_en, 'areas under national jurisdiction (AUNJ)', 'national jurisdiction area (NJA)') WHERE name_en LIKE '%under national jurisdiction%';```
+| refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET label_fr = REPLACE(label_fr, 'térrestre', 'terrestre') WHERE label_fr LIKE '%térrestre%';``` |
+| refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';``` | 
+| refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET name_en = REPLACE(name_en, 'areas under national jurisdiction (AUNJ)', 'national jurisdiction area (NJA)') WHERE name_en LIKE '%under national jurisdiction%';```
 | refs_legacy | IUCN_STATUS | addition of SORT column for the data browser | 
 | refs_fishery | BUOY_MODELS | addition of code list derived from IATTC form | 
 | refs_legacy | V_TARGET_SPECIES | addition of target species view derived from table refs_biology.species and field 'IS_TARGET' |
