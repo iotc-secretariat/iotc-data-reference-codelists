@@ -103,6 +103,7 @@ WHERE code = 'PR';``` |
 | refs_biology | SPECIES_CATEGORIES | ```ALTER TABLE refs_biology.species_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SPECIES_GROUPS | ```ALTER TABLE refs_biology.species_groups DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SPECIES_TARGET | ```DROP VIEW IF EXISTS refs_biology.species_target;```| 
+| refs_admin   | FLEETS          | ```UPDATE refs_admin.fleets SET cpc_code = 'ATF' WHERE cpc_code = 'FRAT';ALTER TABLE refs_admin.fleets DROP CONSTRAINT fk_fleets_cpcs;ALTER TABLE refs_admin.fleets ADD CONSTRAINT fk_fleets_cpcs FOREIGN KEY (cpc_code) REFERENCES refs_admin.cpcs(code) ON UPDATE CASCADE;UPDATE refs_admin.cpcs SET code = 'ATF'WHERE code = 'FRAT';``` |
 | refs_fishery | TARGET_SPECIES | SQL statements of data insertion: "Z:\03_Data\04_data_management\03_databases\IOTC_ReferenceData\05_revisions\adding_code_lists.R"| 
 | refs_fishery | FISHERIES | description = definitions **To shorten??** |
 | refs_fishery | FOB_TYPES | descriptions = definitions **review French translations** |
