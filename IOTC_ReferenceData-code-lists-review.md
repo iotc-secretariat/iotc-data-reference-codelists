@@ -108,6 +108,7 @@ WHERE code = 'PR';``` |
 | refs_fishery | FISHERIES | description = definitions **To shorten??** |
 | refs_fishery | FOB_TYPES | descriptions = definitions **review French translations** |
 | refs_fishery | DFAD_BIODEGRADABILITY_CATEGORIES | SQL statement of data insertion: "Z:\03_Data\04_Data_management\Databases\IOTC_ReferenceData\05_revisions\insert_dfad_biodegradability_categories.sql"  |
+| refs_fishery | DFAD_BIODEGRADABILITY_CATEGORIES | ```INSERT INTO refs_fishery.dfad_biodegradability_categories (code, name_en, name_fr, description_en, description_fr, state) VALUES ('UNK', 'Unknown', 'Inconnue', 'The biodegradability category of the DFAD is unknown', 'La catégorie de biodégradabilité du DCPD n''est pas connue', 'Active');``` | 
 | refs_fishery_config | PURPOSES | ```ALTER TABLE IF EXISTS refs_fishery_config.purposes RENAME TO fishery_purposes;``` |
 | refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET label_fr = REPLACE(label_fr, 'térrestre', 'terrestre') WHERE label_fr LIKE '%térrestre%';``` |
 | refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';``` | 
@@ -122,13 +123,16 @@ WHERE code = 'PR';``` |
 
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:----------------------------------|
-| refs_biology | SPECIES | ```ALTER TABLE refs_biology.species DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | BAIT_CONDITIONS | ```ALTER TABLE refs_biology.bait_conditions DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | BAIT_TYPES | ```ALTER TABLE refs_biology.bait_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | DEPREDATION_SOURCES | ```ALTER TABLE refs_biology.depredation_sources DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | MEASUREMENT_TOOLS | ```ALTER TABLE refs_biology.measurement_tools DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SAMPLING_METHODS_FOR_CATCH_ESTIMATION | ```ALTER TABLE refs_biology.sampling_methods_for_catch_estimation DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SAMPLING_METHODS_FOR_SAMPLING_COLLECTIONS | ```ALTER TABLE refs_biology.sampling_methods_for_sampling_collections DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | SPECIES | ```ALTER TABLE refs_biology.species DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | SPECIES | ```ALTER TABLE refs_biology.species RENAME COLUMN "ORDER" TO species_order;ALTER TABLE refs_biology.species RENAME COLUMN family TO species_family;``` |
+| refs_biology | SPECIES | ```ALTER TABLE refs_biology.species DROP COLUMN iucn_status_code;``` |
+| refs_biology | SPECIES_AGGREGATES | ```ALTER TABLE refs_biology.species_aggregates DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
 | refs_fishery | BAIT_FISHING_METHODS | ```ALTER TABLE refs_fishery.bait_fishing_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | BRANCHLINE_STORAGES | ```ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | BUOY_ACTIVITY_TYPES | **To define descriptions** |
