@@ -113,6 +113,7 @@ WHERE code = 'PR';``` |
 | refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET label_fr = REPLACE(label_fr, 'térrestre', 'terrestre') WHERE label_fr LIKE '%térrestre%';``` |
 | refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';``` | 
 | refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET name_en = REPLACE(name_en, 'areas under national jurisdiction (AUNJ)', 'national jurisdiction area (NJA)') WHERE name_en LIKE '%under national jurisdiction%';```
+| refs_gis | AREAS | ```ALTER TABLE refs_gis.AREAS DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
 | refs_legacy | IUCN_STATUS | addition of SORT column for the data browser | 
 | refs_fishery | BUOY_MODELS | addition of code list derived from IATTC form | 
 | refs_legacy | V_TARGET_SPECIES | addition of target species view derived from table refs_biology.species and field 'IS_TARGET' |
