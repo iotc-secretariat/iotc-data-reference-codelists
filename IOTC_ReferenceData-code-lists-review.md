@@ -114,6 +114,7 @@ WHERE code = 'PR';``` |
 | refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';``` | 
 | refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET name_en = REPLACE(name_en, 'areas under national jurisdiction (AUNJ)', 'national jurisdiction area (NJA)') WHERE name_en LIKE '%under national jurisdiction%';```
 | refs_gis | AREAS | ```ALTER TABLE refs_gis.AREAS DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
+| refs_legacy | AREAS | ```CREATE TABLE refs_legacy.areas (LIKE refs_gis.areas INCLUDING ALL); ALTER TABLE refs_legacy.areas ADD CONSTRAINT areas_area_types_fkey FOREIGN KEY (area_type_code) REFERENCES refs_gis.area_types (code); INSERT INTO refs_legacy.areas SELECT * FROM refs_gis.areas WHERE (substr(code, 1, 3) LIKE 'NJA' AND substr(code, 5, 4) NOT LIKE 'TCAC');``` |
 | refs_legacy | IUCN_STATUS | addition of SORT column for the data browser | 
 | refs_fishery | BUOY_MODELS | addition of code list derived from IATTC form | 
 | refs_legacy | V_TARGET_SPECIES | addition of target species view derived from table refs_biology.species and field 'IS_TARGET' |
@@ -255,3 +256,11 @@ This tables provides information on the version of each table and date of last u
 | refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'SCARS', 0, '2020-06-15 00:00:00')``` |
 | refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_fishery', 'GEAR_GROUPS', 0, '2020-06-15 00:00:00')``` |
 | refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET cl_name = 'FISHERY_PURPOSES' WHERE cl_name = 'PURPOSES';``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_legacy', 'AREAS_IO_NJA_LEGACY', 0, '2026-01-24 00:00:00')``` |
+| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET version = 1, last_update = '2026-01-24 12:15:00' WHERE cl_schema = 'refs_gis' AND cl_name = 'AREAS';``` |
+| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET version = 1, last_update = '2026-01-24 12:15:00' WHERE cl_schema = 'refs_gis' AND cl_name = 'AREAS_IO_NJA';``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_gis', 'AREAS_IO_NJA_TCAC', 0, '2026-01-24 15:19:00')``` |
+
+
+
+
