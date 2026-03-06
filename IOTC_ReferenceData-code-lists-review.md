@@ -142,7 +142,7 @@ WHERE code = 'PR';``` |
 | refs_fishery | DEHOOKER_TYPES | ```ALTER TABLE refs_fishery.dehooker_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | FISH_STORAGE_TYPES | ```ALTER TABLE refs_fishery.fish_storage_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | FLOAT_TYPES | ```ALTER TABLE refs_fishery.float_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | FOB_ACTIVITY_TYPES | **To do** |
+| refs_fishery | FOB_ACTIVITY_TYPES | ```INSERT INTO refS_fishery.fob_activity_types(code, name_en, name_fr, dfob, afob, description_fr, description_en) VALUES ('DI', 'Discard', 'Rejet', 1, 1, 'Un objet flottant qui est remis à la mer sans que le propriétaire de la bouée ne tente de le contrôler ou de le récupérer', 'A floating object that is released at sea without any attempt for further control or recovery by the buoy owner');``` |  
 | refs_fishery | FISH_PRESERVATION_METHODS | ```ALTER TABLE refs_fishery.fish_preservation_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_fishery | GEAR_TYPES | ```ALTER TABLE refs_fishery.gear_types DROP COLUMN description_fr, DROP COLUMN description_en;``` **table to remove and replace by refs_fishery_config.gear_groups** |
 | refs_fishery | GILLNET_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.gillnet_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
