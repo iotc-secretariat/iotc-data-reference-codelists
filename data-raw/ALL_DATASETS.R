@@ -143,7 +143,8 @@ use_data(IO_GRIDS_30x30, overwrite = TRUE)
 ## Fisheries And Gears ####
 
 ## Extract the data from IOTC database
-FISHERIES = fishery_domain("V_FISHERIES_OUT")
+#FISHERIES = fishery_domain("V_FISHERIES_OUT")   # simplified version without information on fishery types and gear codes
+FISHERIES = fishery_domain("FISHERIES")
 FISHERIES[, IS_AGGREGATE := str_detect(CODE, "\\+")]
 
 # Fishery configuration sub-domain

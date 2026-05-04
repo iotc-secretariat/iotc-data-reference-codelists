@@ -103,12 +103,14 @@ WHERE code = 'PR';``` |
 | refs_biology | SPECIES_CATEGORIES | ```ALTER TABLE refs_biology.species_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SPECIES_GROUPS | ```ALTER TABLE refs_biology.species_groups DROP COLUMN description_fr, DROP COLUMN description_en;``` |
 | refs_biology | SPECIES_TARGET | ```DROP VIEW IF EXISTS refs_biology.species_target;```| 
+| refs_biology | SPECIES_BAIT | ```INSERT INTO refs_biology.bait_types(code, code_orig, name_en, name_fr) VALUES ('AR', 'OTH', 'Artificial', 'Artificiel');;```| 
 | refs_admin   | FLEETS          | ```UPDATE refs_admin.fleets SET cpc_code = 'ATF' WHERE cpc_code = 'FRAT';ALTER TABLE refs_admin.fleets DROP CONSTRAINT fk_fleets_cpcs;ALTER TABLE refs_admin.fleets ADD CONSTRAINT fk_fleets_cpcs FOREIGN KEY (cpc_code) REFERENCES refs_admin.cpcs(code) ON UPDATE CASCADE;UPDATE refs_admin.cpcs SET code = 'ATF'WHERE code = 'FRAT';``` |
 | refs_fishery | TARGET_SPECIES | SQL statements of data insertion: "Z:\03_Data\04_data_management\03_databases\IOTC_ReferenceData\05_revisions\adding_code_lists.R"| 
 | refs_fishery | FISHERIES | description = definitions **To shorten??** |
 | refs_fishery | FOB_TYPES | descriptions = definitions **review French translations** |
 | refs_fishery | DFAD_BIODEGRADABILITY_CATEGORIES | SQL statement of data insertion: "Z:\03_Data\04_Data_management\Databases\IOTC_ReferenceData\05_revisions\insert_dfad_biodegradability_categories.sql"  |
 | refs_fishery | DFAD_BIODEGRADABILITY_CATEGORIES | ```INSERT INTO refs_fishery.dfad_biodegradability_categories (code, name_en, name_fr, description_en, description_fr, state) VALUES ('UNK', 'Unknown', 'Inconnue', 'The biodegradability category of the DFAD is unknown', 'La catégorie de biodégradabilité du DCPD n''est pas connue', 'Active');``` | 
+| refs_fishery | HOOK_TYPES | ```INSERT INTO refs_fishery.hook_types(code, name_en, name_fr) VALUES ('TLL', 'Trap line loop', 'Boucle de piégeage');``` | 
 | refs_fishery_config | PURPOSES | ```ALTER TABLE IF EXISTS refs_fishery_config.purposes RENAME TO fishery_purposes;``` |
 | refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET label_fr = REPLACE(label_fr, 'térrestre', 'terrestre') WHERE label_fr LIKE '%térrestre%';``` |
 | refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';``` | 
@@ -117,6 +119,7 @@ WHERE code = 'PR';``` |
 | refs_legacy | AREAS | ```CREATE TABLE refs_legacy.areas (LIKE refs_gis.areas INCLUDING ALL); ALTER TABLE refs_legacy.areas ADD CONSTRAINT areas_area_types_fkey FOREIGN KEY (area_type_code) REFERENCES refs_gis.area_types (code); INSERT INTO refs_legacy.areas SELECT * FROM refs_gis.areas WHERE (substr(code, 1, 3) LIKE 'NJA' AND substr(code, 5, 4) NOT LIKE 'TCAC');``` |
 | refs_legacy | IUCN_STATUS | addition of SORT column for the data browser | 
 | refs_fishery | BUOY_MODELS | addition of code list derived from IATTC form | 
+| refs_fishery | BUOY_MODELS | ```INSERT INTO refs_fishery.buoy_models(code, name_en, is_echo_sounder, brand, start_year, comment, active) VALUES ('F8X', '', true, 'ZUNIBAL', 2025, '', true);```  | 
 | refs_legacy | V_TARGET_SPECIES | addition of target species view derived from table refs_biology.species and field 'IS_TARGET' |
 
 # Changes in ROS Code List Component
