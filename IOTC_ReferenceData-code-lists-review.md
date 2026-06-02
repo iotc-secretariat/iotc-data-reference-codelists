@@ -263,7 +263,8 @@ This tables provides information on the version of each table and date of last u
 | refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET version = 1, last_update = '2026-01-24 12:15:00' WHERE cl_schema = 'refs_gis' AND cl_name = 'AREAS';``` |
 | refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET version = 1, last_update = '2026-01-24 12:15:00' WHERE cl_schema = 'refs_gis' AND cl_name = 'AREAS_IO_NJA';``` |
 | refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_gis', 'AREAS_IO_NJA_TCAC', 0, '2026-01-24 15:19:00')``` |
-
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_legacy', 'TARGET_SPECIES', 0, '2024-02-13 00:00:00');``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_data', 'LOGICAL_RESPONSES', 0, '2026-06-02 00:00:00');``` |
 
 
 
