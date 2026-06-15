@@ -266,5 +266,58 @@ This tables provides information on the version of each table and date of last u
 | refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_legacy', 'TARGET_SPECIES', 0, '2024-02-13 00:00:00');``` |
 | refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_data', 'LOGICAL_RESPONSES', 0, '2026-06-02 00:00:00');``` |
 
+## Removal | 2026-06-05
+
+-  Removed refs_fishery.activities (almost) identical to refs_fishery.surface_fishery_activities.
+
+- Remove the following table after ensuring they are not called in any of the ROS forms refs_fishery.gear_types as it is redundant with [gear groups](https://data.iotc.org/reference/latest/domain/fisheries/#gearGroups)
+
+## Revisions | 2026-06-10
+
+Improvements in descriptions of tables: 
+
+- `refs_fishery_config.fishery_purposes`
+
+## Additions | 2026-06-12
+
+Descriptions added to tables:
+
+- `refs_fishery.bait_fishing_methods`
+- `refs_fishery.branchline_storages`
+- `refs_fishery.dehooker_types`
+- `refs_fishery.fish_storage_types`
+- `refs_fishery.float_types`
+- `refs_fishery.hook_and_terminal_devices`
+- `refs_fishery.hull_material_types`
+- `refs_fishery.light_colours`
+- `refs_fishery.light_types`
+- `refs_fishery.line_material_types`
+- `refs_fishery.mitigation_devices`
+- `refs_fishery.line_material_types`
+- `refs_fishery.net_material_types`
+- `refs_fishery.net_colours`
+- `refs_fishery.net_deploy_depths`
+- `refs_fishery.net_setting_strategies`
+- `refs_fishery.net_configurations`
+- `refs_fishery.offal_management_types`
+- `refs_fishery.pole_material_types`
+- `refs_fishery.school_type_categories`
+- `refs_fishery.sinker_material_types`
+- `refs_fishery.streamer_types`
+- `refs_fishery.mechanisation_types`
+- `refs_fishery.vessel_size_types`
+
+VESSEL_ARCHITECTURES
+WASTE_CATEGORIES
+WASTE_DISPOSAL_METHODS
+
+## Removal | 2026-06-12
+
+- Removed table `refs_fishery.gear_types` almost identical to `refs_fishery_config.gear_groups`
+
+- Renamed `refs_fishery.hook_types` to `hook_and_terminal_devices` to better reflect the addition of trap lines
+
+- Rename `refs_fishery.vessel_size_types` to `refs_fishery.vessel_measurement_types`
+
 
 
