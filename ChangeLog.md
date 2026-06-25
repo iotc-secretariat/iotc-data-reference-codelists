@@ -577,6 +577,38 @@ ALTER TABLE refs_admin.ports ADD CONSTRAINT pk_refs_admin_ports PRIMARY KEY (cod
 ALTER TABLE refs_admin.ports DROP COLUMN id;
 ```
 
+### Add audit on missing tables
+
+
+- refs_legacy.areas
+- refs_legacy.boat_size_class
+- refs_legacy.condition_types
+- refs_legacy.effort_units
+- refs_legacy.fad_activity_types
+- refs_legacy.fad_ownerships
+- refs_legacy.fad_types
+- refs_legacy.fate_types
+- refs_legacy.fisheries
+- refs_legacy.fishery_groups
+- refs_legacy.fishery_types
+- refs_legacy.fishing_grounds
+- refs_legacy.fleets
+- refs_legacy.gear_types
+- refs_legacy.gears
+- refs_legacy.isscfg_gear_groups
+- refs_legacy.isscfg_gears
+- refs_legacy.iucn_status
+- refs_legacy.measurement_types
+- refs_legacy.nocs_codes
+- refs_legacy.nocs_names_en
+- refs_legacy.nocs_names_fr
+- refs_legacy.species_categories
+- refs_legacy.species_groups
+- refs_legacy.species_to_grsf
+- refs_legacy.un_locode_ports
+- refs_legacy.working_parties
+- refs_meta.codelists_versions
+
 
 
 
