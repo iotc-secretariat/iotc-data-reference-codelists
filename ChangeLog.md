@@ -4,33 +4,33 @@ This document describes the ongoing improvements in the IOTC code lists.
 
 # References Tables To Remove
 
-Remove a few backup tables (_bkp) used to update the inputs for the fishery wizard. The SQL server IOTC_master database can be used as sandbox.
+Remove a few backup tables (\_bkp) used to update the inputs for the fishery wizard. The SQL server IOTC_master database can be used as sandbox.
 
-```
+```         
 DROP TABLE IF EXISTS refs_fishery_config.gear_to_fishery_type_new;
 DROP TABLE IF EXISTS refs_fishery_config.fishery_types_new;
 DROP TABLE IF EXISTS refs_fishery_config.gear_to_fishery_type_bkp;
 DROP TABLE IF EXISTS refs_fishery_config.fishery_types_bkp;
 DROP TABLE IF EXISTS refs_fishery_config.gear_fishery_type_to_configuration_bkp;
 DROP TABLE IF EXISTS refs_fishery_config.gear_fishery_type_to_fishing_mode_bkp;
-``` 
+```
 
-# Reference Tables To Add
+# Reference Tables To Add {#reference-tables-to-add}
 
 ## Legacy Tables
 
-Historical tables which include a SORT column and are required by in some IOTC R libraries. Note those tables were extracted from the SQL Server database IOTDB and exported to Zenodo/GitHub. Including them in IOTC_ReferenceData will remove the dependency on the IOTDB database. The R scripts and associated `.sql` files are available here: "Z:\03_Data\04_Data_management\Databases\IOTC_ReferenceData\05_revisions\".
+Historical tables which include a SORT column and are required by in some IOTC R libraries. Note those tables were extracted from the SQL Server database IOTDB and exported to Zenodo/GitHub. Including them in IOTC_ReferenceData will remove the dependency on the IOTDB database. The R scripts and associated `.sql` files are available here: "Z:\\03_Data\\04_Data_management\Databases\IOTC\_ReferenceData\\05_revisions".
 
-| Table to Migrate | Schema | Table | SQL File | 
-|:------------------------------- | :---------- | :------------- | :--------------- |
+| Table to Migrate | Schema | Table | SQL File |
+|:---------------------------|:--------------|:--------------|:--------------|
 | IOTDB.refs_meta.CONDITION_TYPES | refs_legacy | condition_types | `insert_legacy_condition_types.sql` |
 | IOTDB.refs_meta.FATE_TYPES | refs_legacy | fate_types | `insert_legacy_fate_types.sql` |
 | IOTDB.refs_meta.FISHERY_TYPES | refs_legacy | fishery_types | `insert_legacy_fishery_types.sql` |
-| IOTDB.refs_meta.FISHING_GROUNDS | refs_legacy | fishing_grounds | `insert_legacy_fishing_grounds.sql` | 
-| IOTDB.refs_meta.RAISINGS | refs_legacy | iucn_status |  `update_iucn_status.sql` |
+| IOTDB.refs_meta.FISHING_GROUNDS | refs_legacy | fishing_grounds | `insert_legacy_fishing_grounds.sql` |
+| IOTDB.refs_meta.RAISINGS | refs_legacy | iucn_status | `update_iucn_status.sql` |
 | IOTDB.refs_meta.RAISINGS | refs_legacy | raisings | manual sql inserts for adding 'sort' column |
 | IOTDB.refs_meta.SPECIES_CATEGORIES | refs_legacy | species_categories | `insert_legacy_species_categories.sql` |
-| IOTDB.refs_meta.SPECIES_GROUPS | refs_legacy | species_groups |  `insert_legacy_species_groups.sql` |
+| IOTDB.refs_meta.SPECIES_GROUPS | refs_legacy | species_groups | `insert_legacy_species_groups.sql` |
 | IOTDB.refs_meta.WORKING_PARTIES | refs_legacy | working_parties | `insert_legacy_working_parties.sql` |
 
 ## New tables for ROS
@@ -38,12 +38,12 @@ Historical tables which include a SORT column and are required by in some IOTC R
 These reference tables aim to support the collection of biological samples by the observer. They are in the data dictionary but currently miss from the reporting forms.
 
 | schema | table | description |
-|:----------- | :---------------- | :------------------------- |
+|:-----------------|:---------------------|:--------------------------------|
 | refs_biology | macro_maturity_stage | Maturity scale and stage |
 | refs_biology | sample_types | e.g., otoliths, spine clippings, and genetic samples |
 | refs_biology | sample_preservation_method | e.g., preservation method (e.g., alcohol, frozen, etc.) |
 
-```sql
+``` sql
 ALTER TABLE refs_biology.sample_types RENAME TO biological_materials;
 UPDATE refs_biology.biological_materials SET name_en = 'Skin', name_fr = 'Peau' WHERE code = 'SK';
 INSERT INTO refs_biology.biological_materials (code, name_en, name_fr) VALUES ('SC', 'Scales', 'Écailles');
@@ -52,15 +52,15 @@ UPDATE refs_meta.codelists_versions SET cl_name = 'BIOLOGICAL_MATERIALS' WHERE c
 
 ## New tables for biological sampling
 
-| schema | table | description |
-|:----------- | :---------------- | :------------------------- |
-| refs_biology | fish_status | frozen/fresh/defrosted status of fish at sampling | 
+| schema       | table       | description                                       |
+|:-----------------|:---------------------|:--------------------------------|
+| refs_biology | fish_status | frozen/fresh/defrosted status of fish at sampling |
 
 # To Modify
 
 ## refs_socio_economics.currencies
 
-```sql
+``` sql
 ALTER TABLE refs_socio_economics.currencies
 RENAME COLUMN currency_code TO code;
 
@@ -78,48 +78,46 @@ COMMENT ON COLUMN refs_socio_economics.currencies.code IS 'Alphabetic code from 
 # Changes in Common Code Lists
 
 | Schema | Table | Revisions |
-|:-----------------|:-------------------|:----------------------------------|
-| refs_admin | CPCS | ```ALTER TABLE refs_admin.cpcs DROP COLUMN description_fr, DROP COLUMN description_en;```
-| refs_admin | CPCS | ```INSERT INTO refs_admin.cpcs(code, name_en, name_fr, is_coastal, is_sids) VALUES ('PAN', 'Panama', 'Panama (le)', 0, 0);``` |
-| refs_admin | CPC_HISTORY | ```INSERT INTO refs_admin.cpc_history(cpc_code, contracting_party, acceptance_date, withdrawal_date) VALUES('PAN', 0, '2025-04-17', NULL);``` |
-| refs_admin | PORTS | ```ALTER TABLE refs_admin.ports DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_admin | IO_MAIN_AREAS | ```UPDATE refs_admin.io_main_areas SET description_fr = 'Partie Est de la zone de compétence de la CTOI correspondant à la zone FAO 57', description_en = 'Eastern part of the IOTC area of competence corresponding to FAO area 57' WHERE code = 'IREASIO'``` |
-| refs_admin | IO_MAIN_AREAS | ```UPDATE refs_admin.io_main_areas SET description_fr = 'Partie ouest de la zone de compétence de la CTOI correspondant à la zone FAO 51 dont la ligne occidentale a été étendue de 20 à 30 degrés est', description_en = 'Western part of the IOTC area of competence corresponding to FAO area 51, whose western boundary has been extended from 20 to 30 degrees east' WHERE code = 'IRWESIO'``` |
-| refs_data | ESTIMATIONS | ```ALTER TABLE refs_data.estimations DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_data | TYPES | ```UPDATE refs_data.types SET description_en = 'Official, complete version of the dataset, submitted according to IOTC deadlines; fully checked and considered final', description_fr = 'Version officielle et complète du jeu de données, soumise selon les échéances CTOI ; entièrement vérifiée et considérée comme finale'
-WHERE code = 'FI'; UPDATE refs_data.types SET  description_en = 'Early version of the dataset, submitted prior to the final deadline; may be incomplete, under verification, or subject to updates. Indicates potential uncertainty in the data at the time of preparation', description_fr = 'Version préliminaire du jeu de données, soumise avant l’échéance finale ; peut être incomplète, en cours de vérification ou susceptible d’être mise à jour. Indique une incertitude possible des données au moment de la préparation'
-WHERE code = 'PR';``` |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_admin | CPCS | `ALTER TABLE refs_admin.cpcs DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_admin | CPCS | `INSERT INTO refs_admin.cpcs(code, name_en, name_fr, is_coastal, is_sids) VALUES ('PAN', 'Panama', 'Panama (le)', 0, 0);` |
+| refs_admin | CPC_HISTORY | `INSERT INTO refs_admin.cpc_history(cpc_code, contracting_party, acceptance_date, withdrawal_date) VALUES('PAN', 0, '2025-04-17', NULL);` |
+| refs_admin | PORTS | `ALTER TABLE refs_admin.ports DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_admin | IO_MAIN_AREAS | `UPDATE refs_admin.io_main_areas SET description_fr = 'Partie Est de la zone de compétence de la CTOI correspondant à la zone FAO 57', description_en = 'Eastern part of the IOTC area of competence corresponding to FAO area 57' WHERE code = 'IREASIO'` |
+| refs_admin | IO_MAIN_AREAS | `UPDATE refs_admin.io_main_areas SET description_fr = 'Partie ouest de la zone de compétence de la CTOI correspondant à la zone FAO 51 dont la ligne occidentale a été étendue de 20 à 30 degrés est', description_en = 'Western part of the IOTC area of competence corresponding to FAO area 51, whose western boundary has been extended from 20 to 30 degrees east' WHERE code = 'IRWESIO'` |
+| refs_data | ESTIMATIONS | `ALTER TABLE refs_data.estimations DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_data | TYPES | `UPDATE refs_data.types SET description_en = 'Official, complete version of the dataset, submitted according to IOTC deadlines; fully checked and considered final', description_fr = 'Version officielle et complète du jeu de données, soumise selon les échéances CTOI ; entièrement vérifiée et considérée comme finale' WHERE code = 'FI'; UPDATE refs_data.types SET  description_en = 'Early version of the dataset, submitted prior to the final deadline; may be incomplete, under verification, or subject to updates. Indicates potential uncertainty in the data at the time of preparation', description_fr = 'Version préliminaire du jeu de données, soumise avant l’échéance finale ; peut être incomplète, en cours de vérification ou susceptible d’être mise à jour. Indique une incertitude possible des données au moment de la préparation' WHERE code = 'PR';` |
 | refs_data | COVERAGE_TYPES | Fully revised |
 | refs_data | DATASETS | Fully revised |
 | refs_data | PROCESSINGS | Fully revised |
 | refs_data | RAISINGS | Fully revised |
 | refs_data | SOURCES | Fully revised |
-| refs_biology | SAMPLING_PERIODS | ```ALTER TABLE refs_biology.sampling_periods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | SAMPLING_PROTOCOLS | ```ALTER TABLE refs_biology.sampling_protocols DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | SEX | ```ALTER TABLE refs_biology.sex DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | TYPES_OF_FATE | ```ALTER TABLE refs_biology.types_of_fate DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | SPECIES | ```ALTER TABLE refs_biology.species DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_biology | SAMPLING_PERIODS | `ALTER TABLE refs_biology.sampling_periods DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | SAMPLING_PROTOCOLS | `ALTER TABLE refs_biology.sampling_protocols DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | SEX | `ALTER TABLE refs_biology.sex DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | TYPES_OF_FATE | `ALTER TABLE refs_biology.types_of_fate DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | SPECIES | `ALTER TABLE refs_biology.species DROP COLUMN description_fr, DROP COLUMN description_en;` |
 | refs_biology | SPECIES_AGGREGATES | **added columns "name_en", "name_fr", and "name_scientific". The descriptions = the names in fr and en respectively. NOTE\* species have multiple aggregate codes. Would they report multiple codes? or do we need to include a distinction in the descriptions?** |
-| refs_biology | SPECIES_CATEGORIES | ```ALTER TABLE refs_biology.species_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | SPECIES_GROUPS | ```ALTER TABLE refs_biology.species_groups DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | SPECIES_TARGET | ```DROP VIEW IF EXISTS refs_biology.species_target;```| 
-| refs_biology | SPECIES_BAIT | ```INSERT INTO refs_biology.bait_types(code, code_orig, name_en, name_fr) VALUES ('AR', 'OTH', 'Artificial', 'Artificiel');;```| 
-| refs_admin   | FLEETS          | ```UPDATE refs_admin.fleets SET cpc_code = 'ATF' WHERE cpc_code = 'FRAT';ALTER TABLE refs_admin.fleets DROP CONSTRAINT fk_fleets_cpcs;ALTER TABLE refs_admin.fleets ADD CONSTRAINT fk_fleets_cpcs FOREIGN KEY (cpc_code) REFERENCES refs_admin.cpcs(code) ON UPDATE CASCADE;UPDATE refs_admin.cpcs SET code = 'ATF'WHERE code = 'FRAT';``` |
-| refs_fishery | TARGET_SPECIES | SQL statements of data insertion: "Z:\03_Data\04_data_management\03_databases\IOTC_ReferenceData\05_revisions\adding_code_lists.R"| 
+| refs_biology | SPECIES_CATEGORIES | `ALTER TABLE refs_biology.species_categories DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | SPECIES_GROUPS | `ALTER TABLE refs_biology.species_groups DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | SPECIES_TARGET | `DROP VIEW IF EXISTS refs_biology.species_target;` |
+| refs_biology | SPECIES_BAIT | `INSERT INTO refs_biology.bait_types(code, code_orig, name_en, name_fr) VALUES ('AR', 'OTH', 'Artificial', 'Artificiel');;` |
+| refs_admin | FLEETS | `UPDATE refs_admin.fleets SET cpc_code = 'ATF' WHERE cpc_code = 'FRAT';ALTER TABLE refs_admin.fleets DROP CONSTRAINT fk_fleets_cpcs;ALTER TABLE refs_admin.fleets ADD CONSTRAINT fk_fleets_cpcs FOREIGN KEY (cpc_code) REFERENCES refs_admin.cpcs(code) ON UPDATE CASCADE;UPDATE refs_admin.cpcs SET code = 'ATF'WHERE code = 'FRAT';` |
+| refs_fishery | TARGET_SPECIES | SQL statements of data insertion: "Z:\\03_Data\\04_data_management\\03_databases\IOTC\_ReferenceData\\05_revisions\adding\_code_lists.R" |
 | refs_fishery | FISHERIES | description = definitions **To shorten??** |
 | refs_fishery | FOB_TYPES | descriptions = definitions **review French translations** |
-| refs_fishery | DFAD_BIODEGRADABILITY_CATEGORIES | SQL statement of data insertion: "Z:\03_Data\04_Data_management\Databases\IOTC_ReferenceData\05_revisions\insert_dfad_biodegradability_categories.sql"  |
-| refs_fishery | DFAD_BIODEGRADABILITY_CATEGORIES | ```INSERT INTO refs_fishery.dfad_biodegradability_categories (code, name_en, name_fr, description_en, description_fr, state) VALUES ('UNK', 'Unknown', 'Inconnue', 'The biodegradability category of the DFAD is unknown', 'La catégorie de biodégradabilité du DCPD n''est pas connue', 'Active');``` | 
-| refs_fishery | HOOK_TYPES | ```INSERT INTO refs_fishery.hook_types(code, name_en, name_fr) VALUES ('TLL', 'Trap line loop', 'Boucle de piégeage');``` | 
-| refs_fishery_config | PURPOSES | ```ALTER TABLE IF EXISTS refs_fishery_config.purposes RENAME TO fishery_purposes;``` |
-| refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET label_fr = REPLACE(label_fr, 'térrestre', 'terrestre') WHERE label_fr LIKE '%térrestre%';``` |
-| refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';``` | 
-| refs_gis | AREAS | ```UPDATE refs_gis.AREAS SET name_en = REPLACE(name_en, 'areas under national jurisdiction (AUNJ)', 'national jurisdiction area (NJA)') WHERE name_en LIKE '%under national jurisdiction%';```
-| refs_gis | AREAS | ```ALTER TABLE refs_gis.AREAS DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_legacy | AREAS | ```CREATE TABLE refs_legacy.areas (LIKE refs_gis.areas INCLUDING ALL); ALTER TABLE refs_legacy.areas ADD CONSTRAINT areas_area_types_fkey FOREIGN KEY (area_type_code) REFERENCES refs_gis.area_types (code); INSERT INTO refs_legacy.areas SELECT * FROM refs_gis.areas WHERE (substr(code, 1, 3) LIKE 'NJA' AND substr(code, 5, 4) NOT LIKE 'TCAC');``` |
-| refs_legacy | IUCN_STATUS | addition of SORT column for the data browser | 
-| refs_fishery | BUOY_MODELS | addition of code list derived from IATTC form | 
-| refs_fishery | BUOY_MODELS | ```INSERT INTO refs_fishery.buoy_models(code, name_en, is_echo_sounder, brand, start_year, comment, active) VALUES ('F8X', '', true, 'ZUNIBAL', 2025, '', true);```  | 
+| refs_fishery | DFAD_BIODEGRADABILITY_CATEGORIES | SQL statement of data insertion: "Z:\\03_Data\\04_Data_management\Databases\IOTC\_ReferenceData\\05_revisions\insert\_dfad_biodegradability_categories.sql" |
+| refs_fishery | DFAD_BIODEGRADABILITY_CATEGORIES | `INSERT INTO refs_fishery.dfad_biodegradability_categories (code, name_en, name_fr, description_en, description_fr, state) VALUES ('UNK', 'Unknown', 'Inconnue', 'The biodegradability category of the DFAD is unknown', 'La catégorie de biodégradabilité du DCPD n''est pas connue', 'Active');` |
+| refs_fishery | HOOK_TYPES | `INSERT INTO refs_fishery.hook_types(code, name_en, name_fr) VALUES ('TLL', 'Trap line loop', 'Boucle de piégeage');` |
+| refs_fishery_config | PURPOSES | `ALTER TABLE IF EXISTS refs_fishery_config.purposes RENAME TO fishery_purposes;` |
+| refs_gis | AREAS | `UPDATE refs_gis.AREAS SET label_fr = REPLACE(label_fr, 'térrestre', 'terrestre') WHERE label_fr LIKE '%térrestre%';` |
+| refs_gis | AREAS | `UPDATE refs_gis.AREAS SET name_fr = REPLACE(name_fr, 'térrestre', 'terrestre') WHERE name_fr LIKE '%térrestre%';` |
+| refs_gis | AREAS | `UPDATE refs_gis.AREAS SET name_en = REPLACE(name_en, 'areas under national jurisdiction (AUNJ)', 'national jurisdiction area (NJA)') WHERE name_en LIKE '%under national jurisdiction%';` |
+| refs_gis | AREAS | `ALTER TABLE refs_gis.AREAS DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | AREAS | `CREATE TABLE refs_legacy.areas (LIKE refs_gis.areas INCLUDING ALL); ALTER TABLE refs_legacy.areas ADD CONSTRAINT areas_area_types_fkey FOREIGN KEY (area_type_code) REFERENCES refs_gis.area_types (code); INSERT INTO refs_legacy.areas SELECT * FROM refs_gis.areas WHERE (substr(code, 1, 3) LIKE 'NJA' AND substr(code, 5, 4) NOT LIKE 'TCAC');` |
+| refs_legacy | IUCN_STATUS | addition of SORT column for the data browser |
+| refs_fishery | BUOY_MODELS | addition of code list derived from IATTC form |
+| refs_fishery | BUOY_MODELS | `INSERT INTO refs_fishery.buoy_models(code, name_en, is_echo_sounder, brand, start_year, comment, active) VALUES ('F8X', '', true, 'ZUNIBAL', 2025, '', true);` |
 | refs_legacy | V_TARGET_SPECIES | addition of target species view derived from table refs_biology.species and field 'IS_TARGET' |
 
 # Changes in ROS Code List Component
@@ -127,96 +125,96 @@ WHERE code = 'PR';``` |
 ## Changes in Structure
 
 | Schema | Table | Revisions |
-|:-----------------|:-------------------|:----------------------------------|
-| refs_biology | BAIT_CONDITIONS | ```ALTER TABLE refs_biology.bait_conditions DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | BAIT_TYPES | ```ALTER TABLE refs_biology.bait_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | DEPREDATION_SOURCES | ```ALTER TABLE refs_biology.depredation_sources DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | MEASUREMENT_TOOLS | ```ALTER TABLE refs_biology.measurement_tools DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | SAMPLING_METHODS_FOR_CATCH_ESTIMATION | ```ALTER TABLE refs_biology.sampling_methods_for_catch_estimation DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | SAMPLING_METHODS_FOR_SAMPLING_COLLECTIONS | ```ALTER TABLE refs_biology.sampling_methods_for_sampling_collections DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | SPECIES | ```ALTER TABLE refs_biology.species DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_biology | SPECIES | ```ALTER TABLE refs_biology.species RENAME COLUMN "ORDER" TO species_order;ALTER TABLE refs_biology.species RENAME COLUMN family TO species_family;``` |
-| refs_biology | SPECIES | ```ALTER TABLE refs_biology.species DROP COLUMN iucn_status_code;``` |
-| refs_biology | SPECIES_AGGREGATES | ```ALTER TABLE refs_biology.species_aggregates DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_fishery | BAIT_FISHING_METHODS | ```ALTER TABLE refs_fishery.bait_fishing_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | BRANCHLINE_STORAGES | ```ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_biology | BAIT_CONDITIONS | `ALTER TABLE refs_biology.bait_conditions DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | BAIT_TYPES | `ALTER TABLE refs_biology.bait_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | DEPREDATION_SOURCES | `ALTER TABLE refs_biology.depredation_sources DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | MEASUREMENT_TOOLS | `ALTER TABLE refs_biology.measurement_tools DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | SAMPLING_METHODS_FOR_CATCH_ESTIMATION | `ALTER TABLE refs_biology.sampling_methods_for_catch_estimation DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | SAMPLING_METHODS_FOR_SAMPLING_COLLECTIONS | `ALTER TABLE refs_biology.sampling_methods_for_sampling_collections DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | SPECIES | `ALTER TABLE refs_biology.species DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_biology | SPECIES | `ALTER TABLE refs_biology.species RENAME COLUMN "ORDER" TO species_order;ALTER TABLE refs_biology.species RENAME COLUMN family TO species_family;` |
+| refs_biology | SPECIES | `ALTER TABLE refs_biology.species DROP COLUMN iucn_status_code;` |
+| refs_biology | SPECIES_AGGREGATES | `ALTER TABLE refs_biology.species_aggregates DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | BAIT_FISHING_METHODS | `ALTER TABLE refs_fishery.bait_fishing_methods DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | BRANCHLINE_STORAGES | `ALTER TABLE refs_fishery.branchline_storages DROP COLUMN description_fr, DROP COLUMN description_en;` |
 | refs_fishery | BUOY_ACTIVITY_TYPES | **To define descriptions** |
-| refs_fishery | CATCH_UNITS | ```ALTER TABLE refs_fishery.catch_units DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | DEHOOKER_TYPES | ```ALTER TABLE refs_fishery.dehooker_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | FISH_STORAGE_TYPES | ```ALTER TABLE refs_fishery.fish_storage_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | FLOAT_TYPES | ```ALTER TABLE refs_fishery.float_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | FOB_ACTIVITY_TYPES | ```INSERT INTO refS_fishery.fob_activity_types(code, name_en, name_fr, dfob, afob, description_fr, description_en) VALUES ('DI', 'Discard', 'Rejet', 1, 1, 'Un objet flottant qui est remis à la mer sans que le propriétaire de la bouée ne tente de le contrôler ou de le récupérer', 'A floating object that is released at sea without any attempt for further control or recovery by the buoy owner');``` |  
-| refs_fishery | FISH_PRESERVATION_METHODS | ```ALTER TABLE refs_fishery.fish_preservation_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | GEAR_TYPES | ```ALTER TABLE refs_fishery.gear_types DROP COLUMN description_fr, DROP COLUMN description_en;``` **table to remove and replace by refs_fishery_config.gear_groups** |
-| refs_fishery | GILLNET_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.gillnet_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | HOOK_TYPES | ```ALTER TABLE refs_fishery.hook_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | HULL_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.hull_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | LIGHT_TYPES | ```ALTER TABLE refs_fishery.light_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | LIGHT_COLOURS | ```ALTER TABLE refs_fishery.light_colours DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | LINE_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.line_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | MECHANIZATION_TYPES | ```ALTER TABLE refs_fishery.mechanization_types RENAME TO mechanisation_types; ALTER TABLE refs_fishery.mechanisation_types DROP COLUMN description_fr, DROP COLUMN description_en; UPDATE refs_fishery.mechanisation_types SET name_fr = 'Inconnu' WHERE code LIKE 'UN';``` |
-| refs_fishery | MITIGATION_DEVICES | ```ALTER TABLE refs_fishery.mitigation_devices DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | NET_COLOURS | ```ALTER TABLE refs_fishery.net_colours DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | NET_CONFIGURATIONS | ```ALTER TABLE refs_fishery.net_configurations DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | NET_DEPLOY_DEPTHS | ```ALTER TABLE refs_fishery.net_deploy_depths DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | NET_SETTING_STRATEGIES | ```ALTER TABLE refs_fishery.net_setting_strategies DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | OFFAL_MANAGEMENT_TYPES | **code_orig to remove;** ```ALTER TABLE refs_fishery.offal_management_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | POLE_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.pole_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | REASONS_DAYS_LOST | ```ALTER TABLE refs_fishery.reasons_days_lost DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | SCHOOL_DETECTION_METHODS | ```ALTER TABLE refs_fishery.school_detection_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | SCHOOL_TYPE_CATEGORIES | ```ALTER TABLE refs_fishery.school_type_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` **Would benefit from descriptions*** |
-| refs_fishery | SINKER_MATERIAL_TYPES | ```ALTER TABLE refs_fishery.sinker_material_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | STREAMER_TYPES | **code_orig to remove;** ```ALTER TABLE refs_fishery.streamer_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | STUNNING_METHODS | ```ALTER TABLE refs_fishery.stunning_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | TRANSHIPMENT_CATEGORIES | ```ALTER TABLE refs_fishery.transhipment_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | VESSEL_ARCHITECTURES | ```ALTER TABLE refs_fishery.vessel_architectures DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | VESSEL_SECTIONS | ```ALTER TABLE refs_fishery.vessel_sections DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | VESSEL_SIZE_TYPES | ```ALTER TABLE refs_fishery.vessel_size_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | WASTE_CATEGORIES | ```ALTER TABLE refs_fishery.waste_categories DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | WASTE_DISPOSAL_METHODS | ```ALTER TABLE refs_fishery.waste_disposal_methods DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_fishery | WIND_SCALES | **Add descriptions available [here](https://www.weather.gov/mfl/beaufort) - To remove as not required?**  |
-| refs_legacy | boat_size_class | ```ALTER TABLE refs_legacy.boat_size_class DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | boat_types | ```ALTER TABLE refs_legacy.boat_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | catch_units | ```ALTER TABLE refs_legacy.catch_units DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | coverage_types | ```ALTER TABLE refs_legacy.coverage_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | data_processings | ```ALTER TABLE refs_legacy.data_processings DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | data_sources | ```ALTER TABLE refs_legacy.data_sources DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | data_types | ```ALTER TABLE refs_legacy.data_types DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_legacy | effort_units | ```ALTER TABLE refs_legacy.effort_units DROP COLUMN description_fr, DROP COLUMN description_en; ALTER TABLE refs_legacy.effort_units ALTER COLUMN code TYPE VARCHAR(6); ALTER TABLE refs_legacy.effort_units ADD COLUMN sort INTEGER; DELETE FROM refs_legacy.effort_units``` SQL statement of data insertion: "Z:\03_Data\04_Data_management\Databases\IOTC_ReferenceData\05_revisions\insert_legacy_effort_units.sql" | 
-| refs_legacy | estimation_types | ```ALTER TABLE refs_legacy.estimation_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | fad_activity_types | ```ALTER TABLE refs_legacy.fad_activity_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | fad_ownerships | ```ALTER TABLE refs_legacy.fad_ownerships DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | fad_types | ```ALTER TABLE refs_legacy.fad_types DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | fates | ```ALTER TABLE refs_legacy.fates DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | fisheries | ```ALTER TABLE refs_legacy.fisheries DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_legacy | fleets | ```ALTER TABLE refs_legacy.fleets DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | gear_types | ```ALTER TABLE refs_legacy.gear_types DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_legacy | gears | ```ALTER TABLE refs_legacy.gears DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | isscfg_gear_groups | ```ALTER TABLE refs_legacy.isscfg_gear_groups DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | isscfg_gears | ```ALTER TABLE refs_legacy.isscfg_gears DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | iucn_status | ```ALTER TABLE refs_legacy.iucn_status DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | main_areas | ```ALTER TABLE refs_legacy.main_areas DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | measurement_tools | ```ALTER TABLE refs_legacy.measurement_tools DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_legacy | measurement_types | ```DROP TABLE IF EXISTS refs_legacy.measurement_types; CREATE TABLE refs_legacy.measurement_types(code VARCHAR(10) PRIMARY KEY NOT NULL,name_en VARCHAR(100), name_fr VARCHAR(100), measure_unit VARCHAR(10));``` SQL statement of data insertion: "Z:\03_Data\04_Data_management\Databases\IOTC_ReferenceData\05_revisions\insert_legacy_measurement_types.sql"  |
-| refs_legacy | nocs_codes | ```ALTER TABLE refs_legacy.nocs_codes DROP COLUMN description_fr, DROP COLUMN description_en;``` |
-| refs_legacy | nocs_names_en | ```ALTER TABLE refs_legacy.nocs_names_en DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_legacy | nocs_names_fr | ```ALTER TABLE refs_legacy.nocs_names_fr DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_legacy | raisings | ```ALTER TABLE refs_legacy.raisings DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_legacy | sampled_catch_types | ```ALTER TABLE refs_legacy.sampled_catch_types DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_legacy | school_types | ```ALTER TABLE refs_legacy.school_types DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_legacy | species | ```ALTER TABLE refs_legacy.species DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_legacy | species_con | ```DROP TABLE refs_legacy.species_con;``` |
-| refs_legacy | species_conditions | ```ALTER TABLE refs_legacy.species_conditions DROP COLUMN description_fr, DROP COLUMN description_en;``` | 
-| refs_legacy | species_to_grsf | ```ALTER TABLE refs_legacy.species_to_grsf DROP COLUMN description_fr, DROP COLUMN description_en;``` SQL statement of data update: "Z:\03_Data\04_Data_management\Databases\IOTC_ReferenceData\05_revisions\Update_French_names_refs_legacy_species_to_grsf.sql" | 
-| refs_legacy | un_locode_ports | ```ALTER TABLE refs_legacy.un_locode_ports DROP COLUMN description_fr, DROP COLUMN description_en;``` |
+| refs_fishery | CATCH_UNITS | `ALTER TABLE refs_fishery.catch_units DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | DEHOOKER_TYPES | `ALTER TABLE refs_fishery.dehooker_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | FISH_STORAGE_TYPES | `ALTER TABLE refs_fishery.fish_storage_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | FLOAT_TYPES | `ALTER TABLE refs_fishery.float_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | FOB_ACTIVITY_TYPES | `INSERT INTO refS_fishery.fob_activity_types(code, name_en, name_fr, dfob, afob, description_fr, description_en) VALUES ('DI', 'Discard', 'Rejet', 1, 1, 'Un objet flottant qui est remis à la mer sans que le propriétaire de la bouée ne tente de le contrôler ou de le récupérer', 'A floating object that is released at sea without any attempt for further control or recovery by the buoy owner');` |
+| refs_fishery | FISH_PRESERVATION_METHODS | `ALTER TABLE refs_fishery.fish_preservation_methods DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | GEAR_TYPES | `ALTER TABLE refs_fishery.gear_types DROP COLUMN description_fr, DROP COLUMN description_en;` **table to remove and replace by refs_fishery_config.gear_groups** |
+| refs_fishery | GILLNET_MATERIAL_TYPES | `ALTER TABLE refs_fishery.gillnet_material_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | HOOK_TYPES | `ALTER TABLE refs_fishery.hook_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | HULL_MATERIAL_TYPES | `ALTER TABLE refs_fishery.hull_material_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | LIGHT_TYPES | `ALTER TABLE refs_fishery.light_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | LIGHT_COLOURS | `ALTER TABLE refs_fishery.light_colours DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | LINE_MATERIAL_TYPES | `ALTER TABLE refs_fishery.line_material_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | MECHANIZATION_TYPES | `ALTER TABLE refs_fishery.mechanization_types RENAME TO mechanisation_types; ALTER TABLE refs_fishery.mechanisation_types DROP COLUMN description_fr, DROP COLUMN description_en; UPDATE refs_fishery.mechanisation_types SET name_fr = 'Inconnu' WHERE code LIKE 'UN';` |
+| refs_fishery | MITIGATION_DEVICES | `ALTER TABLE refs_fishery.mitigation_devices DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | NET_COLOURS | `ALTER TABLE refs_fishery.net_colours DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | NET_CONFIGURATIONS | `ALTER TABLE refs_fishery.net_configurations DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | NET_DEPLOY_DEPTHS | `ALTER TABLE refs_fishery.net_deploy_depths DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | NET_SETTING_STRATEGIES | `ALTER TABLE refs_fishery.net_setting_strategies DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | OFFAL_MANAGEMENT_TYPES | **code_orig to remove;** `ALTER TABLE refs_fishery.offal_management_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | POLE_MATERIAL_TYPES | `ALTER TABLE refs_fishery.pole_material_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | REASONS_DAYS_LOST | `ALTER TABLE refs_fishery.reasons_days_lost DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | SCHOOL_DETECTION_METHODS | `ALTER TABLE refs_fishery.school_detection_methods DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | SCHOOL_TYPE_CATEGORIES | `ALTER TABLE refs_fishery.school_type_categories DROP COLUMN description_fr, DROP COLUMN description_en;` **Would benefit from descriptions**\* |
+| refs_fishery | SINKER_MATERIAL_TYPES | `ALTER TABLE refs_fishery.sinker_material_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | STREAMER_TYPES | **code_orig to remove;** `ALTER TABLE refs_fishery.streamer_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | STUNNING_METHODS | `ALTER TABLE refs_fishery.stunning_methods DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | TRANSHIPMENT_CATEGORIES | `ALTER TABLE refs_fishery.transhipment_categories DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | VESSEL_ARCHITECTURES | `ALTER TABLE refs_fishery.vessel_architectures DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | VESSEL_SECTIONS | `ALTER TABLE refs_fishery.vessel_sections DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | VESSEL_SIZE_TYPES | `ALTER TABLE refs_fishery.vessel_size_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | WASTE_CATEGORIES | `ALTER TABLE refs_fishery.waste_categories DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | WASTE_DISPOSAL_METHODS | `ALTER TABLE refs_fishery.waste_disposal_methods DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_fishery | WIND_SCALES | **Add descriptions available [here](https://www.weather.gov/mfl/beaufort) - To remove as not required?** |
+| refs_legacy | boat_size_class | `ALTER TABLE refs_legacy.boat_size_class DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | boat_types | `ALTER TABLE refs_legacy.boat_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | catch_units | `ALTER TABLE refs_legacy.catch_units DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | coverage_types | `ALTER TABLE refs_legacy.coverage_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | data_processings | `ALTER TABLE refs_legacy.data_processings DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | data_sources | `ALTER TABLE refs_legacy.data_sources DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | data_types | `ALTER TABLE refs_legacy.data_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | effort_units | `ALTER TABLE refs_legacy.effort_units DROP COLUMN description_fr, DROP COLUMN description_en; ALTER TABLE refs_legacy.effort_units ALTER COLUMN code TYPE VARCHAR(6); ALTER TABLE refs_legacy.effort_units ADD COLUMN sort INTEGER; DELETE FROM refs_legacy.effort_units` SQL statement of data insertion: "Z:\\03_Data\\04_Data_management\Databases\IOTC\_ReferenceData\\05_revisions\insert\_legacy_effort_units.sql" |
+| refs_legacy | estimation_types | `ALTER TABLE refs_legacy.estimation_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | fad_activity_types | `ALTER TABLE refs_legacy.fad_activity_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | fad_ownerships | `ALTER TABLE refs_legacy.fad_ownerships DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | fad_types | `ALTER TABLE refs_legacy.fad_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | fates | `ALTER TABLE refs_legacy.fates DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | fisheries | `ALTER TABLE refs_legacy.fisheries DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | fleets | `ALTER TABLE refs_legacy.fleets DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | gear_types | `ALTER TABLE refs_legacy.gear_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | gears | `ALTER TABLE refs_legacy.gears DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | isscfg_gear_groups | `ALTER TABLE refs_legacy.isscfg_gear_groups DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | isscfg_gears | `ALTER TABLE refs_legacy.isscfg_gears DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | iucn_status | `ALTER TABLE refs_legacy.iucn_status DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | main_areas | `ALTER TABLE refs_legacy.main_areas DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | measurement_tools | `ALTER TABLE refs_legacy.measurement_tools DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | measurement_types | `DROP TABLE IF EXISTS refs_legacy.measurement_types; CREATE TABLE refs_legacy.measurement_types(code VARCHAR(10) PRIMARY KEY NOT NULL,name_en VARCHAR(100), name_fr VARCHAR(100), measure_unit VARCHAR(10));` SQL statement of data insertion: "Z:\\03_Data\\04_Data_management\Databases\IOTC\_ReferenceData\\05_revisions\insert\_legacy_measurement_types.sql" |
+| refs_legacy | nocs_codes | `ALTER TABLE refs_legacy.nocs_codes DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | nocs_names_en | `ALTER TABLE refs_legacy.nocs_names_en DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | nocs_names_fr | `ALTER TABLE refs_legacy.nocs_names_fr DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | raisings | `ALTER TABLE refs_legacy.raisings DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | sampled_catch_types | `ALTER TABLE refs_legacy.sampled_catch_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | school_types | `ALTER TABLE refs_legacy.school_types DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | species | `ALTER TABLE refs_legacy.species DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | species_con | `DROP TABLE refs_legacy.species_con;` |
+| refs_legacy | species_conditions | `ALTER TABLE refs_legacy.species_conditions DROP COLUMN description_fr, DROP COLUMN description_en;` |
+| refs_legacy | species_to_grsf | `ALTER TABLE refs_legacy.species_to_grsf DROP COLUMN description_fr, DROP COLUMN description_en;` SQL statement of data update: "Z:\\03_Data\\04_Data_management\Databases\IOTC\_ReferenceData\\05_revisions\Update\_French_names_refs_legacy_species_to_grsf.sql" |
+| refs_legacy | un_locode_ports | `ALTER TABLE refs_legacy.un_locode_ports DROP COLUMN description_fr, DROP COLUMN description_en;` |
 
 ## Changes in Values
 
 Some improvements were made to the ROS code lists. The tables must now be imported in the ROS and IOTC_ReferenceData databases.
 
 | Schema | Table | Revisions |
-|:-----------------|:-------------------|:----------------------------------|
-| refs_biology | DEPREDATION_SOURCES | ```UPDATE refs_biology.depredation_sources SET name_fr = 'Requins / baleines odontocètes' WHERE code = 'SW';``` |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_biology | DEPREDATION_SOURCES | `UPDATE refs_biology.depredation_sources SET name_fr = 'Requins / baleines odontocètes' WHERE code = 'SW';` |
 | refs_biology | FATES | simplified definitions, descriptions are original definitions (refs_biological.FATES.edited.csv) |
 | refs_biology | GEAR_INTERACTIONS | simplified definitions, descriptions are original definitions |
 | refs_biology | HANDLING_METHODS | removed "using a" from definitions, descriptions are original definitions |
@@ -236,49 +234,53 @@ Some improvements were made to the ROS code lists. The tables must now be import
 | refs_fishery | NET_CONDITIONS | descriptions = definitions, definitions revised |
 | refs_fishery | SCHOOL_SIGHTING_CUES | descriptions = definitions, definitions shortened |
 | refs_fishery | SURFACE_FISHERY_ACTIVITIES | descriptions = definitions, definitions shortened |
-| refs_data    | SOURCES_RO | ```INSERT INTO refs_data.datasets(code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'Regional Observer Scheme dataset', 'Jeu de données du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); INSERT INTO refs_data.sources(dataset_code, code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'OS', 'Data collected at sea by scientific observers under the Regional Observer Scheme', 'Données collectées en mer par des observateurs scientifiques dans le cadre du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); INSERT INTO refs_data.sources(dataset_code, code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'EM', 'Data derived from the review of information collected using Electronic Monitoring Systems under the Regional Observer Scheme', 'Données issues de l''analyse des informations recueillies à l''aide de systèmes de suivi électronique dans le cadre du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); CREATE OR REPLACE VIEW refs_data.v_sources_ro AS SELECT sources.dataset_code, sources.code, sources.name_en, sources.name_fr FROM refs_data.sources WHERE sources.dataset_code = 'RO';``` |
+| refs_data | SOURCES_RO | `INSERT INTO refs_data.datasets(code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'Regional Observer Scheme dataset', 'Jeu de données du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); INSERT INTO refs_data.sources(dataset_code, code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'OS', 'Data collected at sea by scientific observers under the Regional Observer Scheme', 'Données collectées en mer par des observateurs scientifiques dans le cadre du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); INSERT INTO refs_data.sources(dataset_code, code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'EM', 'Data derived from the review of information collected using Electronic Monitoring Systems under the Regional Observer Scheme', 'Données issues de l''analyse des informations recueillies à l''aide de systèmes de suivi électronique dans le cadre du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); CREATE OR REPLACE VIEW refs_data.v_sources_ro AS SELECT sources.dataset_code, sources.code, sources.name_en, sources.name_fr FROM refs_data.sources WHERE sources.dataset_code = 'RO';` |
 
 ## Update Table refs_meta.codelists_versions
 
 This tables provides information on the version of each table and date of last update. It is required for generating these two fields for each code list in the IOTC Reference Data Catalogue as well as in the webpages describing the forms. The new tables added (see section [Reference Tables To Add](#reference-tables-to-add))
 
 | Schema | Table | Revisions |
-|:-----------------|:-------------------|:----------------------------------|
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_admin', 'PORTS', 0, '2025-08-25 11:30:00');``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'RECOMMENDED_MEASUREMENTS', 0, '2024-02-13 00:00:00');``` |
-| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET cl_schema = REPLACE(cl_schema, 'refs_biological', 'refs_biology');``` |
-| refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE cl_schema = 'refs_biological_config';``` |
-| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET last_update = '2023-11-02 00:00:00' WHERE CL_NAME = 'FOB_ACTIVITY_TYPES';``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_fishery', 'WASTE_DISPOSAL_METHODS', 0, '2025-08-25 11:30:00');``` |
-| refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE CL_NAME = 'SAMPLING_METHODS_FOR_CATCH_ESTIM';``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'WEIGHT_MEASUREMENT_TOOLS', 0, '2023-05-12 00:00:00');``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'LENGTH_MEASUREMENT_TOOLS', 0, '2023-05-12 00:00:00');``` |
-| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET last_update = '2025-09-11 14:44:00' WHERE cl_name = 'SOURCES';``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'LENGTH_MEASUREMENTS', 0, '2024-09-28 00:00:00')``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'WEIGHT_MEASUREMENTS', 0, '2024-09-28 00:00:00')``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'SCARS', 0, '2020-06-15 00:00:00')``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_fishery', 'GEAR_GROUPS', 0, '2020-06-15 00:00:00')``` |
-| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET cl_name = 'FISHERY_PURPOSES' WHERE cl_name = 'PURPOSES';``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_legacy', 'AREAS_IO_NJA_LEGACY', 0, '2026-01-24 00:00:00')``` |
-| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET version = 1, last_update = '2026-01-24 12:15:00' WHERE cl_schema = 'refs_gis' AND cl_name = 'AREAS';``` |
-| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET version = 1, last_update = '2026-01-24 12:15:00' WHERE cl_schema = 'refs_gis' AND cl_name = 'AREAS_IO_NJA';``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_gis', 'AREAS_IO_NJA_TCAC', 0, '2026-01-24 15:19:00')``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_legacy', 'TARGET_SPECIES', 0, '2024-02-13 00:00:00');``` |
-| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_data', 'LOGICAL_RESPONSES', 0, '2026-06-02 00:00:00');``` |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_admin', 'PORTS', 0, '2025-08-25 11:30:00');` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'RECOMMENDED_MEASUREMENTS', 0, '2024-02-13 00:00:00');` |
+| refs_meta | codelists_versions | `UPDATE refs_meta.codelists_versions SET cl_schema = REPLACE(cl_schema, 'refs_biological', 'refs_biology');` |
+| refs_meta | codelists_versions | `DELETE FROM refs_meta.codelists_versions WHERE cl_schema = 'refs_biological_config';` |
+| refs_meta | codelists_versions | `UPDATE refs_meta.codelists_versions SET last_update = '2023-11-02 00:00:00' WHERE CL_NAME = 'FOB_ACTIVITY_TYPES';` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_fishery', 'WASTE_DISPOSAL_METHODS', 0, '2025-08-25 11:30:00');` |
+| refs_meta | codelists_versions | `DELETE FROM refs_meta.codelists_versions WHERE CL_NAME = 'SAMPLING_METHODS_FOR_CATCH_ESTIM';` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'WEIGHT_MEASUREMENT_TOOLS', 0, '2023-05-12 00:00:00');` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'LENGTH_MEASUREMENT_TOOLS', 0, '2023-05-12 00:00:00');` |
+| refs_meta | codelists_versions | `UPDATE refs_meta.codelists_versions SET last_update = '2025-09-11 14:44:00' WHERE cl_name = 'SOURCES';` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'LENGTH_MEASUREMENTS', 0, '2024-09-28 00:00:00')` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'WEIGHT_MEASUREMENTS', 0, '2024-09-28 00:00:00')` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'SCARS', 0, '2020-06-15 00:00:00')` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_fishery', 'GEAR_GROUPS', 0, '2020-06-15 00:00:00')` |
+| refs_meta | codelists_versions | `UPDATE refs_meta.codelists_versions SET cl_name = 'FISHERY_PURPOSES' WHERE cl_name = 'PURPOSES';` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_legacy', 'AREAS_IO_NJA_LEGACY', 0, '2026-01-24 00:00:00')` |
+| refs_meta | codelists_versions | `UPDATE refs_meta.codelists_versions SET version = 1, last_update = '2026-01-24 12:15:00' WHERE cl_schema = 'refs_gis' AND cl_name = 'AREAS';` |
+| refs_meta | codelists_versions | `UPDATE refs_meta.codelists_versions SET version = 1, last_update = '2026-01-24 12:15:00' WHERE cl_schema = 'refs_gis' AND cl_name = 'AREAS_IO_NJA';` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_gis', 'AREAS_IO_NJA_TCAC', 0, '2026-01-24 15:19:00')` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_legacy', 'TARGET_SPECIES', 0, '2024-02-13 00:00:00');` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_data', 'LOGICAL_RESPONSES', 0, '2026-06-02 00:00:00');` |
+| refs_meta | codelists_versions | `DELETE FROM refs_meta.codelists_versions WHERE cl_name = 'SPECIES_SHARKS_AND_RAYS';` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url,current_doi) VALUES ('refs_biology', 'SPECIES_SHARKS', 0, '2025-06-27 00:00:00');` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'SPECIES_RAYS', 0, '2025-06-27 00:00:00');` |
+| refs_meta | codelists_versions | `INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update) VALUES ('refs_biology', 'SPECIES_BILLFISH', 0, '2025-06-27 00:00:00');` |
 
-## Removal | 2026-06-05
+## Removal \| 2026-06-05
 
--  Removed refs_fishery.activities (almost) identical to refs_fishery.surface_fishery_activities.
+- Removed refs_fishery.activities (almost) identical to refs_fishery.surface_fishery_activities.
 
 - Remove the following table after ensuring they are not called in any of the ROS forms refs_fishery.gear_types as it is redundant with [gear groups](https://data.iotc.org/reference/latest/domain/fisheries/#gearGroups)
 
-## Revisions | 2026-06-10
+## Revisions \| 2026-06-10
 
-Improvements in descriptions of tables: 
+Improvements in descriptions of tables:
 
 - `refs_fishery_config.fishery_purposes`
 
-## Additions | 2026-06-12
+## Additions \| 2026-06-12
 
 Descriptions added to tables:
 
@@ -307,17 +309,68 @@ Descriptions added to tables:
 - `refs_fishery.mechanisation_types`
 - `refs_fishery.vessel_size_types`
 
-VESSEL_ARCHITECTURES
-WASTE_CATEGORIES
-WASTE_DISPOSAL_METHODS
-
-## Removal | 2026-06-12
+## Removed \| 2026-06-12
 
 - Removed table `refs_fishery.gear_types` almost identical to `refs_fishery_config.gear_groups`
+- Removed record from `refs_meta.codelists_versions` where cl_name = 'BOAT_CLASS_TYPES';
+- Removed record from `refs_meta.codelists_versions` where cl_name = 'CARDINAL_POINTS';
+- Removed record from `refs_meta.codelists_versions` where cl_name = 'FOB_OWNERSHIPS';
+- Removed record from `refs_meta.codelists_versions` where cl_name = 'GEAR_TYPES';
+
+## Renamed \| 2026-06-12
 
 - Renamed `refs_fishery.hook_types` to `hook_and_terminal_devices` to better reflect the addition of trap lines
 
-- Rename `refs_fishery.vessel_size_types` to `refs_fishery.vessel_measurement_types`
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_fishery | hook_types | `ALTER TABLE refs_fishery.hook_types RENAME TO hook_and_terminal_devices;` |
+| refs_fishery | hook_and_terminal_devices | `UPDATE refs_meta.codelists_versions SET cl_name = 'HOOK_AND_TERMINAL_DEVICES' WHERE cl_name = 'HOOK_TYPES';` |
+
+- Renamed `refs_fishery.vessel_size_types` to `refs_fishery.vessel_measurement_types`
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_fishery | vessel_size_types | `ALTER TABLE refs_fishery.vessel_size_types RENAME TO vessel_measurement_types` |
+| refs_fishery | vessel_measurement_types | `UPDATE refs_meta.codelists_versions SET cl_name = 'VESSEL_MEASUREMENT_TYPES' WHERE cl_name = 'VESSEL_SIZE_TYPES';` |
+
+- Renamed `refs_socio_economics.v_countries_currencies` to `refs_socio_economics.v_country_currencies`
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_socio_economics | v_countries_currencies | `ALTER TABLE refs_socio_economics.v_countries_currencies RENAME TO v_country_currencies` |
+| refs_socio_economics | v_country_currencies | `UPDATE refs_meta.codelists_versions SET cl_name = 'COUNTRY_CURRENCIES' WHERE cl_name = 'COUNTRIES_CURRENCIES';` |
+
+## Removed \| 2026-06-25
+
+- Removed record from `refs_meta.codelists_versions` where cl_name = 'SPECIES_CETACEANS_AND_WHALE_SHARKS';
+- Removed record from `refs_meta.codelists_versions` where cl_name = 'TRANSHIPMENT_CATEGORIES';
+- Removed table `refs_fishery.transhipment_categories`
+
+**NB**: the tables `refs_fishery.cardinal_points` and `refs_fishery.wind_scales` are not required anymore as part of the ROS and could be removed
+
+```{sql}
+DROP TABLE IF EXISTS refs_fishery.transhipment_categories;
+```
+
+## Updates \| 2026-06-25
+
+```{sql}
+UPDATE refs_meta.codelists_versions SET url = 'https://data.iotc.org/reference/latest/domain/' || replace(cl_schema, 'refs_', '') || '/#' || replace(lower(substr(initcap(replace(cl_name, '_', ' ')), 1, 1)) || substr(initcap(replace(cl_name, '_', ' ')), 2), ' ', '') WHERE url IS NULL;
+```
+
+## Additions \| 2026-06-24
+
+Descriptions added to tables:
+
+- `refs_fishery.vessel_architectures`
+- `refs_fishery.waste_categories`
+- `refs_fishery.waste_disposal_methods`
+- `refs_fishery.net_conditions`
+- `refs_fishery.reasons_days_lost`
+
+bait conditions
+
+
 
 
 
