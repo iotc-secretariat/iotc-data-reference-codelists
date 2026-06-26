@@ -342,17 +342,15 @@ Descriptions added to tables:
 
 ## Removed \| 2026-06-25
 
-- Removed record from `refs_meta.codelists_versions` where cl_name = 'SPECIES_CETACEANS_AND_WHALE_SHARKS';
-- Removed record from `refs_meta.codelists_versions` where cl_name = 'TRANSHIPMENT_CATEGORIES';
-- Removed table `refs_fishery.transhipment_categories`
-
-**NB**: the tables `refs_fishery.cardinal_points` and `refs_fishery.wind_scales` are not required anymore as part of the ROS and could be removed
-
-```{sql}
-DROP TABLE IF EXISTS refs_fishery.transhipment_categories;
-```
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_fishery | transhipment_categories | ```DROP TABLE IF EXISTS refs_fishery.transhipment_categories; DELETE FROM refs_meta.codelists_versions WHERE cl_name = 'TRANSHIPMENT_CATEGORIES';``` | 
+| refs_fishery | cardinal_points | ```DROP TABLE IF EXISTS refs_fishery.cardinal_points; DELETE FROM refs_meta.codelists_versions WHERE cl_name = 'CARDINAL_POINTS';``` | 
+| refs_fishery | wind_scales | ```DROP TABLE IF EXISTS refs_fishery.wind_scales; DELETE FROM refs_meta.codelists_versions WHERE cl_name = 'WIND_SCALES';``` | 
 
 ## Updates \| 2026-06-25
+
+Updating the URLs associating each code list table with its section in the IOTC Reference Data Catalogue in the table refs_meta.codelists_versions.
 
 ```{sql}
 UPDATE refs_meta.codelists_versions SET url = 'https://data.iotc.org/reference/latest/domain/' || replace(cl_schema, 'refs_', '') || '/#' || replace(lower(substr(initcap(replace(cl_name, '_', ' ')), 1, 1)) || substr(initcap(replace(cl_name, '_', ' ')), 2), ' ', '') WHERE url IS NULL;
@@ -367,8 +365,36 @@ Descriptions added to tables:
 - `refs_fishery.waste_disposal_methods`
 - `refs_fishery.net_conditions`
 - `refs_fishery.reasons_days_lost`
+- `refs_fishery.school_detection_methods`
 
-bait conditions
+## Removals \| 2026-06-26
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_fishery | fisheries | ```ALTER TABLE refs_fishery.fisheries DROP COLUMN IF EXISTS description_en;``` |
+| refs_fishery | fisheries | ```ALTER TABLE refs_fishery.fisheries DROP COLUMN IF EXISTS description_fr;``` |
+
+## Additions \| 2026-06-26
+
+Addition of species following a request made by Australia.
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_biology | biology | ```INSERT INTO refs_biology.species(code,name_en,name_fr,name_scientific,species_group_code,species_category_code,species_family,species_order,is_iotc,is_target,is_ssi,is_predator,is_bait,is_aggregate,is_asfis) VALUES('SEK','South African fur seal','Otarie du Cap','Arctocephalus pusillus','OTHERS','OTHERS','OTARIIDAE','PINNIPEDIA',0,0,1,0,0,0,1);``` | 
+| refs_biology | biology | ```INSERT INTO refs_biology.species(code,name_en,name_fr,name_scientific,species_group_code,species_category_code,species_family,species_order,is_iotc,is_target,is_ssi,is_predator,is_bait,is_aggregate,is_asfis) VALUES('SEK','South African fur seal','Otarie du Cap','Arctocephalus pusillus','OTHERS','OTHERS','OTARIIDAE','PINNIPEDIA',0,0,1,0,0,0,1);``` | 
+
+
+<!--
+To do:
+- `refs_biology.bait_conditions`
+- `refs_biology.bait_types`
+- `refs_biology.biological_materials`
+- `refs_biology.depredation_sources`
+-->
+
+
+
+
 
 
 
