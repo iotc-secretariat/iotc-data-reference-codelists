@@ -5,13 +5,13 @@ library(data.table)
 
 # CONNECTION TO IOTC_REFERENCEDATA
 C_REFERENCE_DATA = 
-DBI::dbConnect(drv = RPostgres::Postgres(),
-               host = Sys.getenv("IOTC_REFERENCE_DATA_DB_SERVER"),
-               dbname = 'IOTC_ReferenceData_2025_07_23',
-               port = 5432,
-               user = Sys.getenv("IOTC_REFERENCE_DATA_DB_USER"),
-               password = Sys.getenv("IOTC_REFERENCE_DATA_DB_PWD")
-)
+  DBI::dbConnect(drv = RPostgres::Postgres(),
+                 host = Sys.getenv("IOTC_DATA_DB_SERVER"),
+                 dbname = Sys.getenv("IOTC_REFERENCE_DATA_DB_NAME"),
+                 port = Sys.getenv("IOTC_DATA_DB_PORT"),
+                 user = Sys.getenv("IOTC_REFERENCE_DATA_DB_USER"),
+                 password = Sys.getenv("IOTC_REFERENCE_DATA_DB_PASSWORD")
+  )
 
 # COMMON REFERENCE DATA MANAGEMENT FUNCTIONS ####
 
