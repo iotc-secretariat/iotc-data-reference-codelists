@@ -388,6 +388,7 @@ Addition of species following a request made by Australia.
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:---------------------------------|
 | refs_fishery | fishery | ```UPDATE refs_fishery.fisheries SET name_en = REPLACE(name_en, 'at medium-scale', 'medium-scale') WHERE name_en LIKE '%at medium-scale%';``` |
+| refs_fishery | fishery | ```UPDATE refs_fishery.fisheries SET name_en = REPLACE(name_en, 'at small-scale', 'small-scale') WHERE name_en LIKE '%at small-scale%';``` |
 
 ## Additions \| 2026-06-27
 
