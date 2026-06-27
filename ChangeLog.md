@@ -383,6 +383,19 @@ Addition of species following a request made by Australia.
 | refs_biology | biology | ```INSERT INTO refs_biology.species(code,name_en,name_fr,name_scientific,species_group_code,species_category_code,species_family,species_order,is_iotc,is_target,is_ssi,is_predator,is_bait,is_aggregate,is_asfis) VALUES('SEK','South African fur seal','Otarie du Cap','Arctocephalus pusillus','OTHERS','OTHERS','OTARIIDAE','PINNIPEDIA',0,0,1,0,0,0,1);``` | 
 | refs_biology | biology | ```INSERT INTO refs_biology.species(code,name_en,name_fr,name_scientific,species_group_code,species_category_code,species_family,species_order,is_iotc,is_target,is_ssi,is_predator,is_bait,is_aggregate,is_asfis) VALUES('SEK','South African fur seal','Otarie du Cap','Arctocephalus pusillus','OTHERS','OTHERS','OTARIIDAE','PINNIPEDIA',0,0,1,0,0,0,1);``` | 
 
+## Updates \| 2026-06-27
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_fishery | fishery | ```UPDATE refs_fishery.fisheries SET name_en = REPLACE(name_en, 'at medium-scale', 'medium-scale') WHERE name_en LIKE '%at medium-scale%';``` |
+
+## Additions \| 2026-06-27
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_fishery | fishery | ```INSERT INTO refs_fishery.fisheries(code,name_en,name_fr,fishery_category_code,fishery_type_code,gear_code,gear_configuration_code,fishing_mode_code,target_species_code,iotdb_gear_code,iotc_fishery_code) VALUES('TL-FS[SI]', 'Commercial medium-scale (NJA) trolling lines fishery, fishing on free schools', 'Pêcherie à moyenne échelle (ZSJN) utilisant des lignes de traîne sur bancs libres','COASTAL','SI','TL',NULL,'FS',NULL,'TROL','TROL');```
+| refs_admin | ports | ```INSERT INTO refs_admin.ports(code,country_code,name_en,name_fr,lat,lon,point) VALUES('AUSKUK','AUS','Triabunna','Triabunna',-42.506,147.914,NULL);UPDATE refs_admin.ports SET point = ST_SetSRID(ST_MakePoint(lon, lat), 4326)::geography WHERE code = 'AUSKUK';``` | 
+| refs_admin | ports | ```INSERT INTO refs_admin.ports(code,country_code,name_en,name_fr,lat,lon,point) VALUES('AUSBER','AUS','Bermagui','Bermagui',-36.431,150.067,NULL);UPDATE refs_admin.ports SET point = ST_SetSRID(ST_MakePoint(lon, lat), 4326)::geography WHERE code = 'AUSBER';``` | 
 
 <!--
 To do:
@@ -390,11 +403,8 @@ To do:
 - `refs_biology.bait_types`
 - `refs_biology.biological_materials`
 - `refs_biology.depredation_sources`
+- refs_biology.fates
 -->
-
-
-
-
 
 ## Little improvements (used to synchronize to Ros database)
 
