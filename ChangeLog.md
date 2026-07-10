@@ -616,7 +616,6 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 
 ### Add audit on missing tables
 
-
 - refs_legacy.areas
 - refs_legacy.boat_size_class
 - refs_legacy.condition_types
@@ -646,6 +645,11 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 - refs_legacy.working_parties
 - refs_meta.codelists_versions
 
+### Additions \| 2026-07-10
 
+- Addition of legacy sex table in database and reference data catalogue
 
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_legacy | sex | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_legacy', 'SEX', 0, '2000-04-07', 'https://data.iotc.org/reference/latest/domain/legacy/#legacySex', 'https://zenodo.org/records/15743875');` | 
 
