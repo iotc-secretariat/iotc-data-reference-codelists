@@ -653,3 +653,14 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 |:-----------------|:-------------------|:---------------------------------|
 | refs_legacy | sex | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_legacy', 'SEX', 0, '2000-04-07', 'https://data.iotc.org/reference/latest/domain/legacy/#legacySex', 'https://zenodo.org/records/15743875');` | 
 
+### Modifications  \| 2026-07-31
+
+- Changes of some duplicated codes used for morphometric measurements
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_biology | measurement_tools | EM (Eye measurement) changed to VL (Visual length) and VW (Visual weight) |
+| refs_biology | measurement_tools | MB (Mechanical balance) changed to MS (Mechanical scale) |
+
+
+
