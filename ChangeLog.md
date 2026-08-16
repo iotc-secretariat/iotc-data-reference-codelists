@@ -1,6 +1,6 @@
-# Abstract
+# Overview
 
-This document describes the ongoing improvements in the IOTC code lists.
+This document describes the changes made in the IOTC code lists hosted on the PostgreSQL IOTCReferenceData database. These code lists are populated to the data package `iotc.data.reference.codelists` available on the IOTC Github repository [iotc-data-reference-codelists](https://github.com/iotc-secretariat/iotc-data-reference-codelists).
 
 # References Tables To Remove
 
@@ -653,7 +653,7 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 |:-----------------|:-------------------|:---------------------------------|
 | refs_legacy | sex | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_legacy', 'SEX', 0, '2000-04-07', 'https://data.iotc.org/reference/latest/domain/legacy/#legacySex', 'https://zenodo.org/records/15743875');` | 
 
-### Modifications  \| 2026-07-31
+### Modifications \| 2026-07-31
 
 - Changes of some duplicated codes used for morphometric measurements
 
@@ -661,6 +661,33 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 |:-----------------|:-------------------|:---------------------------------|
 | refs_biology | measurement_tools | EM (Eye measurement) changed to VL (Visual length) and VW (Visual weight) |
 | refs_biology | measurement_tools | MB (Mechanical balance) changed to MS (Mechanical scale) |
+
+### Additions \| 2026-08-16
+
+- Addition of view for mobulid ray species to replace the view for ray species
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_biology | v_species_mobulids | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_biology', 'SPECIES_MOBULIDS', 0, '2026-08-16', 'https://data.iotc.org/reference/latest/domain/legacy/#speciesMobulids', 'https://zenodo.org/records/15743875');` | 
+
+- Additions of 15 species reported by Madagascar for 2025: ATY, BEA, EEA, EIR
+, GNC, LAD, NXI, RCD, RFE, RJH, RLR, RNJ, SHL, SRI, TGA (see ```SELECT * FROM public.history WHERE event_id = 19057```)
+
+### Modifications \| 2026-08-16
+
+- Update of species group and category for some seerfish species
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_biology | species | ```UPDATE refs_biology.species SET species_group_code = 'SEERFISH', species_category_code = 'SEERFISH' 	WHERE code IN ('ASM', 'BBM', 'DBM', 'QUM', 'SHM');``` |
+
+- Update of species group code to reflect the presence of both rays and sharks in the "SHARKS" group
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_biology | species_groups | ```UPDATE refs_biology.species_groups SET code = 'ELASMOBRANCHS' WHERE code = 'SHARKS';``` |
+| refs_biology | species_groups | ```UPDATE refs_biology.species_groups SET name_en = 'Elasmobranch species', name_fr = 'Espèces d''élasmobranches' WHERE code = 'ELASMOBRANCHS';```
+
 
 
 
