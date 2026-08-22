@@ -670,6 +670,15 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 |:-----------------|:-------------------|:---------------------------------|
 | refs_biology | v_species_mobulids | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_biology', 'SPECIES_MOBULIDS', 0, '2026-08-16', 'https://data.iotc.org/reference/latest/domain/legacy/#speciesMobulids', 'https://zenodo.org/records/15743875');` | 
 
+- Addition of view on common shark species
+
+- Addition of view for mobulid ray species to replace the view for ray species
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_biology | v_species_sharks_common | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_biology', 'SPECIES_SHARKS_COMMON', 0, '2026-08-16', 'https://data.iotc.org/reference/latest/domain/legacy/#speciesSharksCommon', 'https://zenodo.org/records/15743875');` | 
+
+
 - Additions of 15 species reported by Madagascar for 2025: ATY, BEA, EEA, EIR
 , GNC, LAD, NXI, RCD, RFE, RJH, RLR, RNJ, SHL, SRI, TGA (see ```SELECT * FROM public.history WHERE event_id = 19057```)
 
