@@ -697,6 +697,12 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 | refs_biology | species_groups | ```UPDATE refs_biology.species_groups SET code = 'ELASMOBRANCHS' WHERE code = 'SHARKS';``` |
 | refs_biology | species_groups | ```UPDATE refs_biology.species_groups SET name_en = 'Elasmobranch species', name_fr = 'Espèces d''élasmobranches' WHERE code = 'ELASMOBRANCHS';```
 
+### Modifications \| 2026-08-24 
 
+- Removal of Atlantic sailfish (SAI) -- considering the species is the same as Indo-Pacific sailfish (SFA) -- and renamed "Indo-Pacific sailfish" to "Sailfish" following 2026 ASFIS update
 
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_biology | species | ```DELETE FROM refs_biology.species_aggregates WHERE species_code = 'SAI'; DELETE FROM refs_biology.species WHERE code = 'SAI';``` |
+| refs_biology | species |  ```UPDATE refs_biology.species SET name_en = 'Sailfish', name_fr = 'Voilier' WHERE code = 'SFA';``` |
 
