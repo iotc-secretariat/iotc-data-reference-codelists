@@ -706,3 +706,19 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 | refs_biology | species | ```DELETE FROM refs_biology.species_aggregates WHERE species_code = 'SAI'; DELETE FROM refs_biology.species WHERE code = 'SAI';``` |
 | refs_biology | species |  ```UPDATE refs_biology.species SET name_en = 'Sailfish', name_fr = 'Voilier' WHERE code = 'SFA';``` |
 
+### Modifications \| 2026-08-26
+
+- Improvements of English labels for the table `refs_legacy.measurement_types`, addition of French labels, and correction of unit for both FLC and PPD codes.
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_legacy | measurement_types | ```DELETE FROM refs_legacy.measurement_types WHERE code = 'WR'``` |
+
+
+
+
+
+
+
+
+
