@@ -280,11 +280,11 @@ use_data(DEHOOKER_TYPES, overwrite = TRUE) #v2
 ## Extract the data from IOTC database
 SPECIES <- biology_domain("V_SPECIES", columns = toupper(c("code", "name_en", "name_fr", "name_scientific", "is_iotc", "is_aggregate", "species_category_code", "species_category_name_en", "species_category_name_fr")))
 
-SPECIES_CATEGORIES <- biology_domain("SPECIES_CATEGORIES")
-SPECIES_GROUPS     <- biology_domain("SPECIES_GROUPS")
-TYPES_OF_FATE      <- biology_domain("TYPES_OF_FATE")
-FATES              <- biology_domain("FATES")
-RETAIN_REASONS     <- biology_domain("V_RETAIN_REASONS",  columns = c("code", "name_en", "name_fr"))
+SPECIES_CATEGORIES  <- biology_domain("SPECIES_CATEGORIES")
+SPECIES_GROUPS      <- biology_domain("SPECIES_GROUPS")
+TYPES_OF_FATE       <- biology_domain("TYPES_OF_FATE")
+FATES               <- biology_domain("FATES")
+RETAIN_REASONS      <- biology_domain("V_RETAIN_REASONS",  columns = c("code", "name_en", "name_fr"))
 DISCARD_REASONS     <- biology_domain("V_DISCARD_REASONS", columns = c("code", "name_en", "name_fr"))
 CONDITIONS          <- biology_domain("INDIVIDUAL_CONDITIONS")
 DEPREDATION_SOURCES <- biology_domain("DEPREDATION_SOURCES")
@@ -385,25 +385,19 @@ LEGACY_FISHERY_GROUPS <- legacy_domain("FISHERY_GROUPS")
 
 #sLEGACY_FISHERIES_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FISHERIES;")
 
-LEGACY_FISHERIES <- legacy_domain("FISHERIES")
-
-LEGACY_SPECIES <- legacy_domain("SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_AGGREGATE", "IS_IOTC"))                                
-
-LEGACY_SPECIES_IOTDB <- query(DB_IOTDB(), "SELECT * FROM meta.species")
-LEGACY_SPECIES_IOTDB <- LEGACY_SPECIES_IOTDB[CODE %in% LEGACY_SPECIES$CODE] # includes SORT for factorisation
-
-LEGACY_FATES <- legacy_domain("FATES")
-
+LEGACY_FISHERIES           <- legacy_domain("FISHERIES")
+LEGACY_SPECIES             <- legacy_domain("SPECIES", columns = c("CODE", "NAME_EN", "NAME_FR", "NAME_SCIENTIFIC", "IS_AGGREGATE", "IS_IOTC"))                                
+LEGACY_SPECIES_IOTDB       <- query(DB_IOTDB(), "SELECT * FROM meta.species")
+LEGACY_SPECIES_IOTDB       <- LEGACY_SPECIES_IOTDB[CODE %in% LEGACY_SPECIES$CODE] # includes SORT for factorisation
+LEGACY_FATES               <- legacy_domain("FATES")
 LEGACY_SAMPLED_CATCH_TYPES <- legacy_domain("SAMPLED_CATCH_TYPES")
-
-LEGACY_CATCH_UNITS <- legacy_domain("CATCH_UNITS")
-
-LEGACY_EFFORT_UNITS <- legacy_domain("EFFORT_UNITS")
+LEGACY_CATCH_UNITS         <- legacy_domain("CATCH_UNITS")
+LEGACY_EFFORT_UNITS        <- legacy_domain("EFFORT_UNITS")
 
 # Temp fix pour EFFORT_UNITS to feed the Data Browser
-LEGACY_EFFORT_UNITS_IOTDB <- query(DB_IOTDB(), "SELECT * FROM meta.EFFORT_UNITS")
-LEGACY_SCHOOL_TYPES <- legacy_domain("SCHOOL_TYPES")
-LEGACY_MEASUREMENT_TYPES <- legacy_domain("MEASUREMENT_TYPES")
+LEGACY_EFFORT_UNITS_IOTDB  <- query(DB_IOTDB(), "SELECT * FROM meta.EFFORT_UNITS")
+LEGACY_SCHOOL_TYPES        <- legacy_domain("SCHOOL_TYPES")
+LEGACY_MEASUREMENT_TYPES   <- legacy_domain("MEASUREMENT_TYPES")
 LEGACY_MEASURE_TYPES_IOTDB <- query(DB_IOTDB(), "SELECT * FROM meta.MEASURE_TYPES") # sane as LEGACY_MEASUREMENT_TYPES with sort column
 LEGACY_MEASUREMENT_TOOLS <- legacy_domain("MEASUREMENT_TOOLS")
 LEGACY_RAISINGS <- legacy_domain("RAISINGS")
@@ -451,9 +445,8 @@ use_data(LEGACY_FAD_OWNERSHIPS, overwrite = TRUE)
 # Other codelists (that should be added in IOTC_master)
 # Currently downloaded in the R library: iotc-lib-base-common-data/R/iotc_base_common_data_factors.R
 
-LEGACY_CONDITION_TYPES_IOTDB <-legacy_domain("condition_types")
-LEGACY_FATE_TYPES_IOTDB <- legacy_domain("fate_types")
-
+LEGACY_CONDITION_TYPES_IOTDB    <-legacy_domain("condition_types")
+LEGACY_FATE_TYPES_IOTDB         <- legacy_domain("fate_types")
 LEGACY_WORKING_PARTIES_IOTDB    <- query(DB_IOTDB(), "SELECT * FROM meta.WORKING_PARTIES")
 LEGACY_SPECIES_GROUPS_IOTDB     <- query(DB_IOTDB(), "SELECT * FROM meta.SPECIES_GROUPS")
 LEGACY_SPECIES_CATEGORIES_IOTDB <- query(DB_IOTDB(), "SELECT * FROM meta.SPECIES_CATEGORIES")
@@ -472,6 +465,11 @@ use_data(LEGACY_FISHERY_TYPES_IOTDB, overwrite = TRUE)
 use_data(LEGACY_CONDITION_TYPES_IOTDB, overwrite = TRUE)
 use_data(LEGACY_FISHING_GROUNDS_IOTDB, overwrite = TRUE)
 use_data(LEGACY_FATE_TYPES_IOTDB, overwrite = TRUE)
+
+# External Reference codes
+
+IUCN_STATUS <- legacy_domain("IUCN_STATUS")
+use_data(IUCN_STATUS, overwrite = TRUE)
 
 # SOCIO-ECONOMIC REFERENCES ####
 
