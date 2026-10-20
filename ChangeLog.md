@@ -714,6 +714,19 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 |:-----------------|:-------------------|:---------------------------------|
 | refs_legacy | measurement_types | ```DELETE FROM refs_legacy.measurement_types WHERE code = 'WR'``` |
 
+### Modifications \| 2026-10-19
+
+- Addition of French names for tables refs_legacy.species_categories and refs_legacy.species_groups
+- Revision of gear group name in French for PSS
+- Addition of IUCN status code list
+
+### Additions \| 2026-10-20
+
+- Addition of legacy CPCs for current version of statistical datasets. The LEGACY FLEET table includes the CPC codes for mapping.
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_legacy | cpcs | ```CREATE TABLE refs_legacy.cpcs (LIKE refs_admin.cpcs INCLUDING ALL); INSERT INTO refs_legacy.cpcs SELECT * FROM refs_admin.cpcs; UPDATE refs_legacy.cpcs SET code = 'FRAT' WHERE code = 'ATF'; UPDATE refs_legacy.cpcs SET code = 'EU' WHERE code = 'EUR';``` |
+
 
 
 

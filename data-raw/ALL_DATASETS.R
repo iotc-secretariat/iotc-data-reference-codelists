@@ -358,6 +358,7 @@ use_data(DATA_COVERAGE_TYPES, overwrite = TRUE)
 
 # There are currently two possible versions of the LEGACY CODE LISTS, depending on whether they come from the IOTDB database or from IOTC_master. The tables from IOTDB do include a SORT column which is required in the library 'iotc.base.common.data' for the factorisation process of the main variables (e.g., species) 
 
+LEGACY_CPCS         <- legacy_domain("CPCS")
 LEGACY_FLEETS       <- legacy_domain("FLEETS")
 LEGACY_FLEETS_IOTDB <- query(DB_IOTDB(), "SELECT * FROM meta.FLEETS")
 
@@ -407,6 +408,7 @@ LEGACY_FAD_TYPES <- legacy_domain("FAD_TYPES")
 LEGACY_FAD_OWNERSHIPS <- legacy_domain("FAD_OWNERSHIPS")
 
 ## Save package data as rda in data folder
+use_data(LEGACY_CPCS, overwrite = TRUE)
 use_data(LEGACY_FLEETS, overwrite = TRUE)
 use_data(LEGACY_FLEETS_IOTDB, overwrite = TRUE)
 use_data(LEGACY_MAIN_AREAS, overwrite = TRUE)
