@@ -476,33 +476,18 @@ use_data(IUCN_STATUS, overwrite = TRUE)
 # SOCIO-ECONOMIC REFERENCES ####
 
 ## Extract the data from IOTC database ####
-COUNTRY_CURRRENCIES <- socio_economics_domain("V_COUNTRY_CURRENCIES")
-PRICING_LOCATIONS   <- socio_economics_domain("PRICING_LOCATIONS")
-PRODUCT_TYPES       <- socio_economics_domain("PRODUCT_TYPES")
-DESTINATION_MARKETS <- socio_economics_domain("DESTINATION_MARKETS")
-PRICE_TYPES         <- socio_economics_domain("PRICE_TYPES")
+COUNTRY_CURRRENCIES       <- socio_economics_domain("V_COUNTRY_CURRENCIES")
+PRICING_LOCATIONS         <- socio_economics_domain("PRICING_LOCATIONS")
+PRODUCT_TYPES             <- socio_economics_domain("PRODUCT_TYPES")
+DESTINATION_MARKETS       <- socio_economics_domain("DESTINATION_MARKETS")
+PRICE_TYPES               <- socio_economics_domain("PRICE_TYPES")
+PRICE_CALCULATION_METHODS <- socio_economics_domain("PRICE_CALCULATION_METHODS")
 
-## Save package data as rda in data folder ####
-use_data(COUNTRY_CURRRENCIES, overwrite = TRUE)
-use_data(PRICING_LOCATIONS,   overwrite = TRUE)
-use_data(PRODUCT_TYPES,       overwrite = TRUE)
-use_data(DESTINATION_MARKETS, overwrite = TRUE)
-use_data(PRICE_TYPES,         overwrite = TRUE)
-
-# OTHER TYPES OF DATA ####
-
-## Extract the data from IOTC database ####
-### ISSUE: IOTC_EAST missing from AREA_INTERSECTIONS and AREA_INTERSECTIONS_IOTC
-# EEZ_TO_IOTC_MAIN_AREAS = query(DB_IOTC_MASTER(), "
-#   SELECT DISTINCT
-#   	RIGHT(TARGET_CODE, 3) AS FLAG_CODE,
-#   	SOURCE_CODE AS MAIN_IOTC_AREA_CODE
-#   FROM [IOTC_master].[refs_gis].[AREA_INTERSECTIONS_IOTC]
-#   WHERE SOURCE_CODE IN ('IOTC_EAST', 'IOTC_WEST')
-#   AND TARGET_CODE LIKE 'NJA_%'
-#   AND LEN(TARGET_CODE) = 7    -- to remove disputed NJAs
-# ")
-
-## Save package data as rda in data folder ####
-#use_data(EEZ_TO_IOTC_MAIN_AREAS, overwrite = TRUE)
+  ## Save package data as rda in data folder ####
+use_data(COUNTRY_CURRRENCIES,       overwrite = TRUE)
+use_data(PRICING_LOCATIONS,         overwrite = TRUE)
+use_data(PRODUCT_TYPES,             overwrite = TRUE)
+use_data(DESTINATION_MARKETS,       overwrite = TRUE)
+use_data(PRICE_TYPES,               overwrite = TRUE)
+use_data(PRICE_CALCULATION_METHODS, overwrite = TRUE)
 

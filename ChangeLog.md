@@ -678,7 +678,6 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 |:-----------------|:-------------------|:---------------------------------|
 | refs_biology | v_species_sharks_common | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_biology', 'SPECIES_SHARKS_COMMON', 0, '2026-08-16', 'https://data.iotc.org/reference/latest/domain/legacy/#speciesSharksCommon', 'https://zenodo.org/records/15743875');` | 
 
-
 - Additions of 15 species reported by Madagascar for 2025: ATY, BEA, EEA, EIR
 , GNC, LAD, NXI, RCD, RFE, RJH, RLR, RNJ, SHL, SRI, TGA (see ```SELECT * FROM public.history WHERE event_id = 19057```)
 
@@ -727,7 +726,7 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:---------------------------------|
 | refs_legacy | cpcs | ```CREATE TABLE refs_legacy.cpcs (LIKE refs_admin.cpcs INCLUDING ALL); INSERT INTO refs_legacy.cpcs SELECT * FROM refs_admin.cpcs; UPDATE refs_legacy.cpcs SET code = 'FRAT' WHERE code = 'ATF'; UPDATE refs_legacy.cpcs SET code = 'EU' WHERE code = 'EUR';``` |
-| refs_meta | codelists_versions| ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_legacy', 'CPCS', 0, '2026-10-20', 'https://data.iotc.org/reference/latest/domain/legacy/index.html#legacyGears', 'https://zenodo.org/records/15743875')```|
+| refs_meta | codelists_versions| ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_legacy', 'CPCS', 0, '2026-10-20', 'https://data.iotc.org/reference/latest/domain/legacy/index.html#legacyGears', NULL)```|
 
 ### Additions \| 2026-10-22
 
@@ -735,12 +734,13 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:---------------------------------|
-| refs_socio_economics | price_types |```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_socio_economics', 'PRICE_TYPES', 0, '2026-10-22', 'https://data.iotc.org/reference/latest/domain/economics/index.html#priceTypes', 'https://zenodo.org/records/15743875')```| | 
+| refs_socio_economics | price_types |```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_socio_economics', 'PRICE_TYPES', 0, '2026-10-22', 'https://data.iotc.org/reference/latest/domain/economics/index.html#priceTypes', NULL)```| | 
 
+### Additions \| 2026-10-23
 
+- Addition of Price calculation methods table to support the reporting of data with the revised Form 7PR
 
-
-
-
-
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_socio_economics | price_types |```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_socio_economics', 'PRICE_CALCULATION_METHODS', 0, '2026-10-23', 'https://data.iotc.org/reference/latest/domain/economics/index.html#priceCalculationMethods', NULL)```| | 
 
