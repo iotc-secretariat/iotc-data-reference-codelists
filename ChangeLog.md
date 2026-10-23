@@ -214,7 +214,7 @@ Some improvements were made to the ROS code lists. The tables must now be import
 
 | Schema | Table | Revisions |
 |:-----------------|:-------------------|:---------------------------------|
-| refs_biology | DEPREDATION_SOURCES | `UPDATE refs_biology.depredation_sources SET name_fr = 'Requins / baleines odontocètes' WHERE code = 'SW';` |
+| refs_biology | DEPREDATION_SOURCES | ```UPDATE refs_biology.depredation_sources SET name_fr = 'Requins / baleines odontocètes' WHERE code = 'SW';``` |
 | refs_biology | FATES | simplified definitions, descriptions are original definitions (refs_biological.FATES.edited.csv) |
 | refs_biology | GEAR_INTERACTIONS | simplified definitions, descriptions are original definitions |
 | refs_biology | HANDLING_METHODS | removed "using a" from definitions, descriptions are original definitions |
@@ -234,7 +234,7 @@ Some improvements were made to the ROS code lists. The tables must now be import
 | refs_fishery | NET_CONDITIONS | descriptions = definitions, definitions revised |
 | refs_fishery | SCHOOL_SIGHTING_CUES | descriptions = definitions, definitions shortened |
 | refs_fishery | SURFACE_FISHERY_ACTIVITIES | descriptions = definitions, definitions shortened |
-| refs_data | SOURCES_RO | `INSERT INTO refs_data.datasets(code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'Regional Observer Scheme dataset', 'Jeu de données du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); INSERT INTO refs_data.sources(dataset_code, code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'OS', 'Data collected at sea by scientific observers under the Regional Observer Scheme', 'Données collectées en mer par des observateurs scientifiques dans le cadre du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); INSERT INTO refs_data.sources(dataset_code, code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'EM', 'Data derived from the review of information collected using Electronic Monitoring Systems under the Regional Observer Scheme', 'Données issues de l''analyse des informations recueillies à l''aide de systèmes de suivi électronique dans le cadre du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); CREATE OR REPLACE VIEW refs_data.v_sources_ro AS SELECT sources.dataset_code, sources.code, sources.name_en, sources.name_fr FROM refs_data.sources WHERE sources.dataset_code = 'RO';` |
+| refs_data | SOURCES_RO | ```INSERT INTO refs_data.datasets(code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'Regional Observer Scheme dataset', 'Jeu de données du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); INSERT INTO refs_data.sources(dataset_code, code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'OS', 'Data collected at sea by scientific observers under the Regional Observer Scheme', 'Données collectées en mer par des observateurs scientifiques dans le cadre du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); INSERT INTO refs_data.sources(dataset_code, code, name_en, name_fr, description_fr, description_en) VALUES('RO', 'EM', 'Data derived from the review of information collected using Electronic Monitoring Systems under the Regional Observer Scheme', 'Données issues de l''analyse des informations recueillies à l''aide de systèmes de suivi électronique dans le cadre du Mécanisme Régional d''Observateurs Scientifiques', 'TBD', 'TBD'); CREATE OR REPLACE VIEW refs_data.v_sources_ro AS SELECT sources.dataset_code, sources.code, sources.name_en, sources.name_fr FROM refs_data.sources WHERE sources.dataset_code = 'RO';``` |
 
 ## Update Table refs_meta.codelists_versions
 
@@ -729,6 +729,13 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 | refs_legacy | cpcs | ```CREATE TABLE refs_legacy.cpcs (LIKE refs_admin.cpcs INCLUDING ALL); INSERT INTO refs_legacy.cpcs SELECT * FROM refs_admin.cpcs; UPDATE refs_legacy.cpcs SET code = 'FRAT' WHERE code = 'ATF'; UPDATE refs_legacy.cpcs SET code = 'EU' WHERE code = 'EUR';``` |
 | refs_meta | codelists_versions| ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_legacy', 'CPCS', 0, '2026-10-20', 'https://data.iotc.org/reference/latest/domain/legacy/index.html#legacyGears', 'https://zenodo.org/records/15743875')```|
 
+### Additions \| 2026-10-22
+
+- Addition of Price types table to support the reporting of data with the revised Form 7PR
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_socio_economics | price_types |```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_socio_economics', 'PRICE_TYPES', 0, '2026-10-22', 'https://data.iotc.org/reference/latest/domain/economics/index.html#priceTypes', 'https://zenodo.org/records/15743875')```| | 
 
 
 

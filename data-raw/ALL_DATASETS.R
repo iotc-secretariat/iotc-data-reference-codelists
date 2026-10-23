@@ -480,12 +480,14 @@ COUNTRY_CURRRENCIES <- socio_economics_domain("V_COUNTRY_CURRENCIES")
 PRICING_LOCATIONS   <- socio_economics_domain("PRICING_LOCATIONS")
 PRODUCT_TYPES       <- socio_economics_domain("PRODUCT_TYPES")
 DESTINATION_MARKETS <- socio_economics_domain("DESTINATION_MARKETS")
+PRICE_TYPES         <- socio_economics_domain("PRICE_TYPES")
 
 ## Save package data as rda in data folder ####
 use_data(COUNTRY_CURRRENCIES, overwrite = TRUE)
 use_data(PRICING_LOCATIONS,   overwrite = TRUE)
 use_data(PRODUCT_TYPES,       overwrite = TRUE)
 use_data(DESTINATION_MARKETS, overwrite = TRUE)
+use_data(PRICE_TYPES,         overwrite = TRUE)
 
 # OTHER TYPES OF DATA ####
 
