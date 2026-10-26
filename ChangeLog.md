@@ -744,3 +744,17 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 |:-----------------|:-------------------|:---------------------------------|
 | refs_socio_economics | price_types |```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi) VALUES ('refs_socio_economics', 'PRICE_CALCULATION_METHODS', 0, '2026-10-23', 'https://data.iotc.org/reference/latest/domain/economics/index.html#priceCalculationMethods', NULL)```| | 
 
+### Additions \| 2026-10-26
+
+- Renaming of "Types of fate" to "Fate types" and "Types of measurements" to "Measurement types"
+- Addition of English and French descriptions to bait types, bait conditions, biological materials, depredation sources, fates
+
+
+
+
+
+
+
+
+
+
