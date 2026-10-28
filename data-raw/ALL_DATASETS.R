@@ -310,8 +310,8 @@ RECOMMENDED_MEASUREMENTS <- biology_domain("RECOMMENDED_MEASUREMENTS")
 
 ## Save package data as rda in data folder
 use_data(SPECIES,              overwrite = TRUE)
-use_data(SPECIES_CATEGORIES, overwrite = TRUE)
-use_data(SPECIES_GROUPS, overwrite = TRUE)
+use_data(SPECIES_CATEGORIES,   overwrite = TRUE)
+use_data(SPECIES_GROUPS,       overwrite = TRUE)
 use_data(TYPES_OF_FATE,        overwrite = TRUE)
 use_data(FATES,                overwrite = TRUE)
 use_data(DISCARD_REASONS,      overwrite = TRUE)
