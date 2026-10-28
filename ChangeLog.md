@@ -749,11 +749,26 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
 - Renaming of "Types of fate" to "Fate types" and "Types of measurements" to "Measurement types"
 - Addition of English and French descriptions to bait types, bait conditions, biological materials, depredation sources, fates
 
+### Updates \| 2026-10-28
 
+- Addition of species orders and species families to IOTC ad-hoc taxon aggregates ("AG") where possible  
+- Removal of Spinetail mobula (*Mobula japanica*; RMJ) now merged with RMM (*Mobula mobular*)  
+- Removal of AG codes not required in IOTC databases. Remaining ones:  
+- Update of refs_legacy.v_target_species to reflect the legacy code list available from legacy form 2FC (Form_2FC_rev18.xlsm)  
+- Addition of refs_biology.species_working_party_mapping  
+- Changes to code list names (views) and associated:
 
-
-
-
+    + SPECIES_BAITS     -> BAIT_SPECIES
+    + SPECIES_BILLFISH  -> BILLFISH_SPECIES
+    + SPECIES_CETACEANS -> CETACEAN_SPECIES
+    + SPECIES_IOTC      -> IOTC_SPECIES
+    + SPECIES_OTHERS    -> OTHER_SPECIES
+    + SPECIES_PREDATORS -> PREDATOR_SPECIES
+    + SPECIES_RAYS      -> RAY_SPECIES
+    + SPECIES_SEABIRDS  -> SEABIRD_SPECIES
+    + SPECIES_SHARKS    -> SHARK_SPECIES
+    + SPECIES_SSI       -> SSI_SPECIES
+    + SPECIES_TURTLES   -> TURTLE_SPECIES
 
 
 
