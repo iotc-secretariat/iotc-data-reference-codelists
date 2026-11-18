@@ -282,7 +282,7 @@ SPECIES <- biology_domain("V_SPECIES", columns = toupper(c("code", "name_en", "n
 
 SPECIES_CATEGORIES  <- biology_domain("SPECIES_CATEGORIES")
 SPECIES_GROUPS      <- biology_domain("SPECIES_GROUPS")
-TYPES_OF_FATE       <- biology_domain("TYPES_OF_FATE")
+FATE_TYPES          <- biology_domain("FATE_TYPES")
 FATES               <- biology_domain("FATES")
 RETAIN_REASONS      <- biology_domain("V_RETAIN_REASONS",  columns = c("code", "name_en", "name_fr"))
 DISCARD_REASONS     <- biology_domain("V_DISCARD_REASONS", columns = c("code", "name_en", "name_fr"))
@@ -303,7 +303,7 @@ SAMPLING_METHODS_FOR_CATCH_ESTIMATION <- biology_domain("SAMPLING_METHODS_FOR_CA
 SAMPLE_PRESERVATION_METHODS <- biology_domain("SAMPLE_PRESERVATION_METHODS")
 
 ## Morphometrics ####
-TYPES_OF_MEASUREMENT <- biology_domain("TYPES_OF_MEASUREMENT")
+MEASUREMENT_TYPES    <- biology_domain("MEASUREMENT_TYPES")
 MEASUREMENTS         <- biology_domain("MEASUREMENTS")
 MEASUREMENT_TOOLS    <- biology_domain("MEASUREMENT_TOOLS")
 RECOMMENDED_MEASUREMENTS <- biology_domain("RECOMMENDED_MEASUREMENTS")
@@ -312,7 +312,7 @@ RECOMMENDED_MEASUREMENTS <- biology_domain("RECOMMENDED_MEASUREMENTS")
 use_data(SPECIES,              overwrite = TRUE)
 use_data(SPECIES_CATEGORIES,   overwrite = TRUE)
 use_data(SPECIES_GROUPS,       overwrite = TRUE)
-use_data(TYPES_OF_FATE,        overwrite = TRUE)
+use_data(FATE_TYPES,           overwrite = TRUE)
 use_data(FATES,                overwrite = TRUE)
 use_data(DISCARD_REASONS,      overwrite = TRUE)
 use_data(RETAIN_REASONS,       overwrite = TRUE)
@@ -329,7 +329,7 @@ use_data(MATURITY_STAGES,      overwrite = TRUE)  #v2
 use_data(SAMPLING_METHODS_FOR_SAMPLING_COLLECTIONS, overwrite = TRUE) #v2
 use_data(SAMPLING_METHODS_FOR_CATCH_ESTIMATION, overwrite = TRUE) #v2
 use_data(SAMPLE_PRESERVATION_METHODS, overwrite = TRUE) #v2
-use_data(TYPES_OF_MEASUREMENT, overwrite = TRUE)
+use_data(MEASUREMENT_TYPES,    overwrite = TRUE)
 use_data(MEASUREMENTS,         overwrite = TRUE)
 use_data(MEASUREMENT_TOOLS,    overwrite = TRUE)
 use_data(RECOMMENDED_MEASUREMENTS, overwrite = TRUE)

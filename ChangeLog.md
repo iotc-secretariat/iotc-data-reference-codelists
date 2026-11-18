@@ -770,6 +770,53 @@ ALTER TABLE refs_admin.ports DROP COLUMN id;
     + SPECIES_SSI       -> SSI_SPECIES
     + SPECIES_TURTLES   -> TURTLE_SPECIES
 
+### Updates \| 2026-11-04
+
+- Addition of metadata on V_COUNTRY_CURRENCIES
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_socio_economics | v_country_currencies |```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi, id, domain) 
+VALUES ('refs_socio_economics', 'COUNTRY_CURRENCIES', 0, '2026-06-15', 'https://data.iotc.org/reference/latest/domain/economics/index.html##countryCurrencies', NULL, 'refs_socio_economics.country_currencies', 'socio_economics')```| | 
+
+- Revision of refs_meta.codelists_versions: addition of fields (relative_path, anchor, and page_heading)
+- some changes of code list names with associated id values:
+
+"refs_data.estimations" -> "refs_data.data_estimations"
+"refs_data.processings" -> "refs_data.data_processings"
+"refs_data.raisings"    -> "refs_data.data_raisings"
+"refs_data.sources"     -> "refs_data.data_sources"
+"refs_data.types"       -> "refs_data.data_types"
+
+- Full update of urls based on information collated from the RMDs.
+
+| Schema | Table | Revisions |
+|:-----------------|:-------------------|:---------------------------------|
+| refs_meta | codelists_versions | ```UPDATE refs_meta.codelists_versions SET id = 'refs_biology.all_species' WHERE id = 'refs_biology.species';``` |
+| refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE cl_schema = 'refs_fishery' AND cl_name = 'GEAR_GROUPS';``` |
+| refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE cl_name = 'AREAS_IO_NJA_LEGACY';``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi, id, domain) VALUES ('refs_admin', 'CURRENT_CPCS', 0, '2025-04-17', 'https://data.iotc.org/reference/latest/domain/admin/index.html#currentCpcs', NULL, 'refs_admin.current_cpcs', 'admin');``` |
+| refs_meta | codelists_versions | ```DELETE FROM refs_meta.codelists_versions WHERE cl_schema = 'refs_admin' AND cl_name = 'CPCS'``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi, id, domain) VALUES ('refs_admin', 'WORKING_PARTIES', 0, '2026-10-28', 'https://data.iotc.org/reference/latest/domain/admin/index.html#workingParties', NULL, 'refs_admin.working_parties', 'admin')``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi, id, domain) VALUES ('refs_biology', 'DISCARD_REASONS', 1, '2024-02-01', 'https://data.iotc.org/reference/latest/domain/biology/index.html#discardReasons', NULL, 'refs_biology.discard_reasons', 'biology')``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi, id, domain) VALUES ('refs_biology', 'RETAIN_REASONS', 1, '2024-02-01', 'https://data.iotc.org/reference/latest/domain/biology/index.html#retainReasons', NULL, 'refs_biology.retain_reasons', 'biology')``` |
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi, id, domain) 
+VALUES ('refs_biology', 'LENGTH_MEASUREMENTS', 6, '2024-09-28', 'https://data.iotc.org/reference/latest/domain/biology/index.html#lengthMeasurements', NULL, 'refs_biology.length_measurements', 'biology')``` | 
+| refs_meta | codelists_versions | ```INSERT INTO refs_meta.codelists_versions(cl_schema, cl_name, version, last_update, url, current_doi, id, domain) 
+VALUES ('refs_biology', 'WEIGHT_MEASUREMENTS', 6, '2024-09-28', 'https://data.iotc.org/reference/latest/domain/biology/index.html#weightMeasurements', NULL, 'refs_biology.weight_measurements', 'biology')``` |	
+
+### Updates \| 2026-11-18
+
+- Addition of ASFIS species codes reported through the ROS into refs_biology.species: ANW, CBA, DIZ, ETF, KPY
+
+
+
+
+
+
+
+
+
 
 
 
