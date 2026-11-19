@@ -812,13 +812,4 @@ VALUES ('refs_biology', 'WEIGHT_MEASUREMENTS', 6, '2024-09-28', 'https://data.io
 ### Updates \| 2026-11-19
 
 - Addition of FX code (other vessels) in IOTC vessel type code list
-
-
-
-
-
-
-
-
-
-
+- Addition of logical responses list in the R package

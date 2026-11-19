@@ -345,6 +345,7 @@ DATA_SOURCES        <- data_domain("SOURCES")
 DATA_PROCESSINGS    <- data_domain("PROCESSINGS")
 DATA_ESTIMATIONS    <- data_domain("ESTIMATIONS")
 DATA_COVERAGE_TYPES <- data_domain("COVERAGE_TYPES")
+LOGICAL_RESPONSES   <- data_domain("LOGICAL_RESPONSES")
 
 ## Save package data as rda in data folder
 use_data(DATA_TYPES,       overwrite = TRUE)
@@ -353,26 +354,26 @@ use_data(DATA_SOURCES,     overwrite = TRUE)
 use_data(DATA_PROCESSINGS, overwrite = TRUE)
 use_data(DATA_ESTIMATIONS, overwrite = TRUE)
 use_data(DATA_COVERAGE_TYPES, overwrite = TRUE)
+use_data(LOGICAL_RESPONSES, overwrite = TRUE)
 
 # LEGACY DOMAIN ####
 
 # There are currently two possible versions of the LEGACY CODE LISTS, depending on whether they come from the IOTDB database or from IOTC_master. The tables from IOTDB do include a SORT column which is required in the library 'iotc.base.common.data' for the factorisation process of the main variables (e.g., species) 
 
-LEGACY_CPCS         <- legacy_domain("CPCS")
-LEGACY_FLEETS       <- legacy_domain("FLEETS")
-LEGACY_FLEETS_IOTDB <- query(DB_IOTDB(), "SELECT * FROM meta.FLEETS")
-
-LEGACY_MAIN_AREAS <- legacy_domain("MAIN_AREAS") 
-LEGACY_DATA_TYPES <- legacy_domain("DATA_TYPES")
+LEGACY_CPCS                <- legacy_domain("CPCS")
+LEGACY_FLEETS              <- legacy_domain("FLEETS")
+LEGACY_FLEETS_IOTDB        <- query(DB_IOTDB(), "SELECT * FROM meta.FLEETS")
+LEGACY_MAIN_AREAS          <- legacy_domain("MAIN_AREAS") 
+LEGACY_DATA_TYPES          <- legacy_domain("DATA_TYPES")
 LEGACY_DATA_COVERAGE_TYPES <- legacy_domain("COVERAGE_TYPES")
-LEGACY_DATA_SOURCES <- legacy_domain("DATA_SOURCES")
-LEGACY_DATA_PROCESSINGS <- legacy_domain("DATA_PROCESSINGS")
-LEGACY_ESTIMATION_TYPES <- legacy_domain("ESTIMATION_TYPES")
-LEGACY_GEARS <- legacy_domain("GEARS")
-LEGACY_GEARS_IOTDB <- query(DB_IOTDB(), "SELECT * FROM meta.gears")  # includes SORT for factorisation
-LEGACY_GEAR_TYPES <- legacy_domain("GEAR_TYPES")
-LEGACY_FISHERY_TYPES <- legacy_domain("FISHERY_TYPES")
-LEGACY_FISHERY_GROUPS <- legacy_domain("FISHERY_GROUPS")
+LEGACY_DATA_SOURCES        <- legacy_domain("DATA_SOURCES")
+LEGACY_DATA_PROCESSINGS    <- legacy_domain("DATA_PROCESSINGS")
+LEGACY_ESTIMATION_TYPES    <- legacy_domain("ESTIMATION_TYPES")
+LEGACY_GEARS               <- legacy_domain("GEARS")
+LEGACY_GEARS_IOTDB         <- query(DB_IOTDB(), "SELECT * FROM meta.gears")  # includes SORT for factorisation
+LEGACY_GEAR_TYPES          <- legacy_domain("GEAR_TYPES")
+LEGACY_FISHERY_TYPES       <- legacy_domain("FISHERY_TYPES")
+LEGACY_FISHERY_GROUPS      <- legacy_domain("FISHERY_GROUPS")
 #LEGACY_FISHERY_GROUPS_IOTDB = query(DB_IOTDB(), "SELECT * FROM meta.FISHERY_GROUPS") # includes SORT for factorisation
 #LEGACY_FISHERIES = legacy_domain("FISHERIES", columns = toupper(c("code", "name_en", "name_fr", "fishery_group_code", "fishery_group_name_fr", "fishery_type_code", "fishery_type_name_fr", "is_aggregate")))
 
