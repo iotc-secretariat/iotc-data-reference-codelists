@@ -809,7 +809,9 @@ VALUES ('refs_biology', 'WEIGHT_MEASUREMENTS', 6, '2024-09-28', 'https://data.io
 
 - Addition of ASFIS species codes reported through the ROS into refs_biology.species: ANW, CBA, DIZ, ETF, KPY
 
+### Updates \| 2026-11-19
 
+- Addition of FX code (other vessels) in IOTC vessel type code list
 
 
 
