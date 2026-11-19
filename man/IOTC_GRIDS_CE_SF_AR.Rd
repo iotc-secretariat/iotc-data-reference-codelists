@@ -3,28 +3,19 @@
 \docType{data}
 \name{IOTC_GRIDS_CE_SF_AR}
 \alias{IOTC_GRIDS_CE_SF_AR}
-\title{IOTC_GRIDS_CE_SF_AR
-Reference codes modeling regular and irregular areas within the IOTC area of competence for which artisanal fisheries data can be recorded and reported.}
+\title{IOTC_GRIDS_CE_SF_AR}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-  \item{OCEAN_AREA_KM2}{The ocean area in km2}
-  \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
-  \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
-  \item{CENTER_LAT}{The latitude of the centroid}
-  \item{CENTER_LON}{The longitude of the centroid}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `OCEAN_AREA_KM2`, `OCEAN_AREA_IO_KM2`,
+`OCEAN_AREA_IOTC_KM2`, `CENTER_LAT`, `CENTER_LON`
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/admin/#IOTCareasAR>
+<https://data.iotc.org/reference/latest>
 }
 \usage{
 IOTC_GRIDS_CE_SF_AR
 }
 \description{
-IOTC_GRIDS_CE_SF_AR
-Reference codes modeling regular and irregular areas within the IOTC area of competence for which artisanal fisheries data can be recorded and reported.
+IOTC reference code list.
 }
 \keyword{datasets}

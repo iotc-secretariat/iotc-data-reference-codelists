@@ -5,20 +5,11 @@
 \alias{FISHERIES}
 \title{FISHERIES}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-  \item{FISHERY_CATEGORY_CODE}{The fishery category code (as per Res. 15/02)}
-  \item{FISHERY_TYPE_CODE}{The fishery type code}
-  \item{GEAR_CODE}{The fishery gear code}
-  \item{GEAR_CONFIGURATION_CODE}{The fishery gear configuration code}
-  \item{FISHING_MODE_CODE}{The fishery fishing mode code}
-  \item{TARGET_SPECIES_CODE}{The fishery target species code}
-  \item{IOTDB_GEAR_CODE}{The fishery IOTDB gear code}
-  \item{IOTC_FISHERY_CODE}{The fishery _old_ fishery code}
-  \item{IS_AGGREGATE}{If the fishery represent an aggregate of multiple fisheries or not}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `FISHERY_CATEGORY_CODE`,
+`FISHERY_TYPE_CODE`, `GEAR_CODE`, `GEAR_CONFIGURATION_CODE`,
+`FISHING_MODE_CODE`, `TARGET_SPECIES_CODE`, `IOTDB_GEAR_CODE`,
+`IOTC_FISHERY_CODE`, `IS_AGGREGATE`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/fisheries/#fisheries>
@@ -27,6 +18,8 @@
 FISHERIES
 }
 \description{
-FISHERIES
+Reference code list describing IOTC fisheries defined by combinations of
+operational, technical and biological characteristics that distinguish
+fishing practices among groups of vessels
 }
 \keyword{datasets}

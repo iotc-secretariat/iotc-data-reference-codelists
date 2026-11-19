@@ -5,13 +5,8 @@
 \alias{FLEETS}
 \title{FLEETS}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-  \item{CPC_CODE}{The corresponding CPC code, if any, otherwise NA}
-  \item{FLAG_CODE}{The flag code for the fleet / sub-fleet, if any, otherwise NA}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `CPC_CODE`, `FLAG_CODE`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/admin/#fleets>
@@ -20,6 +15,8 @@
 FLEETS
 }
 \description{
-FLEETS
+Reference codes identifying fishing fleets for which data are reported
+to the IOTC Secretariat, including fleets distinguished from their
+reporting entities
 }
 \keyword{datasets}

@@ -5,11 +5,8 @@
 \alias{RETAIN_REASONS}
 \title{RETAIN_REASONS}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/biological/#retainReasons>
@@ -18,6 +15,6 @@
 RETAIN_REASONS
 }
 \description{
-RETAIN_REASONS
+Reference codes identifying reasons for retaining catches on board.
 }
 \keyword{datasets}

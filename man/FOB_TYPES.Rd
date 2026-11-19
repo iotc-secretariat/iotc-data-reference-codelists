@@ -5,20 +5,16 @@
 \alias{FOB_TYPES}
 \title{FOB_TYPES}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-  \item{DFOB}{Whether or not the FOB type identifies a drifting FOB / FAD}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `DFOB`, `DESCRIPTION_FR`, `DESCRIPTION_EN`
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/fisheries/#FOBtypes>
+<https://data.iotc.org/reference/latest/domain/fisheries/#fobTypes>
 }
 \usage{
 FOB_TYPES
 }
 \description{
-FOB_TYPES
+IOTC reference code list.
 }
 \keyword{datasets}

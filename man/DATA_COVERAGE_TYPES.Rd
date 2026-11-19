@@ -5,11 +5,8 @@
 \alias{DATA_COVERAGE_TYPES}
 \title{DATA_COVERAGE_TYPES}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `DESCRIPTION_EN`, `DESCRIPTION_FR`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/data/#coverageTypes>
@@ -18,6 +15,7 @@
 DATA_COVERAGE_TYPES
 }
 \description{
-DATA_COVERAGE_TYPES
+Reference codes identifying the metrics used to quantify sampling
+coverage within a given stratum.
 }
 \keyword{datasets}

@@ -5,18 +5,9 @@
 \alias{ENTITIES}
 \title{ENTITIES}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{CODE_ISO2}{The ISO2 country code - when available}
-  \item{CODE_ISO3}{The ISO3 country code - when available}
-  \item{LIST_NAME_EN}{The English name (when appearing in a list)}
-  \item{LIST_NAME_FR}{The French name (when appearing in a list)}
-  \item{FULL_NAME_EN}{The full English name}
-  \item{FULL_NAME_FR}{The full French name}
-  \item{SHORT_NAME_EN}{The short English name}
-  \item{SHORT_NAME_FR}{The short French name}\
-  \item{NOCS_CATEGORY}{The category within the FAO NOCS database}
-}
+A data frame containing the following columns:
+`CODE`, `CODE_ISO2`, `CODE_ISO3`, `NOCS_CATEGORY`, `NAME_EN`, `NAME_FR`,
+`DESCRIPTION_EN`, `DESCRIPTION_FR`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/admin/#entities>
@@ -25,6 +16,9 @@
 ENTITIES
 }
 \description{
-ENTITIES
+Reference codes identifying entities submitting data to the IOTC
+Secretariat. These generally correspond to countries or territories, but
+may also include the European Union, historical data holders (IOTC and
+IPTP) and unidentified providers (NEI)
 }
 \keyword{datasets}

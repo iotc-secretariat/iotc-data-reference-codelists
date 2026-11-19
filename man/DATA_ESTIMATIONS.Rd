@@ -5,19 +5,18 @@
 \alias{DATA_ESTIMATIONS}
 \title{DATA_ESTIMATIONS}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/data/#estimations>
+<https://data.iotc.org/reference/latest/domain/data/#dataEstimations>
 }
 \usage{
 DATA_ESTIMATIONS
 }
 \description{
-DATA_ESTIMATIONS
+Reference codes describing whether statistical estimates are based on
+observations within a stratum or derived through substitution from
+comparable strata.
 }
 \keyword{datasets}

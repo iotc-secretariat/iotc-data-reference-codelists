@@ -5,20 +5,18 @@
 \alias{DATA_PROCESSINGS}
 \title{DATA_PROCESSINGS}
 \format{
-\describe{
-  \item{DATASET_CODE}{The dataset code}
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`DATASET_CODE`, `CODE`, `NAME_EN`, `NAME_FR`, `DESCRIPTION_EN`,
+`DESCRIPTION_FR`
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/data/#processings>
+<https://data.iotc.org/reference/latest/domain/data/#dataProcessings>
 }
 \usage{
 DATA_PROCESSINGS
 }
 \description{
-DATA_PROCESSINGS
+Reference codes identifying methods used to process or estimate
+fisheries statistical data from collected information.
 }
 \keyword{datasets}

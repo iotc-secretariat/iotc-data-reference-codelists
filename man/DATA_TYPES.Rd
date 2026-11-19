@@ -5,19 +5,17 @@
 \alias{DATA_TYPES}
 \title{DATA_TYPES}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `DESCRIPTION_EN`, `DESCRIPTION_FR`
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/data/#types>
+<https://data.iotc.org/reference/latest/domain/data/#dataTypes>
 }
 \usage{
 DATA_TYPES
 }
 \description{
-DATA_TYPES
+Reference codes identifying the status of fisheries statistics at the
+time of reporting.
 }
 \keyword{datasets}

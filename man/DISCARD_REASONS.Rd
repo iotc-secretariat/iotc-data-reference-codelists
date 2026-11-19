@@ -5,11 +5,8 @@
 \alias{DISCARD_REASONS}
 \title{DISCARD_REASONS}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/biological/#discardReasons>
@@ -18,6 +15,6 @@
 DISCARD_REASONS
 }
 \description{
-DISCARD_REASONS
+Reference codes identifying reasons for discarding catches at sea.
 }
 \keyword{datasets}

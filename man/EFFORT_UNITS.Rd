@@ -5,11 +5,8 @@
 \alias{EFFORT_UNITS}
 \title{EFFORT_UNITS}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `DESCRIPTION_EN`, `DESCRIPTION_FR`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/fisheries/#effortUnits>
@@ -18,6 +15,6 @@
 EFFORT_UNITS
 }
 \description{
-EFFORT_UNITS
+Reference code list describing the units used to measure fishing effort.
 }
 \keyword{datasets}

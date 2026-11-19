@@ -5,11 +5,8 @@
 \alias{CATCH_UNITS}
 \title{CATCH_UNITS}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/fisheries/#catchUnits>
@@ -18,6 +15,6 @@
 CATCH_UNITS
 }
 \description{
-CATCH_UNITS
+Reference code list describing the units used to report catch quantities
 }
 \keyword{datasets}

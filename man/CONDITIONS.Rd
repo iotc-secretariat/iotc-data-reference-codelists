@@ -5,11 +5,9 @@
 \alias{CONDITIONS}
 \title{CONDITIONS}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `IS_ALIVE`, `DESCRIPTION_EN`,
+`DESCRIPTION_FR`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/biological/#individualConditions>
@@ -18,6 +16,7 @@
 CONDITIONS
 }
 \description{
-CONDITIONS
+Reference codes describing the condition of individual animals at
+capture or release.
 }
 \keyword{datasets}

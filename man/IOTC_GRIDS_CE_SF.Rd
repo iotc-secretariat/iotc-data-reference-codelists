@@ -5,19 +5,17 @@
 \alias{IOTC_GRIDS_CE_SF}
 \title{IOTC_GRIDS_CE_SF}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `OCEAN_AREA_KM2`, `OCEAN_AREA_IO_KM2`,
+`OCEAN_AREA_IOTC_KM2`, `CENTER_LAT`, `CENTER_LON`
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/admin/#IOTCgridsCESF>
+<https://data.iotc.org/reference/latest>
 }
 \usage{
 IOTC_GRIDS_CE_SF
 }
 \description{
-IOTC_GRIDS_CE_SF
+IOTC reference code list.
 }
 \keyword{datasets}

@@ -5,12 +5,9 @@
 \alias{FATES}
 \title{FATES}
 \format{
-\describe{
-  \item{TYPE_OF_FATE_CODE}{The type of fate - i.e., retained / discarded}
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`TYPE_OF_FATE_CODE`, `CODE`, `NAME_EN`, `NAME_FR`, `DESCRIPTION_EN`,
+`DESCRIPTION_FR`, `CODE_ORIG`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/biological/#fates>
@@ -19,6 +16,7 @@
 FATES
 }
 \description{
-FATES
+Reference codes identifying the fate of catches and associated retention
+or discard reasons.
 }
 \keyword{datasets}

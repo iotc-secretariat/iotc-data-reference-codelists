@@ -5,12 +5,9 @@
 \alias{MEASUREMENT_TOOLS}
 \title{MEASUREMENT_TOOLS}
 \format{
-\describe{
-  \item{TYPE_OF_MEASUREMENT_CODE}{The code for the type of measurement, i.e., LN = wength, WG = weight}
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`TYPE_OF_MEASUREMENT_CODE`, `CODE`, `NAME_EN`, `NAME_FR`,
+`DESCRIPTION_EN`, `DESCRIPTION_FR`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/biological/#allMeasurementTools>
@@ -19,6 +16,7 @@
 MEASUREMENT_TOOLS
 }
 \description{
-MEASUREMENT_TOOLS
+Reference codes identifying measurement tools, combining those specific
+for individual lengths and weights
 }
 \keyword{datasets}

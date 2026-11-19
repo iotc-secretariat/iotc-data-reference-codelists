@@ -5,21 +5,17 @@
 \alias{FOB_ACTIVITY_TYPES}
 \title{FOB_ACTIVITY_TYPES}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-  \item{DFOB}{Whether or not the activity is on drifting FOBs / FADs}
-  \item{AFOB}{Whether or not the activity is on anchored FOBs / FADs}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `DFOB`, `AFOB`, `DESCRIPTION_FR`,
+`DESCRIPTION_EN`
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/fisheries/#FOBactivityTypes>
+<https://data.iotc.org/reference/latest/domain/fisheries/#fobActivityTypes>
 }
 \usage{
 FOB_ACTIVITY_TYPES
 }
 \description{
-FOB_ACTIVITY_TYPES
+IOTC reference code list.
 }
 \keyword{datasets}

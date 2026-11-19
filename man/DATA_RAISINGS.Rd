@@ -5,19 +5,17 @@
 \alias{DATA_RAISINGS}
 \title{DATA_RAISINGS}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `DESCRIPTION_EN`, `DESCRIPTION_FR`
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/data/#raisings>
+<https://data.iotc.org/reference/latest/domain/data/#dataRaisings>
 }
 \usage{
 DATA_RAISINGS
 }
 \description{
-DATA_RAISINGS
+Reference codes describing the extent to which statistical data have
+been raised to represent total catches or fishing effort.
 }
 \keyword{datasets}

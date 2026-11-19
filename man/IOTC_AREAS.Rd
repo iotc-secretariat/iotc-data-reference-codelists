@@ -3,28 +3,19 @@
 \docType{data}
 \name{IOTC_AREAS}
 \alias{IOTC_AREAS}
-\title{IOTC_AREAS 
-Reference codes modeling all important areas in which the IOTC area of competence might be split (e.g., north-western, high-seas, NJA, etc.).}
+\title{IOTC_AREAS}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-  \item{OCEAN_AREA_KM2}{The ocean area in km2}
-  \item{OCEAN_AREA_IO_KM2}{The ocean area in km2 (limited to the area that falls within the Indian Ocean)}
-  \item{OCEAN_AREA_IOTC_KM2}{The ocean area in km2 (limited to the area that falls within the IOTC competence area)}
-  \item{CENTER_LAT}{The latitude of the centroid}
-  \item{CENTER_LON}{The longitude of the centroid}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `OCEAN_AREA_KM2`, `OCEAN_AREA_IO_KM2`,
+`OCEAN_AREA_IOTC_KM2`, `CENTER_LAT`, `CENTER_LON`
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/admin/#IOTCareas>
+<https://data.iotc.org/reference/latest>
 }
 \usage{
 IOTC_AREAS
 }
 \description{
-IOTC_AREAS 
-Reference codes modeling all important areas in which the IOTC area of competence might be split (e.g., north-western, high-seas, NJA, etc.).
+IOTC reference code list.
 }
 \keyword{datasets}

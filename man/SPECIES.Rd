@@ -5,23 +5,10 @@
 \alias{SPECIES}
 \title{SPECIES}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-  \item{NAME_SCIENTIFIC}{The scientific name}                   
-  \item{SPECIES_GROUP_CODE}{The species group code}                   - # To be removed
-  \item{SPECIES_CATEGORY_CODE}{The species category code}             - # To be removed
-  \item{FAMILY}{The species family (taken from the ASFIS list)}       - # To be removed
-  \item{ORDER}{The species order (taken from the ASFIS list)}         - # To be removed
-  \item{IUCN_STATUS_CODE}{The IUCN status code for the species}       - # To be removed
-  \item{IS_IOTC}{If the species belongs to the 16 IOTC ones}          
-  \item{IS_TARGET}{If the species is targetd by some IOTC fisheries}  - # To be removed
-  \item{IS_SSI}{If the species is of _special interest_ (SSI)}        - # To be removed
-  \item{IS_PREDATOR}{If the species is considered to be a _predator_} - # To be removed
-  \item{IS_AGGREGATE}{If the species is an aggregate}                 
-  \item{IS_ASFIS}{If the species is included in the ASFIS list}       - # To be removed
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `NAME_SCIENTIFIC`, `IS_IOTC`,
+`IS_AGGREGATE`, `SPECIES_CATEGORY_CODE`, `SPECIES_CATEGORY_NAME_EN`,
+`SPECIES_CATEGORY_NAME_FR`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/biological/#allSpecies>
@@ -30,6 +17,7 @@
 SPECIES
 }
 \description{
-SPECIES
+Reference codes identifying all species and species aggregates in the
+catalogue.
 }
 \keyword{datasets}

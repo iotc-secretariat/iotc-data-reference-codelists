@@ -5,27 +5,17 @@
 \alias{LEGACY_SPECIES}
 \title{LEGACY_SPECIES}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-  \item{NAME_SCIENTIFIC}{The scientific name}
-  \item{IS_AGGREGATE}{If the species is an aggregate}
-  \item{IS_IOTC}{If the species belongs to the 16 IOTC ones}
-  \item{SPECIES_GROUP_CODE}{The species group code}                          - # To be removed
-  \item{SPECIES_LARGE_GROUP_NAME_EN}{The species (large) group English name} - # To be removed
-  \item{SPECIES_LARGE_GROUP_NAME_FR}{The species (large) group French name}  - # To be removed
-  \item{SPECIES_CATALOG_GROUP_CODE}{The species catalog group code}          - # To be removed
-  \item{SPECIES_WORKING_PARTY_CODE}{The species woorking party code}         - # To be removed
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `NAME_SCIENTIFIC`, `IS_AGGREGATE`,
+`IS_IOTC`
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/legacy/#species>
+<https://data.iotc.org/reference/latest>
 }
 \usage{
 LEGACY_SPECIES
 }
 \description{
-LEGACY_SPECIES
+IOTC reference code list.
 }
 \keyword{datasets}

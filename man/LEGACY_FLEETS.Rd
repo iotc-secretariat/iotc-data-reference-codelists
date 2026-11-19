@@ -5,21 +5,16 @@
 \alias{LEGACY_FLEETS}
 \title{LEGACY_FLEETS}
 \format{
-\describe{
-  \item{FLAG_CODE}{The flag country code}
-  \item{REPORTING_ENTITY_CODE}{The reporting entity code}
-  \item{FLEET_CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`SORT`, `CODE`, `CPC_CODE`, `NAME_EN`, `NAME_FR`
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/legacy/#fleets>
+<https://data.iotc.org/reference/latest/domain/legacy/#legacyFleets>
 }
 \usage{
 LEGACY_FLEETS
 }
 \description{
-LEGACY_FLEETS
+Reference codes identifying fishing fleets in historical IOTC datasets.
 }
 \keyword{datasets}

@@ -5,20 +5,17 @@
 \alias{DATA_SOURCES}
 \title{DATA_SOURCES}
 \format{
-\describe{
-  \item{DATASET_CODE}{The dataset code}
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-}
+A data frame containing the following columns:
+`DATASET_CODE`, `CODE`, `NAME_EN`, `NAME_FR`, `DESCRIPTION_EN`,
+`DESCRIPTION_FR`
 }
 \source{
-<https://data.iotc.org/reference/latest/domain/data/#sources>
+<https://data.iotc.org/reference/latest/domain/data/#dataSources>
 }
 \usage{
 DATA_SOURCES
 }
 \description{
-DATA_SOURCES
+IOTC reference code list.
 }
 \keyword{datasets}

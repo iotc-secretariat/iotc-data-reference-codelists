@@ -5,12 +5,8 @@
 \alias{SEX}
 \title{SEX}
 \format{
-\describe{
-  \item{CODE}{The code}
-  \item{NAME_EN}{The English name}
-  \item{NAME_FR}{The French name}
-  \item{IS_DETERMINED}{Whether or not the sex is determined}
-}
+A data frame containing the following columns:
+`CODE`, `NAME_EN`, `NAME_FR`, `IS_DETERMINED`, `CODE_ORIG`
 }
 \source{
 <https://data.iotc.org/reference/latest/domain/biological/#sex>
@@ -19,6 +15,6 @@
 SEX
 }
 \description{
-SEX
+Reference codes identifying the sex of sampled animals.
 }
 \keyword{datasets}
