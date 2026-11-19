@@ -187,9 +187,10 @@ BAIT_SCHOOL_DETECTION_METHODS <- fishery_domain("BAIT_SCHOOL_DETECTION_METHODS")
 BUOY_MODELS                <- fishery_domain("BUOY_MODELS")
 BUOY_ACTIVITY_TYPES        <- fishery_domain("BUOY_ACTIVITY_TYPES")
 FOB_ACTIVITY_TYPES         <- fishery_domain("FOB_ACTIVITY_TYPES")
+DFOB_ACTIVITY_TYPES        <- fishery_domain("V_DFOB_ACTIVITY_TYPES")
 FOB_TYPES                  <- fishery_domain("FOB_TYPES")
+DFOB_TYPES                 <- fishery_domain("V_DFOB_TYPES")
 DFAD_BIODEGRADABILITY_CATEGORIES <- fishery_domain("DFAD_BIODEGRADABILITY_CATEGORIES")
-
 FAD_RAFT_DESIGNS <- fishery_domain("FAD_RAFT_DESIGNS")
 FAD_TAIL_DESIGNS <- fishery_domain("FAD_TAIL_DESIGNS")
 
@@ -251,7 +252,9 @@ use_data(BAIT_SCHOOL_DETECTION_METHODS, overwrite = TRUE) #v2
 use_data(BUOY_MODELS, overwrite = TRUE) # v2
 use_data(BUOY_ACTIVITY_TYPES, overwrite = TRUE)
 use_data(FOB_ACTIVITY_TYPES,  overwrite = TRUE)
+use_data(DFOB_ACTIVITY_TYPES, overwrite = TRUE)
 use_data(FOB_TYPES, overwrite = TRUE)
+use_data(DFOB_TYPES, overwrite = TRUE)
 use_data(FAD_RAFT_DESIGNS, overwrite = TRUE) #v2
 use_data(FAD_TAIL_DESIGNS, overwrite = TRUE) #v2
 use_data(DFAD_BIODEGRADABILITY_CATEGORIES, overwrite = TRUE) #v2
