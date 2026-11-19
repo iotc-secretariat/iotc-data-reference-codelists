@@ -283,6 +283,35 @@
 #' @source <https://data.iotc.org/reference/latest/domain/fisheries/#dfadBiodegradabilityCategories>
 "DFAD_BIODEGRADABILITY_CATEGORIES"
 
+#' DFOB_ACTIVITY_TYPES
+#'
+#' Reference codes describing the type of activities undertaken when
+#' interacting with a drifting floating object. This classification is
+#' based on the
+#' [CECOFAD](https://www.iccat.int/Documents/CVSP/CV074_2017/n_5/CV074052243.pdf)
+#' framework and has been extended using the proposals from
+#' [IOTC-2022-WGFAD03-18](https://iotc.org/documents/WGFAD/03/18).
+#'
+#' @format A data frame containing the following columns:
+#' `CODE`, `NAME_EN`, `NAME_FR`, `DESCRIPTION_EN`, `DESCRIPTION_FR`
+#'
+#' @source <https://data.iotc.org/reference/latest/domain/fisheries/#dfobActivityTypes>
+"DFOB_ACTIVITY_TYPES"
+
+#' DFOB_TYPES
+#'
+#' Reference code list decribing the types of drifting floating objects.
+#' This classification is based on the
+#' [CECOFAD](https://www.iccat.int/Documents/CVSP/CV074_2017/n_5/CV074052243.pdf)
+#' framework and has been extended using the proposals from
+#' [IOTC-2022-WGFAD03-18](https://iotc.org/documents/WGFAD/03/18).
+#'
+#' @format A data frame containing the following columns:
+#' `CODE`, `NAME_EN`, `NAME_FR`, `DESCRIPTION_EN`, `DESCRIPTION_FR`
+#'
+#' @source <https://data.iotc.org/reference/latest/domain/fisheries/#dfobTypes>
+"DFOB_TYPES"
+
 #' DISCARD_REASONS
 #'
 #' Reference codes identifying reasons for discarding catches at sea.
